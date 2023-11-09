@@ -199,7 +199,7 @@ footer {
 }
 
 .content img {
-    width: 40%; /* Make images responsive */
+    width: 80%; /* Make images responsive */
     height: auto;
     margin-bottom: 20px; /* Spacing below images */
 }
