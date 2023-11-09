@@ -171,6 +171,8 @@ header {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     word-wrap: break-word;
     justify-self: center;
+    width: 350px; /* Set a fixed width or use max-width for responsiveness */
+    height: auto; /* Allow the height to grow as needed */
 }
 
 .content strong {
@@ -249,6 +251,55 @@ footer {
     }
 }
 
-/* Ensure that long words do not cause overflow */
-word-wrap: break-word; /* Apply to elements that contain text */
+/* Styling for the feature list */
+.feature-scroll {
+    display: flex;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling for arrow navigation */
+}
+  
+/* Styling for individual feature blocks */
+#feature-list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none; /* Remove default list styling */
+}
+  
+#feature-list li {
+    flex: none; /* Do not allow the flex items to grow or shrink */
+    margin-right: 20px; /* Space between items */
+    min-width: 200px; /* Minimum width for each feature block */
+    max-width: 250px; /* Maximum width for each feature block */
+    margin-bottom: 20px; /* Space below each item */
+}
 
+/* Container for the feature list and arrows */
+.features-container {
+    position: relative;
+    overflow: hidden; /* Hide overflow */
+    width: 100%; /* Full width of the container */
+    max-width: 800px; /* Or the max-width you prefer */
+    margin: auto; /* Center the container if needed */
+}
+
+/* Arrows for navigation */
+.feature-nav {
+    position: absolute;
+    top: 50%; /* Align vertically */
+    transform: translateY(-50%); /* Center vertically */
+    cursor: pointer;
+    background-color: #333; /* Arrow background color */
+    color: #fff; /* Arrow color */
+    padding: 10px;
+    user-select: none;
+    z-index: 10; /* Ensure arrows are above the feature blocks */
+}
+
+.feature-nav.prev {
+    left: -40px; /* Position the left arrow outside the feature list */
+}
+
+.feature-nav.next {
+    right: -40px; /* Position the right arrow outside the feature list */
+}
