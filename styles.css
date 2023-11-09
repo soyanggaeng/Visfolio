@@ -10,6 +10,7 @@ body, html {
     height: 100%;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 .logo-container {
@@ -199,36 +200,55 @@ footer {
 }
 
 .content img {
-    width: 80%; /* Make images responsive */
+    max-width: 70%; /* Make images responsive */
     height: auto;
     margin-bottom: 20px; /* Spacing below images */
 }
 
 @media only screen and (max-width: 768px) {
-    .main-nav ul {
+    /* Adjust navigation menu for smaller screens */
+    .main-nav {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
 
-    .main-nav li {
+    #menu {
+        flex-direction: column;
         width: 100%;
     }
 
-    .dropdown-content {
-        position: relative;
+    #menu > li {
+        width: 100%; /* Full width for mobile view */
+        text-align: center; /* Center the text */
     }
 
+    /* Adjust hero section padding */
     .hero {
-        background-attachment: scroll;
+        padding: 100px 10px; /* Reduced padding for mobile */
     }
 
-    .content ul {
-        grid-template-columns: 1fr;
+    /* Content Section adjustments */
+    .content {
+        padding: 50px 10px; /* Less padding for mobile */
     }
 
-    .footer-link {
-        align-self: center;
-        padding-top: 10px;
+    /* Adjust content list items for mobile */
+    .content li {
+        padding: 15px; /* Reduced padding */
+        font-size: 0.9rem; /* Smaller text */
     }
 
+    /* Footer adjustments */
+    footer {
+        padding: 10px 0; /* Less padding for mobile */
+    }
+
+    /* Other general adjustments */
+    body, html {
+        padding: 0 5px; /* Add some padding to the sides of the screen */
+    }
 }
+
+/* Ensure that long words do not cause overflow */
+word-wrap: break-word; /* Apply to elements that contain text */
+
