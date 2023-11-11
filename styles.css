@@ -157,7 +157,7 @@ header {
 
 .content ul {
     list-style: none;
-    padding: 0;
+    padding: 0 50px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
@@ -165,14 +165,24 @@ header {
 }
 
 .content li {
-    background: #394867;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(145deg, #495a75, #3a4860); /* Smooth gradient background */
+    padding: 30px; /* Spacious padding */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
     word-wrap: break-word;
-    justify-self: center;
-    width: 350px; /* Set a fixed width or use max-width for responsiveness */
-    height: auto; /* Allow the height to grow as needed */
+    width: 350px;
+    height: auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+    position: relative;
+}
+
+.content h2, .content li strong {
+    color: #B6EADA; /* Soft color for headings and strong tags */
+}
+
+.content li:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Increase shadow for hover effect */
 }
 
 .content strong {
@@ -207,55 +217,20 @@ footer {
     margin-bottom: 20px; /* Spacing below images */
 }
 
-@media only screen and (max-width: 768px) {
-    /* Adjust navigation menu for smaller screens */
-    .main-nav {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #menu {
-        flex-direction: column;
-        width: 100%;
-    }
-
-    #menu > li {
-        width: 100%; /* Full width for mobile view */
-        text-align: center; /* Center the text */
-    }
-
-    /* Adjust hero section padding */
-    .hero {
-        padding: 100px 10px; /* Reduced padding for mobile */
-    }
-
-    /* Content Section adjustments */
-    .content {
-        padding: 50px 10px; /* Less padding for mobile */
-    }
-
-    /* Adjust content list items for mobile */
-    .content li {
-        padding: 15px; /* Reduced padding */
-        font-size: 0.9rem; /* Smaller text */
-    }
-
-    /* Footer adjustments */
-    footer {
-        padding: 10px 0; /* Less padding for mobile */
-    }
-
-    /* Other general adjustments */
-    body, html {
-        padding: 0 5px; /* Add some padding to the sides of the screen */
-    }
-}
-
 /* Styling for the feature list */
 .feature-scroll {
     display: flex;
     overflow-x: auto; /* Enable horizontal scrolling */
     scroll-behavior: smooth; /* Smooth scrolling for arrow navigation */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    padding-right: 20px; /* Adjust as needed */
+    font-family: 'Font Awesome 5 Free', sans-serif;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.feature-scroll::-webkit-scrollbar {
+    display: none; /* This is important to hide the scrollbar */
 }
   
 /* Styling for individual feature blocks */
@@ -285,21 +260,193 @@ footer {
 
 /* Arrows for navigation */
 .feature-nav {
-    position: absolute;
-    top: 50%; /* Align vertically */
-    transform: translateY(-50%); /* Center vertically */
-    cursor: pointer;
-    background-color: #333; /* Arrow background color */
-    color: #fff; /* Arrow color */
-    padding: 10px;
-    user-select: none;
-    z-index: 10; /* Ensure arrows are above the feature blocks */
+    background-color: #495a75; /* Updated background color */
+    border-radius: 50%; /* Circular shape for arrows */
+    width: 40px; /* Fixed width */
+    height: 40px; /* Fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute; /* Position arrows absolutely within the features-container */
+    top: 50%; /* Center vertically */
+    margin-top: -15px; /* Half of the height to center it */
+    transform: translateY(-50%); /* Offset by half height for perfect vertical centering */
+    cursor: pointer; /* Change cursor to pointer to indicate clickability */
+    z-index: 2; /* Ensure arrows are above other content */
+}
+
+.feature-nav:hover {
+    background-color: #5b6d8a; /* Slightly lighter on hover for interaction feedback */
+}
+
+/* Styling for navigation arrow icons (if you're using fonts like Font Awesome) */
+.feature-nav::before {
+    /* Adjust content if you're using a font icon */
+    display: block;
+    font-family: "Font Awesome 5 Free"; /* Use the correct font family if using icon fonts */
+    content: '\f104'; /* Insert the correct content code for the left arrow */
+    color: white;
 }
 
 .feature-nav.prev {
-    left: -40px; /* Position the left arrow outside the feature list */
+    left: -40px; /* Position to the left within the container */
 }
 
 .feature-nav.next {
-    right: -40px; /* Position the right arrow outside the feature list */
+    right: -40px; /* Position to the right within the container */
+}
+
+.feature-nav.next::before {
+    content: '\f105'; /* Insert the correct content code for the right arrow */
+}
+
+/* Styles for the search section */
+.search-section {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+#search-input {
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+}
+
+#search-input:focus {
+    outline: 2px solid #B6EADA;
+}
+
+#search-btn {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #B6EADA;
+    color: #03001C;
+    cursor: pointer;
+}
+
+#search-btn:hover {
+    background-color: #a0d2c8;
+}
+
+/* Styles for the word cloud image section */
+.wordcloud-section {
+    text-align: center;
+    margin: 20px;
+    color: white
+}
+
+/* Styles for the news section */
+.news-section {
+    background: linear-gradient(to bottom, #03001C 0%, #301E67 50%, #5B8FB9 100%);
+    border-radius: 8px;
+    padding: 20px; /* Adjust the padding as needed */
+    color: #ffffff;
+}
+
+.news-item {
+    display: flex;
+    justify-content: space-between; /* Adjusts items to be on opposite ends */
+    align-items: center; /* Aligns items vertically */
+    padding: 10px 0; /* Top and bottom padding for each item */
+    border-bottom: 1px solid #333;
+    transition: background-color 0.3s;
+}
+
+.news-outlet,
+.news-time {
+    font-size: 0.8rem;
+    color: #B6EADA;
+}
+
+.news-title {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.news-title:hover {
+    text-decoration: underline;
+}
+
+/* Styles for the tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+@media only screen and (max-width: 768px) {
+    /* Adjust navigation menu for smaller screens */
+    .main-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #menu {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #menu > li {
+        width: 100%; /* Full width for mobile view */
+        text-align: center; /* Center the text */
+    }
+
+    /* Adjust hero section padding */
+    .hero {
+        padding: 100px 10px; /* Reduced padding for mobile */
+    }
+
+    /* Content Section adjustments */
+    .content {
+        padding: 50px 10px; /* Less padding for mobile */
+    }
+
+    /* Adjust content list items for mobile */
+    .content li {
+        padding: 20px; /* Adjust padding on smaller screens */
+        width: auto; /* Full width of the container */
+        margin: 10px; /* Adjust margins for better spacing */
+        font-size: 0.9rem; /* Smaller text */
+    }
+
+    /* Footer adjustments */
+    footer {
+        padding: 10px 0; /* Less padding for mobile */
+    }
+
+    /* Other general adjustments */
+    body, html {
+        padding: 0 5px; /* Add some padding to the sides of the screen */
+    }
+
+    .feature-nav {
+        width: 35px; /* Smaller arrows on mobile */
+        height: 35px; /* Smaller arrows on mobile */
+    }
 }
