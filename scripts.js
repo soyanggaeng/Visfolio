@@ -1,99 +1,33 @@
-document.addEventListener('DOMContentLoaded', function() {
-    try {
-        console.log('DOM fully loaded and parsed');
-        loadHeader(); // This will initiate loading the header and then the footer
-    } catch (error) {
-        console.error('Error during initialization:', error);
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    loadHeader()
+        .then(loadFooter)
+        .then(initializePage)
+        .catch(console.error);
 });
 
-// Header load with error handling
-function loadHeader() {
-    fetch('header.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok for header.html');
-            }
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-            console.log('Header loaded');
-            // Header is loaded, now load the footer
-            loadFooter();
-        })
-        .catch(error => {
-            console.error('Error loading header:', error);
-        });
-}
-
-// Footer load with error handling
-function loadFooter() {
-    fetch('footer.html')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok for footer.html');
-            }
-            return response.text();
-        })
-        .then(data => {
-            document.getElementById('footer-placeholder').innerHTML = data;
-            console.log('Footer loaded');
-            // Footer is loaded, now initialize swipe features
-            initSwipeFeatures();
-        })
-        .catch(error => {
-            console.error('Error loading footer:', error);
-        });
-}
-
-function setupDropdownToggle() {
-    try {
-        var menuIcon = document.getElementById('menu-icon');
-        if (!menuIcon) {
-            throw new Error('menu-icon not found');
-        }
-        menuIcon.addEventListener('click', function() {
-            var dropdown = document.getElementById('dropdown');
-            dropdown.classList.toggle('hidden');
-        });
-        console.log('Dropdown toggle set up');
-    } catch (error) {
-        console.error('Error setting up dropdown toggle:', error);
+async function loadHeader() {
+    const response = await fetch('header.html');
+    if (!response.ok) {
+        throw new Error('Network response was not ok for header.html');
     }
+    const data = await response.text();
+    document.getElementById('header-placeholder').innerHTML = data;
+    console.log('Header loaded');
 }
 
-// 스와이프 기능 및 화살표 가시성 초기화
-// Call this function at the end of your loadFooter function
-function initSwipeFeatures() {
-    try {
-        const featureScroll = document.querySelector('.feature-scroll');
-        if (!featureScroll) {
-            throw new Error('.feature-scroll element not found');
-        }
-        const prevArrow = document.querySelector('.feature-nav.prev');
-        const nextArrow = document.querySelector('.feature-nav.next');
-
-        function checkArrows() {
-            const isScrollable = featureScroll.scrollWidth > featureScroll.clientWidth;
-            prevArrow.style.display = isScrollable ? 'block' : 'none';
-            nextArrow.style.display = isScrollable ? 'block' : 'none';
-        }
-
-        checkArrows();
-        window.addEventListener('resize', checkArrows);
-
-        prevArrow.addEventListener('click', () => scrollFeatures('prev'));
-        nextArrow.addEventListener('click', () => scrollFeatures('next'));
-
-        featureScroll.addEventListener('touchstart', handleTouchStart, false);
-        featureScroll.addEventListener('touchmove', handleTouchMove, false);
-        featureScroll.addEventListener('touchend', handleTouchEnd, false);
-        console.log('Swipe features initialized');
-    } catch (error) {
-        console.error('Error initializing swipe features:', error);
+async function loadFooter() {
+    const response = await fetch('footer.html');
+    if (!response.ok) {
+        throw new Error('Network response was not ok for footer.html');
     }
-    populateSearchSuggestions(); // Populate search suggestions here
+    const data = await response.text();
+    document.getElementById('footer-placeholder').innerHTML = data;
+    console.log('Footer loaded');
+}
+
+function initializePage() {
+    populateSearchSuggestions();
+    setupSearch();
 }
 
 let touchStartX = 0;
@@ -148,48 +82,91 @@ const companies = [
             }
         ]
     },
-    // Add more companies and news items here...
+    { 
+        name: "BetaSolutions", 
+        wordCloud: "wordcloud_beta.jpg", 
+        news: [
+            { 
+                outlet: "Bloomberg", 
+                time: "1 day ago", 
+                title: "BetaSolutions poised to disrupt the market", 
+                link: "https://bloomberg.com/betasolutions-market-disruption" 
+            },
+            { 
+                outlet: "Forbes", 
+                time: "2 days ago", 
+                title: "BetaSolutions CEO on the future of tech innovation", 
+                link: "https://forbes.com/betasolutions-ceo-interview" 
+            }
+        ]
+    },
+    { 
+        name: "GammaCorp", 
+        wordCloud: "wordcloud_gamma.jpg", 
+        news: [
+            { 
+                outlet: "Reuters", 
+                time: "3 hours ago", 
+                title: "GammaCorp's groundbreaking approach to AI", 
+                link: "https://reuters.com/gammacorp-ai-breakthrough" 
+            },
+            { 
+                outlet: "CNBC", 
+                time: "1 hour ago", 
+                title: "GammaCorp stock surges after earnings beat", 
+                link: "https://cnbc.com/gammacorp-earnings-surprise" 
+            }
+        ]
+    },
+    { 
+        name: "DeltaElectronics", 
+        wordCloud: "wordcloud_delta.jpg", 
+        news: [
+            { 
+                outlet: "TechRadar", 
+                time: "2 days ago", 
+                title: "DeltaElectronics announces innovative battery tech", 
+                link: "https://techradar.com/deltaelectronics-battery-tech" 
+            },
+            { 
+                outlet: "Engadget", 
+                time: "3 days ago", 
+                title: "DeltaElectronics to partner with major car manufacturer", 
+                link: "https://engadget.com/deltaelectronics-car-partnership" 
+            }
+        ]
+    },
+    // You can continue adding more companies and news items here
 ];
 
-
-// 자동 완성 데이터 채우기
 function populateSearchSuggestions() {
-    console.log('Populating search suggestions');
-    let searchSuggestions = document.getElementById('search-suggestions');
+    const searchSuggestions = document.getElementById('search-suggestions');
     companies.forEach(company => {
-        let option = document.createElement('option');
+        const option = document.createElement('option');
         option.value = company.name;
         searchSuggestions.appendChild(option);
     });
     console.log('Search suggestions populated');
-    setupSearch();
 }
 
-// 검색 기능 설정
 function setupSearch() {
-    try {
-        console.log('Setting up search');
-        console.assert(document.getElementById('search-btn'), 'search-btn not found');
-        console.assert(document.getElementById('search-input'), 'search-input not found');
-
-        document.getElementById('search-btn').addEventListener('click', function() {
-            console.log('Search button clicked');
-            let searchQuery = document.getElementById('search-input').value.toLowerCase();
-            let company = companies.find(c => c.name.toLowerCase() === searchQuery);
-
-            if (company) {
-                console.log('Company found:', company.name);
-                displayWordCloud(company.wordCloud);
-                displayNews(company.news);
-            } else {
-                console.log('Company not found');
-                alert("Company not found");
-            }
-        });
-        console.log('Search setup complete');
-    } catch (error) {
-        console.error('Error setting up search:', error);
+    const searchBtn = document.getElementById('search-btn');
+    const searchInput = document.getElementById('search-input');
+    if (!searchBtn || !searchInput) {
+        throw new Error('Search elements not found');
     }
+
+    searchBtn.addEventListener('click', () => {
+        const searchQuery = searchInput.value.toLowerCase();
+        const company = companies.find(c => c.name.toLowerCase() === searchQuery);
+        if (company) {
+            displayWordCloud(company.wordCloud);
+            displayNews(company.news);
+        } else {
+            alert("Company not found");
+        }
+    });
+    console.log('Search setup complete');
 }
 
 function displayWordCloud(imageFile) {
