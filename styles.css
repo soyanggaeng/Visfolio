@@ -217,6 +217,30 @@ footer {
     margin-bottom: 20px; /* Spacing below images */
 }
 
+/* about us team member */
+.team-member {
+    display: flex;
+    align-items: center; /* This ensures vertical centering of children */
+    justify-content: start;
+    gap: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.team-member img {
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    object-fit: cover;
+    border-radius: 50%; /* Circular image */
+    align-self: center; /* This ensures the image itself is centered vertically */
+}
+
+.team-member p {
+    font-size: 1em;
+    margin: 0;
+    max-width: 500px;
+}
+
 /* Styling for the feature list */
 .feature-scroll {
     display: flex;
@@ -433,6 +457,22 @@ footer {
         width: auto; /* Full width of the container */
         margin: 10px; /* Adjust margins for better spacing */
         font-size: 0.9rem; /* Smaller text */
+    }
+
+    /* about us team member */
+    .team-member {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-member img {
+        width: 80px; /* Smaller size for mobile */
+        height: 80px;
+    }
+
+    .team-member p {
+        text-align: center;
+        max-width: 100%;
     }
 
     /* Footer adjustments */
