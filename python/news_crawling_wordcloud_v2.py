@@ -30,7 +30,7 @@ for company_name in company_names:
 
         for page in range(1, 11):  # Collect titles from page 1 to 10
             start_param = (page - 1) * 10 + 1
-            website = f"https://search.naver.com/search.naver?where=news&sm=tab_jum&query={company_name}+주가&office_category=3&office_type=3&pd=2&start={start_param}"
+            website = f"https://search.naver.com/search.naver?where=news&sm=tab_jum&query={company_name}+주가&office_category=3&office_type=3&pd=2&sort=1&start={start_param}"
 
             response = requests.get(website)
             time.sleep(1)  # Wait for 1 second before the next request
