@@ -93,8 +93,8 @@ function parseAndDisplayNews(csvText) {
 
         const columns = row.split(',');
         const outlet = columns[0];
-        const time = columns[2];
-        const title = columns[1];
+        const time = columns[1];
+        const title = columns[2];
         const link = columns[3];
 
         let article = document.createElement('article');
