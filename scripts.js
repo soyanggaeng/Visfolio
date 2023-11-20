@@ -113,11 +113,11 @@ function setupSearch(companies) {
         const selectedCountry = countrySelect.value;
         const selectedSector = sectorSelect.value;
 
-        // Find the first matching company based on the search criteria
+        // Find the first matching company based on the search criteria, ensuring case-insensitive comparison
         const selectedCompany = companies.find(company => 
-            company.name.toLowerCase().includes(searchQuery) &&
+            company.name.toLowerCase() === searchQuery &&
             company.country === selectedCountry &&
-            company.sector === selectedSector
+            (company.sector === selectedSector || selectedSector === 'all')
         );
 
         // If a company is found, display its word cloud and news
