@@ -113,14 +113,20 @@ function setupSearch(companies) {
         const selectedCountry = countrySelect.value;
         const selectedSector = sectorSelect.value;
 
-        const filteredCompanies = companies.filter(company => 
+        // Find the first matching company based on the search criteria
+        const selectedCompany = companies.find(company => 
             company.name.toLowerCase().includes(searchQuery) &&
             company.country === selectedCountry &&
             company.sector === selectedSector
         );
 
-        displayWordCloud(filteredCompanies);
-        displayNews(filteredCompanies);
+        // If a company is found, display its word cloud and news
+        if (selectedCompany) {
+            displayWordCloud(selectedCompany.name);
+            displayNews(selectedCompany.name);
+        } else {
+            console.log("No company found matching the search criteria");
+        }
     });
 }
 
