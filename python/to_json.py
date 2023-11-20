@@ -6,6 +6,7 @@ def process_csv(file_path, country, name_col, sector_col):
         data = pd.read_csv(file_path, encoding="cp949")
     else:
         data = pd.read_csv(file_path)
+    data = data.dropna(subset=[name_col, sector_col])  # Dropping rows where name or sector is NaN
     companies = [{"name": row[name_col], "sector": row[sector_col], "country": country} for index, row in data.iterrows()]
     return companies
 
