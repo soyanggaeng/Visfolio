@@ -1,5 +1,3 @@
-const colorScale = d3.scaleOrdinal(d3.schemeSet3); // You can use a color scheme of your choice
-
 document.addEventListener('DOMContentLoaded', () => {
     loadHeader()
         .then(loadFooter)
@@ -26,6 +24,8 @@ async function loadFooter() {
     document.getElementById('footer-placeholder').innerHTML = data;
     console.log('Footer loaded');
 }
+
+const colorScale = d3.scaleOrdinal(d3.schemeSet3); // You can use a color scheme of your choice
 
 async function initializePage() {
     const companies = await fetchCompanies();
