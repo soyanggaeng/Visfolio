@@ -1,3 +1,5 @@
+const colorScale = d3.scaleOrdinal(d3.schemeSet3); // You can use a color scheme of your choice
+
 document.addEventListener('DOMContentLoaded', () => {
     loadHeader()
         .then(loadFooter)
@@ -131,10 +133,82 @@ function setupSearch(companies) {
 }
 
 async function displayWordCloud(companyName) {
-    const imageFilePath = `wordcloud/${companyName}_wordcloud.jpg`;
-    let image = document.getElementById('wordcloud-image');
-    image.src = imageFilePath;
-    image.style.display = 'block';
+    console.log("displayWordCloud called for", companyName);
+
+    const csvFilePath = `wordcloud/${companyName}_wordcloud.csv`;
+    console.log("Fetching data from", csvFilePath);
+
+    const response = await fetch(csvFilePath);
+    if (!response.ok) {
+        console.error('Failed to load word cloud data');
+        return;
+    }
+    const csvText = await response.text();
+
+    console.log("CSV data fetched:", csvText.substring(0, 100)); // Log first 100 chars
+
+    // Remove existing word cloud SVG elements from the DOM
+    d3.select(".wordcloud-section").selectAll("svg").remove();
+
+    // Parse the CSV data
+    const parsedData = d3.csvParse(csvText, d => {
+        // Make sure to parse the frequency to a number if it's not already
+        return { text: d.word, size: +d.frequency };
+    });
+
+    // Now, use the parsed data to generate the word cloud
+    generateWordCloud(parsedData);
+}
+
+function generateWordCloud(words) {
+    // Set up the dimensions and margins of the graph
+    var margin = {top: 10, right: 10, bottom: 10, left: 10},
+        width = 450 - margin.left - margin.right,
+        height = 450 - margin.top - margin.bottom;
+
+    // Append the svg object to the body of the page
+    var svg = d3.select(".wordcloud-section").append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+        .attr("transform",
+              "translate(" + margin.left + "," + margin.top + ")");
+
+    // Find the maximum frequency to normalize word sizes
+    const maxSize = d3.max(words, function(d) { return +d.size; });
+
+    // Scales the size of each word
+    const sizeScale = d3.scaleLinear()
+        .domain([0, maxSize])
+        .range([10, 100]);  // Adjust the range for minimum and maximum font sizes
+
+    // Constructs a new cloud layout instance and run the word cloud algorithm
+    var layout = d3.layout.cloud()
+        .size([width, height])
+        .words(words.map(function(d) { return {text: d.text, size: sizeScale(+d.size)}; }))
+        .padding(5)        // Space between words
+        .rotate(0)         // Rotate every word by 0 degrees
+        .fontSize(function(d) { return d.size; })      // Font size of words
+        .on("end", draw);
+    layout.start();
+
+    // Draw the words
+    function draw(words) {
+      svg
+        .append("g")
+          .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+          .selectAll("text")
+            .data(words)
+          .enter().append("text")
+            .style("font-size", function(d) { return d.size + "px"; })
+            .style("fill", function(d) { return colorScale(d.text); })
+            .attr("text-anchor", "middle")
+            .style("font-family", "'Nanum Myeongjo', serif")
+            .attr("transform", function(d) {
+              return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+            })
+            .text(function(d) { return d.text; });
+    }
 }
 
 async function displayNews(companyName) {

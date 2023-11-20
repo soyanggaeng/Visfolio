@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body, html {
     margin: 0;
@@ -346,36 +346,58 @@ footer {
 }
 
 /* Styles for the search section */
+/* Styles for the search section */
 .search-section {
     display: flex;
     justify-content: center;
+    gap: 10px; /* Add some space between the elements */
+    align-items: center; /* Center align the items vertically */
     margin: 20px;
+    color: #ffffff; /* Set text color to white */
 }
 
-#search-input {
+.search-section select,
+.search-section input,
+.search-section button {
     padding: 10px;
-    margin-right: 10px;
-    border: none;
+    margin: 0 5px;
+    border: 2px solid #B6EADA; /* Border color */
+    background: transparent; /* Transparent background */
     border-radius: 5px;
-    width: 300px;
+    color: #828282; /* Text color */
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1rem;
 }
 
-#search-input:focus {
-    outline: 2px solid #B6EADA;
+.search-section label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 1rem;
 }
 
-#search-btn {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #B6EADA;
-    color: #03001C;
+.search-section input::placeholder {
+    color: #ffffff; /* Placeholder text color */
+    opacity: 0.7; /* Placeholder text opacity */
+}
+
+.search-section input:focus,
+.search-section select:focus,
+.search-section button:focus {
+    outline: none;
+    border-color: #a0d2c8;
+}
+
+.search-section button {
     cursor: pointer;
+    background-color: #B6EADA; /* Button background color */
+    color: #03001C; /* Button text color */
+    transition: background-color 0.3s, color 0.3s;
 }
 
-#search-btn:hover {
-    background-color: #a0d2c8;
+.search-section button:hover {
+    background-color: #a0d2c8; /* Darker background on hover */
+    color: #ffffff; /* White text on hover */
 }
+
 
 /* Styles for the word cloud image section */
 .wordcloud-section {
@@ -383,6 +405,7 @@ footer {
     margin: 20px;
     color: white
 }
+
 
 /* Styles for the news section */
 .news-section {
