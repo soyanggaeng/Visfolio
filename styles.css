@@ -366,7 +366,6 @@ footer {
 /* Styles for the news section */
 .news-section {
     background: linear-gradient(to bottom, #03001C 0%, #301E67 50%, #5B8FB9 100%);
-    border-radius: 8px;
     padding: 20px; /* Adjust the padding as needed */
     color: #ffffff;
 }
