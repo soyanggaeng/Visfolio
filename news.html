@@ -11,6 +11,22 @@
     <main>
         <!-- Search section for company news -->
         <section class="search-section">
+            <!-- Country Selection -->
+            <label for="country-select">Country:</label>
+            <select id="country-select">
+                <option value="korea">Korea</option>
+                <option value="usa">USA</option>
+                <!-- Add more countries as needed -->
+            </select>
+
+            <!-- Sector Selection -->
+            <label for="sector-select">Sector:</label>
+            <select id="sector-select">
+                <!-- Options will be populated based on selected stock exchange -->
+            </select>
+
+            <!-- Company Name Input and Suggestions -->
+            <label for="search-input">Company:</label>
             <input type="text" id="search-input" placeholder="Search for a company..." list="search-suggestions">
             <datalist id="search-suggestions">
                 <!-- Suggestions will be populated here -->

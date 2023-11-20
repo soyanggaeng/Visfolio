@@ -25,9 +25,10 @@ async function loadFooter() {
     console.log('Footer loaded');
 }
 
-function initializePage() {
-    fetchCompanies().then(populateSearchSuggestions);
-    setupSearch();
+async function initializePage() {
+    const companies = await fetchCompanies();
+    setupCountrySelection(companies);
+    setupSearch(companies);
 }
 
 async function fetchCompanies() {
@@ -38,29 +39,89 @@ async function fetchCompanies() {
     return await response.json();
 }
 
-function populateSearchSuggestions(companies) {
+function populateSectorDropdown(companies, country) {
+    const sectorSelect = document.getElementById('sector-select');
+    sectorSelect.innerHTML = ''; // Clear existing options
+
+    // Add an option for 'All' sectors
+    const allOption = document.createElement('option');
+    allOption.value = 'all';
+    allOption.textContent = 'All';
+    sectorSelect.appendChild(allOption);
+
+    if (country !== 'all') {
+        const sectors = new Set(companies.filter(company => company.country === country).map(company => company.sector));
+        sectors.forEach(sector => {
+            const option = document.createElement('option');
+            option.value = sector;
+            option.textContent = sector;
+            sectorSelect.appendChild(option);
+        });
+    }
+
+    // Update the search suggestions based on the initial sector selection
+    populateSearchSuggestions(companies, country, sectorSelect.value);
+}
+
+function setupCountrySelection(companies) {
+    const countrySelect = document.getElementById('country-select');
+    const sectorSelect = document.getElementById('sector-select');
+
+    countrySelect.addEventListener('change', () => {
+        const selectedCountry = countrySelect.value;
+        populateSectorDropdown(companies, selectedCountry);
+    });
+
+    sectorSelect.addEventListener('change', () => {
+        const selectedCountry = countrySelect.value;
+        const selectedSector = sectorSelect.value;
+        populateSearchSuggestions(companies, selectedCountry, selectedSector);
+    });
+
+    // Initially populate sectors for the default selected country
+    populateSectorDropdown(companies, countrySelect.value);
+}
+
+function populateSearchSuggestions(companies, country, sector) {
     const searchSuggestions = document.getElementById('search-suggestions');
-    companies.forEach(company => {
+    searchSuggestions.innerHTML = ''; // Clear existing suggestions
+
+    let filteredCompanies = companies;
+
+    if (country !== 'all') {
+        filteredCompanies = filteredCompanies.filter(company => company.country === country);
+    }
+    if (sector !== 'all') {
+        filteredCompanies = filteredCompanies.filter(company => company.sector === sector);
+    }
+
+    filteredCompanies.forEach(company => {
         const option = document.createElement('option');
         option.value = company.name;
         searchSuggestions.appendChild(option);
     });
-    console.log('Search suggestions populated');
 }
 
-function setupSearch() {
+function setupSearch(companies) {
     const searchBtn = document.getElementById('search-btn');
     const searchInput = document.getElementById('search-input');
-    if (!searchBtn || !searchInput) {
-        throw new Error('Search elements not found');
-    }
+    const countrySelect = document.getElementById('country-select');
+    const sectorSelect = document.getElementById('sector-select');
 
     searchBtn.addEventListener('click', () => {
         const searchQuery = searchInput.value.toLowerCase();
-        displayWordCloud(searchQuery);
-        displayNews(searchQuery);
+        const selectedCountry = countrySelect.value;
+        const selectedSector = sectorSelect.value;
+
+        const filteredCompanies = companies.filter(company => 
+            company.name.toLowerCase().includes(searchQuery) &&
+            company.country === selectedCountry &&
+            company.sector === selectedSector
+        );
+
+        displayWordCloud(filteredCompanies);
+        displayNews(filteredCompanies);
     });
-    console.log('Search setup complete');
 }
 
 async function displayWordCloud(companyName) {
@@ -89,20 +150,22 @@ function parseAndDisplayNews(csvText) {
 
     const rows = csvText.split('\n');
     rows.forEach((row, index) => {
-        if (index === 0 || row === '') return;
+        if (index === 0 || row === '') return; // Skip the header or empty rows
 
+        // Correctly mapping the columns based on your CSV structure
         const columns = row.split(',');
-        const outlet = columns[0];
-        const time = columns[1];
-        const title = columns[2];
-        const link = columns[3];
+        // Assuming the CSV columns are: company_name, title, date, link
+        const title = columns[1]; // Title is the second column
+        const time = columns[2];  // Date is the third column
+        const link = columns[3];  // Link is the fourth column
 
+        // Create and append the article element for each news item
         let article = document.createElement('article');
         article.className = 'news-item';
 
         let titleLink = document.createElement('a');
         titleLink.href = link;
-        titleLink.textContent = `${outlet} - ${time} - ${title}`;
+        titleLink.textContent = `${title} - ${time}`;
         titleLink.className = 'news-title';
         article.appendChild(titleLink);
 
