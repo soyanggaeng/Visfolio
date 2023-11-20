@@ -1,5 +1,17 @@
 [
     {
+        "name": "Apple Inc",
+        "sector": "전화 및 소형 장치",
+        "country": "usa",
+        "symbol": "AAPL"
+    },
+    {
+        "name": "Microsoft Corp",
+        "sector": "소프트웨어",
+        "country": "usa",
+        "symbol": "MSFT"
+    },
+    {
         "name": "AJ네트웍스",
         "sector": "서비스업",
         "country": "korea",
@@ -17806,18 +17818,6 @@
         "sector": "투자 지주 회사",
         "country": "usa",
         "symbol": "LNFA.U"
-    },
-    {
-        "name": "Apple Inc",
-        "sector": "전화 및 소형 장치",
-        "country": "usa",
-        "symbol": "AAPL"
-    },
-    {
-        "name": "Microsoft Corp",
-        "sector": "소프트웨어",
-        "country": "usa",
-        "symbol": "MSFT"
     },
     {
         "name": "Amazon.com Inc",
