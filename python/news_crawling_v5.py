@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import requests
+from urllib.request import Request, urlopen
+from urllib.parse import quote
 import csv
 import re
 from konlpy.tag import Kkma
@@ -26,45 +27,57 @@ def scrape_news(company_name, country, company):
         return scrape_yahoo_finance(symbol, company_name)
     return []
 
-
 def scrape_naver(company_name):
     news_data = []
-    for page in range(1, 11):  # Collect titles from page 1 to 10
+    for page in range(1, 11):
         start_param = (page - 1) * 10 + 1
-        website = f"https://search.naver.com/search.naver?where=news&sm=tab_jum&query={company_name}+주가&office_category=3&office_type=3&pd=2&sort=1&start={start_param}"
-        response = requests.get(website)
-        time.sleep(1)  # Wait for 1 second before the next request
+        query = quote(f"{company_name} 주가")
+        website = f"https://search.naver.com/search.naver?where=news&sm=tab_jum&query={query}&office_category=3&office_type=3&pd=2&sort=1&start={start_param}"
+        
+        req = Request(website, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'})
+        response = urlopen(req)
+        time.sleep(2)
 
-        if response.status_code == 200:
-            html = response.text
+        # print(f"Requesting page {page}: Status code {response.status}")
+
+        if response.status == 200:
+            html = response.read().decode('utf-8')
             soup = BeautifulSoup(html, "html.parser")
 
             titles = soup.select("div > div > div.news_contents > a.news_tit")
             dates = soup.select("div.news_info > div.info_group > span.info")
             links = [title['href'] for title in titles]
 
+            # if not titles:
+                # print(company_name, ": No titles found. Possible page structure change or block.")  # 타이틀이 없는 경우 로그 출력
+
             for title, date, link in zip(titles, dates, links):
                 title_text = title.get("title")
                 date_text = date.get_text()
                 news_data.append([company_name, title_text, date_text, link])
-    return news_data
+        else:
+            print(f"Failed to fetch news for {company_name}. Status code: {response.status}")  # 실패한 경우 로그 출력
+            print(f"Response body: {response.read().decode('utf-8')}")  # 응답 본문의 처음 500자 출력
 
+    return news_data
 
 def scrape_yahoo_finance(symbol, company_name):
     url = f"https://www.marketwatch.com/investing/stock/{symbol}"
-    response = requests.get(url)
-    time.sleep(1) 
+    req = Request(url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36'})
+    response = urlopen(req)
+    time.sleep(1)
+
     news_data = []
 
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.text, "html.parser")
+    if response.status == 200:
+        soup = BeautifulSoup(response.read().decode('utf-8'), "html.parser")
         titles = soup.select("div.article__content > h3.article__headline > a.link")
         dates = soup.select("div.article__content > div > span.article__timestamp")
         
         for title, date in zip(titles, dates):
-            title_text = title.get_text()
-            date_text = date.get_text()
-            link = title['href']
+            title_text = title.get_text().strip()  # Stripping whitespaces
+            date_text = date.get_text().strip()  # Stripping whitespaces
+            link = title['href'].strip()  # Stripping whitespaces from the link as well
             news_data.append([company_name, title_text, date_text, link])
     else:
         print(f"Failed to fetch news for {symbol}")
@@ -123,11 +136,21 @@ def save_wordcloud_data_to_csv(word_count, company_name):
 
 
 def main():
+    start_company_name = "경방"  # 여기에 시작할 회사 이름을 넣습니다.
+    start_flag = False
+
     with open(companies_json_path, 'r', encoding='utf-8') as file:
         companies = json.load(file)
 
     for company in companies:
         company_name = company['name']
+
+        if company_name == start_company_name:
+            start_flag = True
+
+        if not start_flag:
+            continue  # 아직 시작할 회사에 도달하지 않았다면 계속 넘어갑니다.
+
         country = company['country']
         news_data = scrape_news(company_name, country, company)
         save_news_to_csv(news_data, company_name)
@@ -137,5 +160,3 @@ if __name__ == "__main__":
     main()
 
 
-if __name__ == "__main__":
-    main()
