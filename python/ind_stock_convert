@@ -1,0 +1,120 @@
+# takes 50 secs to convert 6 market stocks for 2days
+
+from datetime import datetime, timedelta
+import json
+import math
+import os
+import pandas as pd
+
+def make_json_for_treemap():
+    date_list = ['2023-11-08', '2023-11-09']
+    korea_market_list = ['Kospi', 'Kosdaq', 'KONEX']
+    usa_market_list = ['Nasdaq', 'NYSE', 'AMEX']
+
+    kor_pwd_lists = [f'/home/lotus/VisFolio/data/korea_stocks/korea_ind_stock/{marketname}개별종목' for marketname in korea_market_list]
+    usa_pwd_lists = [f'/home/lotus/VisFolio/data/usa_stocks/usa_ind_stock/{marketname}개별종목1' for marketname in usa_market_list]
+    
+    for i, date in enumerate(date_list):
+        for j, marketname in enumerate(korea_market_list):
+
+            pwd = kor_pwd_lists[j] # 한국 시장 하나
+            stocks = [] # 종목명 리스트
+            filenames = [] # 종목별 csv 파일 이름명 리스트
+            for filename in os.listdir(pwd):
+                if filename.endswith('.csv'): 
+                    filenames.append(filename)
+                    stocks.append(filename.split('.')[-2])
+            print(f'# of stocks in {marketname} on {date}: {len(filenames)}')
+
+            s = date.split('-')
+            ss = s[0]+s[1]+s[2] # '20221109'
+            _key =  marketname+ '_' +ss ##### 'Kospi_20221109'
+            print(_key)            
+
+            alist = []
+            for filename in filenames:
+                stock_dict = {}
+                stock_name = filename.split('.')[-2]
+                stock_dict['name'] = stock_name
+
+                stock_history_csv = pd.read_csv(pwd+'/'+filename)
+                record = stock_history_csv[stock_history_csv['Date'] == date].values
+                if len(record) == 0: continue
+                Close = record[0][4]
+                if math.isnan(Close): continue
+                stock_dict['Close'] = Close
+                Volumne = record[0][5]
+                if math.isnan(Volumne): continue
+                stock_dict['Volumne'] = Volumne
+                mc = (Close * Volumne)
+                stock_dict['MC'] = mc
+                Change = record[0][6]
+                if math.isnan(Change): continue
+                stock_dict['Change'] = Change
+
+                alist.append(stock_dict)
+
+            data = {
+                "name": "Root",
+                "children": alist
+            }
+            json_data = json.dumps(data, ensure_ascii=False, indent=4)
+            with open(f"/home/lotus/VisFolio/treemap/{_key}.json", "w", encoding="utf-8") as file:
+                file.write(json_data)
+
+
+        for k, marketname in enumerate(usa_market_list):
+            date_obj = datetime.strptime(date, '%Y-%m-%d')
+            previous_day = date_obj - timedelta(days=1)
+            previous_day_str = previous_day.strftime('%Y-%m-%d')
+
+            pwd = usa_pwd_lists[k] # 미국 시장 하나
+            stocks = [] # 종목명 리스트
+            filenames = [] # 종목별 csv 파일 이름명 리스트
+            for filename in os.listdir(pwd):
+                if filename.endswith('.csv'): 
+                    filenames.append(filename)
+                    stocks.append(filename.split('.')[-2])
+            print(f'# of stocks in {marketname} on {date}: {len(filenames)}')
+
+            s = date.split('-')
+            ss = s[0]+s[1]+s[2] # '20221109'
+            _key =  marketname+ '_' +ss ##### 'Nasdaq_20221109'
+            print(_key)            
+
+            alist = []
+            for filename in filenames:
+                stock_dict = {}
+                stock_name = filename.split('.')[-2]
+                stock_dict['name'] = stock_name
+
+                stock_history_csv = pd.read_csv(pwd+'/'+filename)
+                if 'Date' not in list(stock_history_csv.columns): continue
+                curr_record = stock_history_csv[stock_history_csv['Date'] == date].values
+                if len(curr_record) == 0: continue
+                prev_record = stock_history_csv[stock_history_csv['Date'] == previous_day_str].values
+                if len(prev_record) == 0: continue
+                Close = curr_record[0][5]
+                if math.isnan(Close): continue
+                stock_dict['Close'] = Close
+                Volumne = curr_record[0][6]
+                if math.isnan(Volumne): continue
+                stock_dict['Volumne'] = Volumne
+                mc = (Close * Volumne)
+                if math.isnan(mc): continue
+                stock_dict['MC'] = mc
+                Change = curr_record[0][5] - prev_record[0][5]
+                if math.isnan(Change): continue
+                stock_dict['Change'] = Change
+
+                alist.append(stock_dict)
+
+            data = {
+                "name": "Root",
+                "children": alist
+            }
+            json_data = json.dumps(data, ensure_ascii=False, indent=4)
+            with open(f"/home/lotus/VisFolio/treemap/{_key}.json", "w", encoding="utf-8") as file:
+                file.write(json_data)
+
+make_json_for_treemap()
