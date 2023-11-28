@@ -1,15 +1,9 @@
-body {
-    background-color: black; /* Dark gray background */
-    color: white; /* Light color text for readability */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
+/* treemap.css 내용 */
 .treemap-container {
-    width: 10%; /* Adjust width as needed */
-    display: inline-block; /* This makes the divs line up in rows */
-    vertical-align: top; /* Aligns the tops of the divs */
-    margin: 1%; /* Provides some space between the treemaps */
+    width: 10%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 1%;
 }
 .node {
     border: solid 1px white;
@@ -21,5 +15,5 @@ body {
 }
 
 h3 {
-    color:white; /* Gold color for headers, for example */
+    color:white;
 }
