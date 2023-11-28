@@ -1,19 +1,27 @@
-/* treemap.css 내용 */
-.treemap-container {
-    width: 10%;
-    display: inline-block;
-    vertical-align: top;
-    margin: 1%;
+/* treemap_style.css updated content */
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This will center the child divs horizontally */
+    width: 100%; /* Take full width to allow centering */
 }
+
+.treemap-container {
+    width: 80%; /* Adjust width as needed, 80% is just an example */
+    margin: 1% auto; /* Top and bottom margins as before, left and right auto for centering */
+    position: relative; /* Changed from absolute to relative */
+}
+
 .node {
     border: solid 1px white;
-    font: 5px sans-serif;
-    line-height: 12px;
+    font: 10px sans-serif; /* Adjust font size as needed */
+    line-height: normal; /* Adjust line height as needed */
     overflow: hidden;
-    position: absolute;
+    position: relative; /* Changed from absolute to relative */
     text-indent: 2px;
 }
 
 h3 {
-    color:white;
+    color: white;
+    text-align: center; /* Center the text within the h3 elements */
 }
