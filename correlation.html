@@ -1,17 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Correlation - Visfolio</title>
-    <link rel="stylesheet" href="styles.css">
+  <title>Correlation Matrix Heatmap</title>
+  <!-- Include necessary libraries -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-2.3.3.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.3.3/plotly.css" />
+  <style>
+    /* Define CSS styles */
+    /* You can add your own styles here */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    /* Define the heatmap container size */
+    #heatmap-container {
+      width: 600px;
+      height: 400px;
+    }
+  </style>
 </head>
 <body>
-    <header id="header-placeholder"></header>
-    <main>
 
-    </main>
-    <footer id="footer-placeholder"></footer>
-    <script src="scripts.js"></script>
+<!-- Div to hold the heatmap -->
+<div id="heatmap-container"></div>
+
+<script>
+  // Your data for the correlation matrix (assuming it's loaded into 'correlationData' variable)
+  const correlationData = [
+    [1.0, 0.8, 0.6],
+    [0.8, 1.0, 0.4],
+    [0.6, 0.4, 1.0]
+    // Add your correlation matrix data here
+  ];
+
+  // Create a heatmap using Plotly.js
+  const data = [{
+    z: correlationData,
+    type: 'heatmap',
+    colorscale: 'RdYlGn' // Choose your preferred colorscale
+  }];
+
+  const layout = {
+    title: 'Correlation Matrix Heatmap'
+    // You can customize the layout here
+  };
+
+  Plotly.newPlot('heatmap-container', data, layout);
+</script>
+
 </body>
 </html>
