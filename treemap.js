@@ -97,20 +97,6 @@ function wrap(text, width) {
     });
 }
 
-// Tooltip setup (using d3-tip)
-const tip = d3.tip()
-    .attr('class', 'd3-tip')
-    .offset([-10, 0])
-    .html(d => `Name: ${d.data.name}<br>Market Cap: ${d.data.MC}<br>Change: ${d.data.Change}%`);
-
-// Call the tooltip in the svg
-svg.call(tip);
-
-// On mouseover, call the tooltip
-svg.selectAll("rect")
-    .on('mouseover', tip.show)
-    .on('mouseout', tip.hide);
-
 // Load the data and create the treemaps
 d3.json("data/Kospi_20231109.json").then(data => {
     createTreemap(data, "#treemapKospi");
