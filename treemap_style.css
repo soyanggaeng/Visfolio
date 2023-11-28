@@ -1,11 +1,17 @@
 /* treemap_style.css updated content */
+#columns-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
 .column {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center children horizontally */
     justify-content: flex-start; /* Align children to the top */
-    width: 50%; /* Half the width for each column */
-    float: left; /* Float columns to the left */
+    width: 45%; /* Slightly less than half the width for each column */
+    margin: 2.5%; /* Give some space between the columns */
 }
 
 .treemap-container {
@@ -33,10 +39,15 @@ h3 {
     clear: both;
 }
 
-/* Add media query for responsiveness */
+/* Update the media query for responsiveness */
 @media screen and (max-width: 768px) {
+    #columns-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .column {
-        width: 100%; /* Full width for smaller screens */
-        float: none; /* Remove float for single column layout on small screens */
+        width: 90%; /* Adjust the width for smaller screens */
+        margin: 10px auto; /* Center the columns with auto margins */
     }
 }
