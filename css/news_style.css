@@ -62,6 +62,7 @@
     /* Optional: you can use width and height as a percentage if you prefer */
     width: 100%;
     height: auto; /* This will ensure that the section scales with the content */
+    cursor: pointer;
 }
 
 
