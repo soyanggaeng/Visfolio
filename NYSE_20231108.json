@@ -1,0 +1,838 @@
+{
+    "name": "Root",
+    "children": [
+        {
+            "name": "Travel + Leisure Co_TNL",
+            "Close": 35.48,
+            "Volumne": 645800,
+            "MC": 22912983.999999996,
+            "Change": -0.5299980000000062
+        },
+        {
+            "name": "Lemonade Inc_LMND",
+            "Close": 16.0,
+            "Volumne": 1525500,
+            "MC": 24408000.0,
+            "Change": -0.8399999999999999
+        },
+        {
+            "name": "COPT Defense Properties_CDP",
+            "Close": 23.559999,
+            "Volumne": 800800,
+            "MC": 18866847.1992,
+            "Change": 0.04999899999999968
+        },
+        {
+            "name": "Boyd Gaming Corp_BYD",
+            "Close": 56.759998,
+            "Volumne": 786200,
+            "MC": 44624710.427600004,
+            "Change": -0.9000019999999935
+        },
+        {
+            "name": "Enviri Corp_NVRI",
+            "Close": 5.77,
+            "Volumne": 411200,
+            "MC": 2372624.0,
+            "Change": -0.13000000000000078
+        },
+        {
+            "name": "PropertyGuru Group Ltd_PGRU",
+            "Close": 3.61,
+            "Volumne": 33100,
+            "MC": 119491.0,
+            "Change": -0.16000000000000014
+        },
+        {
+            "name": "Borgwarner Inc_BWA",
+            "Close": 32.360001,
+            "Volumne": 2284000,
+            "MC": 73910242.284,
+            "Change": -0.2700000000000031
+        },
+        {
+            "name": "Magnum Opus Acquisition Ltd_OPA",
+            "Close": 10.72,
+            "Volumne": 7500,
+            "MC": 80400.0,
+            "Change": 0.05000000000000071
+        },
+        {
+            "name": "elf Beauty Inc_ELF",
+            "Close": 98.139999,
+            "Volumne": 1720500,
+            "MC": 168849868.2795,
+            "Change": -3.870002999999997
+        },
+        {
+            "name": "Doximity Inc_DOCS",
+            "Close": 21.07,
+            "Volumne": 2485400,
+            "MC": 52367378.0,
+            "Change": -0.1999999999999993
+        },
+        {
+            "name": "SEMrush Holdings Inc_SEMR",
+            "Close": 8.4,
+            "Volumne": 147100,
+            "MC": 1235640.0,
+            "Change": 0.08999999999999986
+        },
+        {
+            "name": "NVR Inc_NVR",
+            "Close": 5901.819824,
+            "Volumne": 17500,
+            "MC": 103281846.92,
+            "Change": -100.62011699999948
+        },
+        {
+            "name": "Global Payments Inc_GPN",
+            "Close": 109.870003,
+            "Volumne": 1907300,
+            "MC": 209555056.7219,
+            "Change": 0.06999999999999318
+        },
+        {
+            "name": "Nuveen Municipal Credit Income Fund_NZF",
+            "Close": 10.95,
+            "Volumne": 724200,
+            "MC": 7929989.999999999,
+            "Change": 0.09999999999999964
+        },
+        {
+            "name": "West Fraser Timber Co Ltd_WFG",
+            "Close": 73.290001,
+            "Volumne": 159200,
+            "MC": 11667768.159200002,
+            "Change": -0.5899959999999993
+        },
+        {
+            "name": "Gildan Activewear Inc_GIL",
+            "Close": 33.400002,
+            "Volumne": 518600,
+            "MC": 17321241.0372,
+            "Change": 0.05000400000000127
+        },
+        {
+            "name": "Epam Systems Inc_EPAM",
+            "Close": 246.940002,
+            "Volumne": 277000,
+            "MC": 68402380.554,
+            "Change": 2.2900080000000003
+        },
+        {
+            "name": "Gorman-Rupp Co_GRC",
+            "Close": 30.16,
+            "Volumne": 69400,
+            "MC": 2093104.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Talos Energy Inc_TALO",
+            "Close": 13.59,
+            "Volumne": 2330200,
+            "MC": 31667418.0,
+            "Change": -0.41999999999999993
+        },
+        {
+            "name": "com Corp_DESP",
+            "Close": 6.99,
+            "Volumne": 177600,
+            "MC": 1241424.0,
+            "Change": -0.34999999999999964
+        },
+        {
+            "name": "Comstock Resources Inc_CRK",
+            "Close": 11.4,
+            "Volumne": 3981400,
+            "MC": 45387960.0,
+            "Change": -0.4599999999999991
+        },
+        {
+            "name": "Gabelli Healthcare _ WellnessRx Trust_GRX",
+            "Close": 8.44,
+            "Volumne": 70900,
+            "MC": 598396.0,
+            "Change": 0.009999999999999787
+        },
+        {
+            "name": "Butterfly Network Inc_BFLY",
+            "Close": 0.864,
+            "Volumne": 3670300,
+            "MC": 3171139.2,
+            "Change": -0.18600000000000005
+        },
+        {
+            "name": "Eneti Inc_NETI",
+            "Close": 9.99,
+            "Volumne": 252800,
+            "MC": 2525472.0,
+            "Change": -0.07000000000000028
+        },
+        {
+            "name": "Offerpad Solutions Inc_OPAD",
+            "Close": 7.92,
+            "Volumne": 62600,
+            "MC": 495792.0,
+            "Change": -1.040000000000001
+        },
+        {
+            "name": "Nexa Resources SA_NEXA",
+            "Close": 5.61,
+            "Volumne": 105300,
+            "MC": 590733.0,
+            "Change": -0.08999999999999986
+        },
+        {
+            "name": "Restaurant Brands International Inc_QSR",
+            "Close": 68.169998,
+            "Volumne": 1800400,
+            "MC": 122733264.3992,
+            "Change": -0.20999899999999627
+        },
+        {
+            "name": "Mohawk Industries Inc_MHK",
+            "Close": 82.370003,
+            "Volumne": 685800,
+            "MC": 56489348.057399996,
+            "Change": 0.1600040000000007
+        },
+        {
+            "name": "FedEx Corp_FDX",
+            "Close": 245.369995,
+            "Volumne": 1104800,
+            "MC": 271084770.476,
+            "Change": 1.1699979999999925
+        },
+        {
+            "name": "Affiliated Managers Group Inc_AMG",
+            "Close": 130.369995,
+            "Volumne": 275800,
+            "MC": 35956044.621,
+            "Change": 0.22000099999999634
+        },
+        {
+            "name": "BlackRock MuniYield New York Quality Fund_MYN",
+            "Close": 9.26,
+            "Volumne": 664900,
+            "MC": 6156974.0,
+            "Change": 0.16999999999999993
+        },
+        {
+            "name": "Canadian Pacific Kansas City Ltd_CP",
+            "Close": 73.790001,
+            "Volumne": 1208200,
+            "MC": 89153079.20820001,
+            "Change": 0.3000030000000038
+        },
+        {
+            "name": "Spectrum Brands Holdings Inc_SPB",
+            "Close": 77.900002,
+            "Volumne": 518600,
+            "MC": 40398941.037200004,
+            "Change": -0.04000000000000625
+        },
+        {
+            "name": "Caterpillar Inc_CAT",
+            "Close": 234.820007,
+            "Volumne": 2532500,
+            "MC": 594681667.7275,
+            "Change": -0.09999099999998862
+        },
+        {
+            "name": "WEX Inc_WEX",
+            "Close": 171.630005,
+            "Volumne": 416400,
+            "MC": 71466734.082,
+            "Change": -0.7899929999999813
+        },
+        {
+            "name": "IRSA Inversiones y Representaciones SA ADR_IRS",
+            "Close": 6.25,
+            "Volumne": 25800,
+            "MC": 161250.0,
+            "Change": 0.009999999999999787
+        },
+        {
+            "name": "PCM Fund Inc_PCM",
+            "Close": 7.9497,
+            "Volumne": 19500,
+            "MC": 155019.15,
+            "Change": -0.00990000000000002
+        },
+        {
+            "name": "Northrop Grumman Corp_NOC",
+            "Close": 460.480011,
+            "Volumne": 952700,
+            "MC": 438699306.47969997,
+            "Change": -7.220001000000025
+        },
+        {
+            "name": "Loews Corp_L",
+            "Close": 64.940002,
+            "Volumne": 519200,
+            "MC": 33716849.0384,
+            "Change": -0.47999599999999987
+        },
+        {
+            "name": "Montrose Environmental Group Inc_MEG",
+            "Close": 25.799999,
+            "Volumne": 391500,
+            "MC": 10100699.6085,
+            "Change": 0.8299999999999983
+        },
+        {
+            "name": "Invesco Trust For Inv Grade Munis_VGM",
+            "Close": 8.98,
+            "Volumne": 336000,
+            "MC": 3017280.0,
+            "Change": 0.14000000000000057
+        },
+        {
+            "name": "Knight-Swift Transportation Holdings Inc_KNX",
+            "Close": 50.110001,
+            "Volumne": 1250000,
+            "MC": 62637501.24999999,
+            "Change": -0.4399980000000028
+        },
+        {
+            "name": "Generac Holdings Inc_GNRC",
+            "Close": 103.779999,
+            "Volumne": 848600,
+            "MC": 88067707.1514,
+            "Change": -0.010002000000000066
+        },
+        {
+            "name": "Kayne Anderson Energy Infrastructure Fund Inc_KYN",
+            "Close": 8.02,
+            "Volumne": 1003500,
+            "MC": 8048070.0,
+            "Change": -0.120000000000001
+        },
+        {
+            "name": "BlackRock MuniHoldings Fund_MHD",
+            "Close": 10.81,
+            "Volumne": 85900,
+            "MC": 928579.0,
+            "Change": 0.11000000000000121
+        },
+        {
+            "name": "Pioneer Municipal High Income Advantage Fund Inc_MAV",
+            "Close": 6.99,
+            "Volumne": 342500,
+            "MC": 2394075.0,
+            "Change": 0.0600000000000005
+        },
+        {
+            "name": "Endeavor Group Holdings Inc_EDR",
+            "Close": 24.309999,
+            "Volumne": 3425700,
+            "MC": 83278763.5743,
+            "Change": 0.22999900000000295
+        },
+        {
+            "name": "Leidos Holdings Inc_LDOS",
+            "Close": 103.010002,
+            "Volumne": 683600,
+            "MC": 70417637.3672,
+            "Change": 0.20000400000000695
+        },
+        {
+            "name": "Grove Collaborative Holdings Inc_GROV",
+            "Close": 1.81,
+            "Volumne": 88000,
+            "MC": 159280.0,
+            "Change": -0.1299999999999999
+        },
+        {
+            "name": "BlackRock MuniHoldings New Jersey Quality Fund_MUJ",
+            "Close": 10.57,
+            "Volumne": 289900,
+            "MC": 3064243.0,
+            "Change": 0.17999999999999972
+        },
+        {
+            "name": "Essex Property Trust Inc_ESS",
+            "Close": 210.880005,
+            "Volumne": 362200,
+            "MC": 76380737.811,
+            "Change": 1.4900060000000224
+        },
+        {
+            "name": "Fleetcor Technologies Inc_FLT",
+            "Close": 235.539993,
+            "Volumne": 668800,
+            "MC": 157529147.3184,
+            "Change": 2.1100000000000136
+        },
+        {
+            "name": "AZZ Inc_AZZ",
+            "Close": 46.349998,
+            "Volumne": 100000,
+            "MC": 4634999.8,
+            "Change": -0.8000040000000013
+        },
+        {
+            "name": "NXG NextGen Infrastructure Income Fund_NXG",
+            "Close": 31.0,
+            "Volumne": 26900,
+            "MC": 833900.0,
+            "Change": -0.6900009999999988
+        },
+        {
+            "name": "BlackRock Enhanced Government Fund_EGF",
+            "Close": 9.61,
+            "Volumne": 500,
+            "MC": 4805.0,
+            "Change": 0.03999999999999915
+        },
+        {
+            "name": "Berkshire Hills Bancorp Inc_BHLB",
+            "Close": 20.360001,
+            "Volumne": 164100,
+            "MC": 3341076.1641,
+            "Change": -0.21999899999999784
+        },
+        {
+            "name": "PowerSchool Holdings Inc_PWSC",
+            "Close": 21.0,
+            "Volumne": 910900,
+            "MC": 19128900.0,
+            "Change": 0.3200000000000003
+        },
+        {
+            "name": "ESAB Corp_ESAB",
+            "Close": 75.07,
+            "Volumne": 222100,
+            "MC": 16673046.999999998,
+            "Change": 0.04000099999998952
+        },
+        {
+            "name": "Posco Holdings Inc ADR_PKX",
+            "Close": 87.629997,
+            "Volumne": 145500,
+            "MC": 12750164.5635,
+            "Change": -1.75
+        },
+        {
+            "name": "Woodside Energy Group Ltd ADR_WDS",
+            "Close": 21.049999,
+            "Volumne": 798200,
+            "MC": 16802109.2018,
+            "Change": -0.13000100000000003
+        },
+        {
+            "name": "ClearBridge MLP and Midstream Total Return Closed End Fund_CTR",
+            "Close": 31.1,
+            "Volumne": 19300,
+            "MC": 600230.0,
+            "Change": -0.6000009999999989
+        },
+        {
+            "name": "Voya Infrastructure Industrials _ Materials Fund_IDE",
+            "Close": 9.21,
+            "Volumne": 24800,
+            "MC": 228408.00000000003,
+            "Change": -0.02999999999999936
+        },
+        {
+            "name": "Clearway Energy Inc Class C_CWEN",
+            "Close": 22.09,
+            "Volumne": 600000,
+            "MC": 13254000.0,
+            "Change": -0.5899999999999999
+        },
+        {
+            "name": "Enova International Inc_ENVA",
+            "Close": 41.110001,
+            "Volumne": 184900,
+            "MC": 7601239.1849,
+            "Change": 0.04999999999999716
+        },
+        {
+            "name": "BlackRock Inc_BLK",
+            "Close": 654.950012,
+            "Volumne": 482200,
+            "MC": 315816895.7864,
+            "Change": 6.3599850000000515
+        },
+        {
+            "name": "TransUnion_TRU",
+            "Close": 51.599998,
+            "Volumne": 2810600,
+            "MC": 145026954.3788,
+            "Change": 0.05999700000000274
+        },
+        {
+            "name": "Ferguson PLC_FERG",
+            "Close": 156.470001,
+            "Volumne": 1427400,
+            "MC": 223345279.4274,
+            "Change": -0.11000100000001112
+        },
+        {
+            "name": "Omega Healthcare Investors Inc_OHI",
+            "Close": 30.889999,
+            "Volumne": 2275900,
+            "MC": 70302548.7241,
+            "Change": -0.41000000000000014
+        },
+        {
+            "name": "Putnam Municipal Opportunities Trust_PMO",
+            "Close": 9.51,
+            "Volumne": 142900,
+            "MC": 1358979.0,
+            "Change": 0.16999999999999993
+        },
+        {
+            "name": "Genpact Ltd_G",
+            "Close": 34.75,
+            "Volumne": 1246800,
+            "MC": 43326300.0,
+            "Change": 0.09000000000000341
+        },
+        {
+            "name": "Beachbody Company Inc_BODY",
+            "Close": 0.17,
+            "Volumne": 811400,
+            "MC": 137938.0,
+            "Change": -0.010999999999999982
+        },
+        {
+            "name": "Tupperware Brands Corp_TUP",
+            "Close": 1.77,
+            "Volumne": 2049900,
+            "MC": 3628323.0,
+            "Change": -0.030000000000000027
+        },
+        {
+            "name": "Loandepot Inc_LDI",
+            "Close": 1.55,
+            "Volumne": 304700,
+            "MC": 472285.0,
+            "Change": 0.1200000000000001
+        },
+        {
+            "name": "Planet Labs PBC_PL",
+            "Close": 2.18,
+            "Volumne": 873600,
+            "MC": 1904448.0000000002,
+            "Change": -0.10999999999999988
+        },
+        {
+            "name": "MFS Intermediate High Income Fund_CIF",
+            "Close": 1.62,
+            "Volumne": 6500,
+            "MC": 10530.0,
+            "Change": 0.0
+        },
+        {
+            "name": "BlackRock Income Closed Fund_BKT",
+            "Close": 11.18,
+            "Volumne": 70400,
+            "MC": 787072.0,
+            "Change": 0.019999999999999574
+        },
+        {
+            "name": "Core _ Main Inc_CNM",
+            "Close": 31.08,
+            "Volumne": 2166200,
+            "MC": 67325496.0,
+            "Change": 0.12000099999999847
+        },
+        {
+            "name": "Vale SA ADR_VALE",
+            "Close": 14.24,
+            "Volumne": 20333100,
+            "MC": 289543344.0,
+            "Change": -0.07000000000000028
+        },
+        {
+            "name": "ATI Physical Therapy Inc_ATIP",
+            "Close": 7.72,
+            "Volumne": 30800,
+            "MC": 237776.0,
+            "Change": -0.3700000000000001
+        },
+        {
+            "name": "Eaton Vance Senior Income Closed Fund_EVF",
+            "Close": 6.053445,
+            "Volumne": 142900,
+            "MC": 865037.2905,
+            "Change": 0.08916699999999977
+        },
+        {
+            "name": "Prologis Inc_PLD",
+            "Close": 105.129997,
+            "Volumne": 2588600,
+            "MC": 272139510.2342,
+            "Change": 0.8999940000000066
+        },
+        {
+            "name": "EnPro Industries Inc_NPO",
+            "Close": 117.199997,
+            "Volumne": 44000,
+            "MC": 5156799.868,
+            "Change": -0.9100040000000007
+        },
+        {
+            "name": "Teledyne Technologies Inc_TDY",
+            "Close": 378.779999,
+            "Volumne": 165100,
+            "MC": 62536577.8349,
+            "Change": 0.2399899999999775
+        },
+        {
+            "name": "Stryker Corp_SYK",
+            "Close": 274.779999,
+            "Volumne": 1486600,
+            "MC": 408487946.51339996,
+            "Change": -0.22000100000002476
+        },
+        {
+            "name": "Dollar General Corp_DG",
+            "Close": 119.459999,
+            "Volumne": 1637400,
+            "MC": 195603802.3626,
+            "Change": -1.510002
+        },
+        {
+            "name": "Kemper Corp_KMPR",
+            "Close": 39.842491,
+            "Volumne": 316700,
+            "MC": 12618116.8997,
+            "Change": -0.9127279999999942
+        },
+        {
+            "name": "FinVolution Group ADR_FINV",
+            "Close": 4.82,
+            "Volumne": 337100,
+            "MC": 1624822.0,
+            "Change": -0.05999999999999961
+        },
+        {
+            "name": "Carmax Inc_KMX",
+            "Close": 64.080002,
+            "Volumne": 1049800,
+            "MC": 67271186.09959999,
+            "Change": -0.25
+        },
+        {
+            "name": "Nuveen Real Asset Income and Growth Fund_JRI",
+            "Close": 10.55,
+            "Volumne": 283600,
+            "MC": 2991980.0,
+            "Change": 0.08000000000000007
+        },
+        {
+            "name": "Rollins Inc_ROL",
+            "Close": 37.940002,
+            "Volumne": 1689200,
+            "MC": 64088251.3784,
+            "Change": -0.11952600000000047
+        },
+        {
+            "name": "Kirby Corp_KEX",
+            "Close": 76.360001,
+            "Volumne": 378600,
+            "MC": 28909896.378599998,
+            "Change": -0.3399959999999993
+        },
+        {
+            "name": "Alcoa Corp_AA",
+            "Close": 25.530001,
+            "Volumne": 3671400,
+            "MC": 93730845.6714,
+            "Change": -0.010000000000001563
+        },
+        {
+            "name": "John Hancock Financial Opportunities Fund_BTO",
+            "Close": 26.43,
+            "Volumne": 39700,
+            "MC": 1049271.0,
+            "Change": -0.5200010000000006
+        },
+        {
+            "name": "American Well Corp_AMWL",
+            "Close": 1.23,
+            "Volumne": 1844300,
+            "MC": 2268489.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "Renaissancere Holdings Ltd_RNR",
+            "Close": 205.820007,
+            "Volumne": 339100,
+            "MC": 69793564.37370001,
+            "Change": -1.5399940000000072
+        },
+        {
+            "name": "Summit Materials Inc_SUM",
+            "Close": 33.209999,
+            "Volumne": 857000,
+            "MC": 28460969.143000003,
+            "Change": -0.4799999999999969
+        },
+        {
+            "name": "Zurn Elkay Water Solutions Corp_ZWS",
+            "Close": 28.299999,
+            "Volumne": 1163100,
+            "MC": 32915728.8369,
+            "Change": 0.0
+        },
+        {
+            "name": "Clean Harbors Inc_CLH",
+            "Close": 155.690002,
+            "Volumne": 290600,
+            "MC": 45243514.581199996,
+            "Change": 0.9799950000000024
+        },
+        {
+            "name": "Chegg Inc_CHGG",
+            "Close": 8.91,
+            "Volumne": 2179000,
+            "MC": 19414890.0,
+            "Change": 0.2900000000000009
+        },
+        {
+            "name": "BlackRock Health Sciences Trust_BME",
+            "Close": 37.560001,
+            "Volumne": 29100,
+            "MC": 1092996.0291,
+            "Change": -0.1299980000000005
+        },
+        {
+            "name": "Juniper Networks Inc_JNPR",
+            "Close": 26.83,
+            "Volumne": 1830400,
+            "MC": 49109632.0,
+            "Change": -0.11000100000000046
+        },
+        {
+            "name": "Alibaba Group Holding Ltd ADR_BABA",
+            "Close": 84.800003,
+            "Volumne": 8154600,
+            "MC": 691510104.4638001,
+            "Change": -0.6100009999999969
+        },
+        {
+            "name": "Banco de Chile ADR_BCH",
+            "Close": 21.309999,
+            "Volumne": 130300,
+            "MC": 2776692.8697,
+            "Change": -0.3000019999999992
+        },
+        {
+            "name": "Halliburton Co_HAL",
+            "Close": 37.790001,
+            "Volumne": 7036100,
+            "MC": 265894226.03609997,
+            "Change": -0.1600000000000037
+        },
+        {
+            "name": "Newmont Corporation_NEM",
+            "Close": 34.779999,
+            "Volumne": 17943100,
+            "MC": 624061000.0568999,
+            "Change": -1.880001
+        },
+        {
+            "name": "CAE Inc_CAE",
+            "Close": 21.200001,
+            "Volumne": 251400,
+            "MC": 5329680.2514,
+            "Change": 0.25
+        },
+        {
+            "name": "Jefferies Financial Group Inc_JEF",
+            "Close": 33.994114,
+            "Volumne": 736500,
+            "MC": 25036664.961000003,
+            "Change": -0.2775079999999974
+        },
+        {
+            "name": "Tristar Acquisition I Corp_TRIS",
+            "Close": 10.76,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Anywhere Real Estate Inc_HOUS",
+            "Close": 4.97,
+            "Volumne": 778700,
+            "MC": 3870139.0,
+            "Change": -0.07000000000000028
+        },
+        {
+            "name": "NCR Voyix Corp_VYX",
+            "Close": 16.43,
+            "Volumne": 1107500,
+            "MC": 18196225.0,
+            "Change": -0.11999899999999997
+        },
+        {
+            "name": "Zhihu Inc ADR_ZH",
+            "Close": 1.03,
+            "Volumne": 6992400,
+            "MC": 7202172.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Sumitomo Mitsui Financial Group Inc ADR_SMFG",
+            "Close": 9.05,
+            "Volumne": 3200000,
+            "MC": 28960000.000000004,
+            "Change": -0.6600000000000001
+        },
+        {
+            "name": "AP Acquisition Corp_APCA",
+            "Close": 11.01,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Nexpoint Real Estate Finance Inc_NREF",
+            "Close": 15.16,
+            "Volumne": 23300,
+            "MC": 353228.0,
+            "Change": -0.07000000000000028
+        },
+        {
+            "name": "MFS High Yield Municipal Trust_CMU",
+            "Close": 3.0,
+            "Volumne": 43300,
+            "MC": 129900.0,
+            "Change": 0.040000000000000036
+        },
+        {
+            "name": "Aenza SAA ADR_AENZ",
+            "Close": 2.26,
+            "Volumne": 2000,
+            "MC": 4520.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Green Brick Partners Inc_GRBK",
+            "Close": 43.91,
+            "Volumne": 306400,
+            "MC": 13454023.999999998,
+            "Change": -0.1600000000000037
+        },
+        {
+            "name": "Spree Acquisition Corp 1 Ltd_SHAP",
+            "Close": 10.98,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Flowers Foods Inc_FLO",
+            "Close": 22.15,
+            "Volumne": 1078600,
+            "MC": 23890990.0,
+            "Change": 0.07000000000000028
+        }
+    ]
+}

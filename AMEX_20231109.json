@@ -1,0 +1,2042 @@
+{
+    "name": "Root",
+    "children": [
+        {
+            "name": "Tompkins Financial Corp_TMP",
+            "Close": 51.02,
+            "Volumne": 25900,
+            "MC": 1321418.0,
+            "Change": -0.9399990000000003
+        },
+        {
+            "name": "Regional Health Properties Inc_RHE",
+            "Close": 1.54,
+            "Volumne": 16600,
+            "MC": 25564.0,
+            "Change": -0.31000000000000005
+        },
+        {
+            "name": "Bancroft Closed Fund_BCV",
+            "Close": 14.34,
+            "Volumne": 26400,
+            "MC": 378576.0,
+            "Change": -0.47000000000000064
+        },
+        {
+            "name": "Ivanhoe Electric Inc_IE",
+            "Close": 10.05,
+            "Volumne": 357600,
+            "MC": 3593880.0000000005,
+            "Change": -0.35999999999999943
+        },
+        {
+            "name": "Imperial Oil Ltd_IMO",
+            "Close": 54.759998,
+            "Volumne": 337100,
+            "MC": 18459595.3258,
+            "Change": -0.010002000000000066
+        },
+        {
+            "name": "Azitra Inc_AZTR",
+            "Close": 1.87,
+            "Volumne": 44400,
+            "MC": 83028.0,
+            "Change": 0.12200000000000011
+        },
+        {
+            "name": "Dakota Gold Corp_DC",
+            "Close": 2.45,
+            "Volumne": 133600,
+            "MC": 327320.0,
+            "Change": -0.04999999999999982
+        },
+        {
+            "name": "PEDEVCO Corp_PED",
+            "Close": 0.855,
+            "Volumne": 28200,
+            "MC": 24111.0,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "EVI Industries Inc_EVI",
+            "Close": 24.120001,
+            "Volumne": 15800,
+            "MC": 381096.0158,
+            "Change": -0.1399990000000031
+        },
+        {
+            "name": "Myomo Inc_MYO",
+            "Close": 1.9,
+            "Volumne": 487500,
+            "MC": 926250.0,
+            "Change": 0.010000000000000009
+        },
+        {
+            "name": "AMCON Distributing Co_DIT",
+            "Close": 189.0,
+            "Volumne": 700,
+            "MC": 132300.0,
+            "Change": -4.0
+        },
+        {
+            "name": "Golden Minerals Co_AUMN",
+            "Close": 0.46,
+            "Volumne": 550900,
+            "MC": 253414.0,
+            "Change": 0.010000000000000009
+        },
+        {
+            "name": "Fresh Vine Wine Inc_VINE",
+            "Close": 0.391,
+            "Volumne": 250500,
+            "MC": 97945.5,
+            "Change": -0.033999999999999975
+        },
+        {
+            "name": "Neuberger Berman Energy Infrastructure and Income_NML",
+            "Close": 6.5,
+            "Volumne": 114300,
+            "MC": 742950.0,
+            "Change": -0.019999999999999574
+        },
+        {
+            "name": "abrdn Emerging Markets Equity Income Mutual Fund_AEF",
+            "Close": 4.62,
+            "Volumne": 75600,
+            "MC": 349272.0,
+            "Change": -0.040000000000000036
+        },
+        {
+            "name": "1847 Holdings LLC_EFSH",
+            "Close": 0.54,
+            "Volumne": 50100,
+            "MC": 27054.0,
+            "Change": 0.019000000000000017
+        },
+        {
+            "name": "Palatin Technologies Inc_PTN",
+            "Close": 1.92,
+            "Volumne": 105600,
+            "MC": 202752.0,
+            "Change": -0.08000000000000007
+        },
+        {
+            "name": "Ellsworth Growth and Income Fund Ltd_ECF",
+            "Close": 7.41,
+            "Volumne": 23600,
+            "MC": 174876.0,
+            "Change": -0.09999999999999964
+        },
+        {
+            "name": "Gold Resource Corp_GORO",
+            "Close": 0.29,
+            "Volumne": 1844500,
+            "MC": 534905.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "Radiant Logistics Inc_RLGT",
+            "Close": 5.74,
+            "Volumne": 67900,
+            "MC": 389746.0,
+            "Change": -0.08999999999999986
+        },
+        {
+            "name": "Ault Disruptive Technologies Corp_ADRT",
+            "Close": 12.03,
+            "Volumne": 11400,
+            "MC": 137142.0,
+            "Change": -0.07000000000000028
+        },
+        {
+            "name": "Xtant Medical Holdings Inc_XTNT",
+            "Close": 1.18,
+            "Volumne": 129400,
+            "MC": 152692.0,
+            "Change": -0.030000000000000027
+        },
+        {
+            "name": "China Pharma Holdings Inc_CPHI",
+            "Close": 0.09,
+            "Volumne": 722000,
+            "MC": 64980.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Berenson Acquisition Corp I_BACA",
+            "Close": 10.35,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Aris Mining Corp_ARMN",
+            "Close": 2.46,
+            "Volumne": 35600,
+            "MC": 87576.0,
+            "Change": -0.040000000000000036
+        },
+        {
+            "name": "Calidi Biotherapeutics Inc_CLDI",
+            "Close": 2.03,
+            "Volumne": 5700,
+            "MC": 11570.999999999998,
+            "Change": -0.010000000000000231
+        },
+        {
+            "name": "Contango ORE Inc_CTGO",
+            "Close": 18.59,
+            "Volumne": 10700,
+            "MC": 198913.0,
+            "Change": -0.5899999999999999
+        },
+        {
+            "name": "Austin Gold Corp_AUST",
+            "Close": 0.66,
+            "Volumne": 1900,
+            "MC": 1254.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Satixfy Communications Ltd_SATX",
+            "Close": 0.393,
+            "Volumne": 54800,
+            "MC": 21536.4,
+            "Change": -0.01699999999999996
+        },
+        {
+            "name": "Empire State Realty Operating Partnership Units Series ES_ESBA",
+            "Close": 8.27,
+            "Volumne": 15400,
+            "MC": 127358.0,
+            "Change": -0.40000000000000036
+        },
+        {
+            "name": "GEE Group Inc_JOB",
+            "Close": 0.55,
+            "Volumne": 114300,
+            "MC": 62865.00000000001,
+            "Change": -0.029999999999999916
+        },
+        {
+            "name": "Flanigan_s Enterprises Inc_BDL",
+            "Close": 28.5,
+            "Volumne": 8900,
+            "MC": 253650.0,
+            "Change": 0.030000999999998612
+        },
+        {
+            "name": "Superior Drilling Products Inc_SDPI",
+            "Close": 0.65,
+            "Volumne": 276900,
+            "MC": 179985.0,
+            "Change": -0.10999999999999999
+        },
+        {
+            "name": "Multi Ways Holdings Ltd_MWG",
+            "Close": 0.199,
+            "Volumne": 216300,
+            "MC": 43043.700000000004,
+            "Change": -0.022999999999999993
+        },
+        {
+            "name": "Obsidian Energy Ltd_OBE",
+            "Close": 7.72,
+            "Volumne": 428600,
+            "MC": 3308792.0,
+            "Change": -0.020000000000000462
+        },
+        {
+            "name": "I-80 Gold Corp_IAUX",
+            "Close": 1.29,
+            "Volumne": 2580200,
+            "MC": 3328458.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "New Concept Energy Inc_GBR",
+            "Close": 1.12,
+            "Volumne": 4500,
+            "MC": 5040.000000000001,
+            "Change": -0.009999999999999787
+        },
+        {
+            "name": "Dss Inc_DSS",
+            "Close": 0.144,
+            "Volumne": 204000,
+            "MC": 29375.999999999996,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "B2Gold Corp_BTG",
+            "Close": 3.04,
+            "Volumne": 11795500,
+            "MC": 35858320.0,
+            "Change": -0.06000000000000005
+        },
+        {
+            "name": "Sprott Physical Gold and Silver Trust USD_CEF",
+            "Close": 18.23,
+            "Volumne": 356500,
+            "MC": 6498995.0,
+            "Change": 0.08000000000000185
+        },
+        {
+            "name": "CPI Aerostructures Inc_CVU",
+            "Close": 2.98,
+            "Volumne": 30100,
+            "MC": 89698.0,
+            "Change": -0.04999999999999982
+        },
+        {
+            "name": "Evolve Transition Infrastructure Units_SNMP",
+            "Close": 1.48,
+            "Volumne": 5700,
+            "MC": 8436.0,
+            "Change": -0.09000000000000008
+        },
+        {
+            "name": "Universal Security Instruments Inc_UUU",
+            "Close": 4.58,
+            "Volumne": 85800,
+            "MC": 392964.0,
+            "Change": -0.40000000000000036
+        },
+        {
+            "name": "10X Capital Venture Acquisition III Corp_VCXB",
+            "Close": 10.67,
+            "Volumne": 500,
+            "MC": 5335.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Kelso Technologies Inc_KIQ",
+            "Close": 0.18,
+            "Volumne": 127800,
+            "MC": 23004.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Sprott Physical Silver Trust USD_PSLV",
+            "Close": 7.68,
+            "Volumne": 2777400,
+            "MC": 21330432.0,
+            "Change": 0.019999999999999574
+        },
+        {
+            "name": "AgeX Therapeutics Inc_AGE",
+            "Close": 0.61,
+            "Volumne": 9100,
+            "MC": 5551.0,
+            "Change": 0.0050000000000000044
+        },
+        {
+            "name": "BNY Mellon Municipal Income Inc_DMF",
+            "Close": 5.83,
+            "Volumne": 43500,
+            "MC": 253605.0,
+            "Change": -0.009999999999999787
+        },
+        {
+            "name": "Battalion Oil Corp_BATL",
+            "Close": 6.85,
+            "Volumne": 62200,
+            "MC": 426070.0,
+            "Change": 0.7199999999999998
+        },
+        {
+            "name": "Enservco Corp_ENSV",
+            "Close": 0.333,
+            "Volumne": 138200,
+            "MC": 46020.600000000006,
+            "Change": 0.0050000000000000044
+        },
+        {
+            "name": "Alpha Pro Tech Ltd_APT",
+            "Close": 4.39,
+            "Volumne": 42100,
+            "MC": 184819.0,
+            "Change": 0.1299999999999999
+        },
+        {
+            "name": "Gran Tierra Energy Inc_GTE",
+            "Close": 6.09,
+            "Volumne": 582400,
+            "MC": 3546816.0,
+            "Change": 0.009999999999999787
+        },
+        {
+            "name": "Can Fite Biopharma Ltd ADR_CANF",
+            "Close": 2.01,
+            "Volumne": 7000,
+            "MC": 14069.999999999998,
+            "Change": -0.15000000000000036
+        },
+        {
+            "name": "United States Antimony Corp_UAMY",
+            "Close": 0.32,
+            "Volumne": 166300,
+            "MC": 53216.0,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "Eaton Vance California Municipal Income Closed Fund_CEV",
+            "Close": 9.325999,
+            "Volumne": 71600,
+            "MC": 667741.5284,
+            "Change": 0.019925999999999888
+        },
+        {
+            "name": "abrdn Asia Pacific Income Mutual Fund_FAX",
+            "Close": 2.52,
+            "Volumne": 690400,
+            "MC": 1739808.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "Sky Harbour Group Corp_SKYH",
+            "Close": 7.4,
+            "Volumne": 26200,
+            "MC": 193880.0,
+            "Change": 0.4500000000000002
+        },
+        {
+            "name": "Castellum Inc_CTM",
+            "Close": 0.267,
+            "Volumne": 269600,
+            "MC": 71983.2,
+            "Change": -0.032999999999999974
+        },
+        {
+            "name": "Silvercrest Metals Inc_SILV",
+            "Close": 5.19,
+            "Volumne": 1895600,
+            "MC": 9838164.0,
+            "Change": 0.20999999999999996
+        },
+        {
+            "name": "SunLink Health Systems Inc_SSY",
+            "Close": 0.59,
+            "Volumne": 48500,
+            "MC": 28615.0,
+            "Change": -0.07000000000000006
+        },
+        {
+            "name": "Issuer Direct Corp_ISDR",
+            "Close": 18.6,
+            "Volumne": 3700,
+            "MC": 68820.0,
+            "Change": 0.9099990000000027
+        },
+        {
+            "name": "Globalstar Inc_GSAT",
+            "Close": 1.32,
+            "Volumne": 3801200,
+            "MC": 5017584.0,
+            "Change": -0.040000000000000036
+        },
+        {
+            "name": "Idaho Strategic Resources Inc_IDR",
+            "Close": 4.88,
+            "Volumne": 13000,
+            "MC": 63440.0,
+            "Change": -0.21999999999999975
+        },
+        {
+            "name": "Franklin Street Properties Corp_FSP",
+            "Close": 2.15,
+            "Volumne": 987200,
+            "MC": 2122480.0,
+            "Change": -0.010000000000000231
+        },
+        {
+            "name": "SIFCO Industries Inc_SIF",
+            "Close": 4.47,
+            "Volumne": 3100,
+            "MC": 13857.0,
+            "Change": 0.05999999999999961
+        },
+        {
+            "name": "Bluerock Homes Trust Inc_BHM",
+            "Close": 14.095,
+            "Volumne": 3900,
+            "MC": 54970.5,
+            "Change": 0.07500000000000107
+        },
+        {
+            "name": "Matinas BioPharma Holdings Inc_MTNB",
+            "Close": 0.242,
+            "Volumne": 3682600,
+            "MC": 891189.2,
+            "Change": -0.03400000000000003
+        },
+        {
+            "name": "Actinium Pharmaceuticals Inc_ATNM",
+            "Close": 4.67,
+            "Volumne": 154200,
+            "MC": 720114.0,
+            "Change": -0.16999999999999993
+        },
+        {
+            "name": "Bite Acquisition Corp_BITE",
+            "Close": 10.72,
+            "Volumne": 1000,
+            "MC": 10720.0,
+            "Change": 0.3100000000000005
+        },
+        {
+            "name": "Timber Pharmaceuticals Inc_TMBR",
+            "Close": 2.5,
+            "Volumne": 4200,
+            "MC": 10500.0,
+            "Change": -0.040000000000000036
+        },
+        {
+            "name": "Sachem Capital Corp_SACH",
+            "Close": 3.43,
+            "Volumne": 149000,
+            "MC": 511070.0,
+            "Change": -0.040000000000000036
+        },
+        {
+            "name": "Taseko Mines Ltd_TGB",
+            "Close": 1.18,
+            "Volumne": 718700,
+            "MC": 848066.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "New England Realty Associates LP DRC_NEN",
+            "Close": 69.25,
+            "Volumne": 2200,
+            "MC": 152350.0,
+            "Change": 1.2900010000000037
+        },
+        {
+            "name": "Network-1 Technologies Inc_NTIP",
+            "Close": 2.12,
+            "Volumne": 22900,
+            "MC": 48548.0,
+            "Change": -0.040000000000000036
+        },
+        {
+            "name": "Centrus Energy Corp_LEU",
+            "Close": 50.619999,
+            "Volumne": 164600,
+            "MC": 8332051.8354,
+            "Change": 2.110000999999997
+        },
+        {
+            "name": "Reaves Utility Income Closed Fund_UTG",
+            "Close": 24.620001,
+            "Volumne": 281200,
+            "MC": 6923144.281199999,
+            "Change": -0.4399980000000028
+        },
+        {
+            "name": "Zomedica Corp_ZOM",
+            "Close": 0.18,
+            "Volumne": 2715800,
+            "MC": 488844.0,
+            "Change": -0.0040000000000000036
+        },
+        {
+            "name": "Galiano Gold Inc_GAU",
+            "Close": 0.53,
+            "Volumne": 61400,
+            "MC": 32542.0,
+            "Change": 0.010000000000000009
+        },
+        {
+            "name": "Protalix Biotherapeutics Inc_PLX",
+            "Close": 1.39,
+            "Volumne": 354100,
+            "MC": 492198.99999999994,
+            "Change": 0.019999999999999796
+        },
+        {
+            "name": "Servotronics Inc_SVT",
+            "Close": 9.05,
+            "Volumne": 22800,
+            "MC": 206340.00000000003,
+            "Change": 0.07000000000000028
+        },
+        {
+            "name": "Biomx Inc_PHGE",
+            "Close": 0.39,
+            "Volumne": 122900,
+            "MC": 47931.0,
+            "Change": 0.020000000000000018
+        },
+        {
+            "name": "Grupo Simec SAB de CV ADR_SIM",
+            "Close": 32.400002,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Milestone Scientific Inc_MLSS",
+            "Close": 0.73,
+            "Volumne": 42600,
+            "MC": 31098.0,
+            "Change": -0.050000000000000044
+        },
+        {
+            "name": "LGL Group Inc_LGL",
+            "Close": 4.5,
+            "Volumne": 5500,
+            "MC": 24750.0,
+            "Change": -0.1299999999999999
+        },
+        {
+            "name": "Flexible Solutions International Inc_FSI",
+            "Close": 1.87,
+            "Volumne": 4400,
+            "MC": 8228.0,
+            "Change": -0.04899999999999993
+        },
+        {
+            "name": "Integra Resources Corp_ITRG",
+            "Close": 0.737,
+            "Volumne": 12100,
+            "MC": 8917.7,
+            "Change": 0.02100000000000002
+        },
+        {
+            "name": "Equinox Gold Corp_EQX",
+            "Close": 4.59,
+            "Volumne": 1449900,
+            "MC": 6655041.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Cryo-Cell International Inc_CCEL",
+            "Close": 5.19,
+            "Volumne": 2900,
+            "MC": 15051.000000000002,
+            "Change": 0.08000000000000007
+        },
+        {
+            "name": "FG Group Holdings Inc_FGH",
+            "Close": 1.33,
+            "Volumne": 23200,
+            "MC": 30856.0,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "Houston American Energy Corp_HUSA",
+            "Close": 1.83,
+            "Volumne": 139900,
+            "MC": 256017.0,
+            "Change": 0.050000000000000044
+        },
+        {
+            "name": "Northann Corp_NCL",
+            "Close": 4.86,
+            "Volumne": 322800,
+            "MC": 1568808.0,
+            "Change": 0.020000000000000462
+        },
+        {
+            "name": "Gold Royalty Corp_GROY",
+            "Close": 1.32,
+            "Volumne": 240600,
+            "MC": 317592.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "51Talk Online Education Group ADR_COE",
+            "Close": 7.79,
+            "Volumne": 1900,
+            "MC": 14801.0,
+            "Change": -0.07000000000000028
+        },
+        {
+            "name": "Ageagle Aerial Systems Inc_UAVS",
+            "Close": 0.12,
+            "Volumne": 955200,
+            "MC": 114624.0,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "Platinum Group Metals Ltd_PLG",
+            "Close": 1.03,
+            "Volumne": 110800,
+            "MC": 114124.0,
+            "Change": -0.030000000000000027
+        },
+        {
+            "name": "Power REIT_PW",
+            "Close": 0.71,
+            "Volumne": 37800,
+            "MC": 26838.0,
+            "Change": 0.020000000000000018
+        },
+        {
+            "name": "cbdMD Inc_YCBD",
+            "Close": 0.688,
+            "Volumne": 16900,
+            "MC": 11627.199999999999,
+            "Change": 0.0029999999999998916
+        },
+        {
+            "name": "Credit Suisse Asset Management Income Closed Fund_CIK",
+            "Close": 2.67,
+            "Volumne": 306200,
+            "MC": 817554.0,
+            "Change": -0.07000000000000028
+        },
+        {
+            "name": "Laird Superfood Inc_LSF",
+            "Close": 0.9,
+            "Volumne": 15100,
+            "MC": 13590.0,
+            "Change": 0.050000000000000044
+        },
+        {
+            "name": "International Tower Hill Mines Ltd_THM",
+            "Close": 0.38,
+            "Volumne": 35800,
+            "MC": 13604.0,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "Eaton Vance Municipal Bond Closed Fund_EIM",
+            "Close": 9.17,
+            "Volumne": 341500,
+            "MC": 3131555.0,
+            "Change": -0.05000000000000071
+        },
+        {
+            "name": "Metalla Royalty _ Streaming Ltd_MTA",
+            "Close": 2.82,
+            "Volumne": 367900,
+            "MC": 1037477.9999999999,
+            "Change": 0.029999999999999805
+        },
+        {
+            "name": "Uranium Energy Corp_UEC",
+            "Close": 5.56,
+            "Volumne": 5384500,
+            "MC": 29937819.999999996,
+            "Change": 0.04999999999999982
+        },
+        {
+            "name": "Energy Fuels Inc_UUUU",
+            "Close": 7.89,
+            "Volumne": 2168600,
+            "MC": 17110254.0,
+            "Change": 0.3099999999999996
+        },
+        {
+            "name": "Jaws Mustang Acquisition Corp_JWSM",
+            "Close": 10.83,
+            "Volumne": 5100,
+            "MC": 55233.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Blue Ridge Bankshares Inc_BRBS",
+            "Close": 2.56,
+            "Volumne": 169900,
+            "MC": 434944.0,
+            "Change": -0.21999999999999975
+        },
+        {
+            "name": "Pineapple Financial Inc_PAPL",
+            "Close": 2.13,
+            "Volumne": 7548900,
+            "MC": 16079157.0,
+            "Change": 0.69
+        },
+        {
+            "name": "Marygold Companies Inc_MGLD",
+            "Close": 1.12,
+            "Volumne": 2700,
+            "MC": 3024.0000000000005,
+            "Change": 0.05600000000000005
+        },
+        {
+            "name": "IT Tech Packaging Inc_ITP",
+            "Close": 0.3,
+            "Volumne": 7200,
+            "MC": 2160.0,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "Almaden Minerals Ltd_AAU",
+            "Close": 0.14,
+            "Volumne": 64500,
+            "MC": 9030.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Catcha Investment Corp_CHAA",
+            "Close": 10.97,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Quantum FinTech Acquisition Corp_QFTA",
+            "Close": 9.0,
+            "Volumne": 6500,
+            "MC": 58500.0,
+            "Change": 0.2400000000000002
+        },
+        {
+            "name": "WidePoint Corp_WYY",
+            "Close": 1.66,
+            "Volumne": 2700,
+            "MC": 4482.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "Ashford Inc_AINC",
+            "Close": 5.9,
+            "Volumne": 4400,
+            "MC": 25960.0,
+            "Change": -0.08099999999999952
+        },
+        {
+            "name": "Splash Beverage Group Inc_SBEV",
+            "Close": 0.48,
+            "Volumne": 917800,
+            "MC": 440544.0,
+            "Change": 0.01899999999999996
+        },
+        {
+            "name": "Riley Exploration Permian Inc_REPX",
+            "Close": 24.34,
+            "Volumne": 131100,
+            "MC": 3190974.0,
+            "Change": -1.4200000000000017
+        },
+        {
+            "name": "Chicago Rivet _ Machine Co_CVR",
+            "Close": 17.5,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Senseonics Holdings Inc_SENS",
+            "Close": 0.513,
+            "Volumne": 1904600,
+            "MC": 977059.8,
+            "Change": -0.006000000000000005
+        },
+        {
+            "name": "Tellurian Inc_TELL",
+            "Close": 0.55,
+            "Volumne": 22386700,
+            "MC": 12312685.000000002,
+            "Change": 0.0
+        },
+        {
+            "name": "KULR Technology Group Inc_KULR",
+            "Close": 0.33,
+            "Volumne": 196400,
+            "MC": 64812.0,
+            "Change": 0.010000000000000009
+        },
+        {
+            "name": "CKX Lands Inc_CKX",
+            "Close": 12.5,
+            "Volumne": 3400,
+            "MC": 42500.0,
+            "Change": -0.22000000000000064
+        },
+        {
+            "name": "Mastech Digital Inc_MHH",
+            "Close": 9.81,
+            "Volumne": 8600,
+            "MC": 84366.0,
+            "Change": 1.0200000000000014
+        },
+        {
+            "name": "M-Tron Industries Inc_MPTI",
+            "Close": 28.799999,
+            "Volumne": 20400,
+            "MC": 587519.9796,
+            "Change": -0.7000010000000003
+        },
+        {
+            "name": "Avino Silver _ Gold Mines Ltd_ASM",
+            "Close": 0.45,
+            "Volumne": 540400,
+            "MC": 243180.0,
+            "Change": 0.010000000000000009
+        },
+        {
+            "name": "GAMCO Global Gold Natural Resources and Income Closed Fund_GGN",
+            "Close": 3.59,
+            "Volumne": 403200,
+            "MC": 1447488.0,
+            "Change": 0.0
+        },
+        {
+            "name": "MAG Silver Corp_MAG",
+            "Close": 10.09,
+            "Volumne": 421200,
+            "MC": 4249908.0,
+            "Change": 0.019999999999999574
+        },
+        {
+            "name": "Vista Gold Corp_VGZ",
+            "Close": 0.31,
+            "Volumne": 186400,
+            "MC": 57784.0,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "Core Molding Technologies Inc_CMT",
+            "Close": 17.18,
+            "Volumne": 295300,
+            "MC": 5073254.0,
+            "Change": 1.1099999999999994
+        },
+        {
+            "name": "Adams Resources _ Energy Inc_AE",
+            "Close": 30.700001,
+            "Volumne": 21500,
+            "MC": 660050.0215,
+            "Change": -1.029999
+        },
+        {
+            "name": "enCore Energy Corp_EU",
+            "Close": 3.22,
+            "Volumne": 895000,
+            "MC": 2881900.0,
+            "Change": 0.14000000000000012
+        },
+        {
+            "name": "Ring Energy Inc_REI",
+            "Close": 1.38,
+            "Volumne": 2197300,
+            "MC": 3032273.9999999995,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "Evans Bancorp Inc_EVBN",
+            "Close": 26.57,
+            "Volumne": 7800,
+            "MC": 207246.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Com Inc_POL",
+            "Close": 1.83,
+            "Volumne": 42900,
+            "MC": 78507.0,
+            "Change": 0.050000000000000044
+        },
+        {
+            "name": "Westwater Resources Inc_WWR",
+            "Close": 0.58,
+            "Volumne": 156100,
+            "MC": 90538.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "InfuSystem Holdings Inc_INFU",
+            "Close": 8.6,
+            "Volumne": 67700,
+            "MC": 582220.0,
+            "Change": -0.05000000000000071
+        },
+        {
+            "name": "Clough Global Dividend and Income Fund_GLV",
+            "Close": 4.96,
+            "Volumne": 29500,
+            "MC": 146320.0,
+            "Change": -0.08999999999999986
+        },
+        {
+            "name": "Oragenics Inc_OGEN",
+            "Close": 3.75,
+            "Volumne": 2200,
+            "MC": 8250.0,
+            "Change": -0.040000000000000036
+        },
+        {
+            "name": "VolitionRX Ltd_VNRX",
+            "Close": 0.88,
+            "Volumne": 59400,
+            "MC": 52272.0,
+            "Change": 0.020000000000000018
+        },
+        {
+            "name": "Armata Pharmaceuticals Inc_ARMP",
+            "Close": 2.38,
+            "Volumne": 9000,
+            "MC": 21420.0,
+            "Change": 0.16999999999999993
+        },
+        {
+            "name": "Comstock Inc_LODE",
+            "Close": 0.48,
+            "Volumne": 562200,
+            "MC": 269856.0,
+            "Change": -0.030000000000000027
+        },
+        {
+            "name": "Invesco Advantage Municipal Inc Tr II_VKI",
+            "Close": 7.73,
+            "Volumne": 56200,
+            "MC": 434426.0,
+            "Change": -0.05999999999999961
+        },
+        {
+            "name": "PARTS iD Inc_ID",
+            "Close": 0.097,
+            "Volumne": 3806700,
+            "MC": 369249.9,
+            "Change": -0.012999999999999998
+        },
+        {
+            "name": "Fury Gold Mines Ltd_FURY",
+            "Close": 0.333,
+            "Volumne": 51400,
+            "MC": 17116.2,
+            "Change": -0.010999999999999954
+        },
+        {
+            "name": "Neuraxis Inc_NRXS",
+            "Close": 2.52,
+            "Volumne": 13100,
+            "MC": 33012.0,
+            "Change": 0.08999999999999986
+        },
+        {
+            "name": "Ocean Power Technologies Inc_OPTT",
+            "Close": 0.29,
+            "Volumne": 97900,
+            "MC": 28390.999999999996,
+            "Change": 0.0
+        },
+        {
+            "name": "National Healthcare Corp_NHC",
+            "Close": 70.559998,
+            "Volumne": 37500,
+            "MC": 2645999.925,
+            "Change": -0.010002000000000066
+        },
+        {
+            "name": "Empire State Realty Operating Partnership Units Series 60_OGCP",
+            "Close": 8.74,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "HNR Acquisition Corp_HNRA",
+            "Close": 10.5,
+            "Volumne": 4600,
+            "MC": 48300.0,
+            "Change": -0.1899999999999995
+        },
+        {
+            "name": "Bm Technologies Inc_BMTX",
+            "Close": 2.45,
+            "Volumne": 5600,
+            "MC": 13720.000000000002,
+            "Change": -0.04999999999999982
+        },
+        {
+            "name": "Mexco Energy Corp_MXC",
+            "Close": 11.86,
+            "Volumne": 1500,
+            "MC": 17790.0,
+            "Change": -0.2400000000000002
+        },
+        {
+            "name": "Eagle Capital Growth Fund_GRF",
+            "Close": 8.62,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Allspring Multi-Sector Income Fund_ERC",
+            "Close": 9.065001,
+            "Volumne": 57400,
+            "MC": 520331.05740000005,
+            "Change": -0.12907399999999924
+        },
+        {
+            "name": "Blueriver Acquisition Corp_BLUA",
+            "Close": 10.5,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Birks Group Inc_BGI",
+            "Close": 3.96,
+            "Volumne": 1400,
+            "MC": 5544.0,
+            "Change": 0.06000000000000005
+        },
+        {
+            "name": "Acme United Corp_ACU",
+            "Close": 31.059999,
+            "Volumne": 7200,
+            "MC": 223631.9928,
+            "Change": -0.4300009999999972
+        },
+        {
+            "name": "Franklin Limited Duration Income Trust_FTF",
+            "Close": 6.06,
+            "Volumne": 39900,
+            "MC": 241793.99999999997,
+            "Change": -0.07000000000000028
+        },
+        {
+            "name": "Paramount Gold Nevada Corp_PZG",
+            "Close": 0.328,
+            "Volumne": 243800,
+            "MC": 79966.40000000001,
+            "Change": 0.0050000000000000044
+        },
+        {
+            "name": "Allspring Utilities And High Income Mutual Fund_ERH",
+            "Close": 8.523311,
+            "Volumne": 19500,
+            "MC": 166204.56449999998,
+            "Change": -0.08930100000000074
+        },
+        {
+            "name": "Mega Matrix Corp_MPU",
+            "Close": 0.67,
+            "Volumne": 19600,
+            "MC": 13132.0,
+            "Change": -0.029999999999999916
+        },
+        {
+            "name": "InnSuites Hospitality Trust_IHT",
+            "Close": 1.18,
+            "Volumne": 4300,
+            "MC": 5074.0,
+            "Change": 0.010000000000000009
+        },
+        {
+            "name": "Sprott Physical Gold Trust_PHYS",
+            "Close": 15.29,
+            "Volumne": 1082200,
+            "MC": 16546838.0,
+            "Change": 0.049999999999998934
+        },
+        {
+            "name": "Stereotaxis Inc_STXS",
+            "Close": 1.51,
+            "Volumne": 358000,
+            "MC": 540580.0,
+            "Change": -0.17999999999999994
+        },
+        {
+            "name": "Ambow Education Holding Ltd ADR_AMBO",
+            "Close": 0.136,
+            "Volumne": 19100,
+            "MC": 2597.6000000000004,
+            "Change": -0.0030000000000000027
+        },
+        {
+            "name": "Camber Energy Inc_CEI",
+            "Close": 0.29,
+            "Volumne": 2253100,
+            "MC": 653399.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "Airspan Networks Holdings Inc_MIMO",
+            "Close": 0.16,
+            "Volumne": 1647300,
+            "MC": 263568.0,
+            "Change": 0.0010000000000000009
+        },
+        {
+            "name": "Marti Technologies Inc_MRT",
+            "Close": 0.511,
+            "Volumne": 131200,
+            "MC": 67043.2,
+            "Change": 0.0
+        },
+        {
+            "name": "Ault Alliance Inc_AULT",
+            "Close": 0.12,
+            "Volumne": 11015700,
+            "MC": 1321884.0,
+            "Change": 0.0
+        },
+        {
+            "name": "NovaGold Resources Inc_NG",
+            "Close": 3.57,
+            "Volumne": 624800,
+            "MC": 2230536.0,
+            "Change": -0.03000000000000025
+        },
+        {
+            "name": "Trio Petroleum Corp_TPET",
+            "Close": 0.327,
+            "Volumne": 1676300,
+            "MC": 548150.1,
+            "Change": 0.01100000000000001
+        },
+        {
+            "name": "Mobile Infrastructure Corp_BEEP",
+            "Close": 4.01,
+            "Volumne": 14100,
+            "MC": 56541.0,
+            "Change": -0.25
+        },
+        {
+            "name": "RENN Fund_RCG",
+            "Close": 1.58,
+            "Volumne": 22400,
+            "MC": 35392.0,
+            "Change": -0.09999999999999987
+        },
+        {
+            "name": "Strong Global Entertainment Inc_SGE",
+            "Close": 1.79,
+            "Volumne": 2100,
+            "MC": 3759.0,
+            "Change": -0.040000000000000036
+        },
+        {
+            "name": "Gencor Industries Inc_GENC",
+            "Close": 13.87,
+            "Volumne": 15700,
+            "MC": 217759.0,
+            "Change": -0.040000000000000924
+        },
+        {
+            "name": "Standard Lithium Ltd_SLI",
+            "Close": 2.65,
+            "Volumne": 636100,
+            "MC": 1685665.0,
+            "Change": -0.18999999999999995
+        },
+        {
+            "name": "Allspring Income Opportunities Mutual Fund_EAD",
+            "Close": 6.012845,
+            "Volumne": 187200,
+            "MC": 1125604.584,
+            "Change": -0.0694549999999996
+        },
+        {
+            "name": "Denison Mines Corp_DNN",
+            "Close": 1.57,
+            "Volumne": 10499900,
+            "MC": 16484843.0,
+            "Change": 0.06000000000000005
+        },
+        {
+            "name": "Inuvo Inc_INUV",
+            "Close": 0.19,
+            "Volumne": 365900,
+            "MC": 69521.0,
+            "Change": 0.010000000000000009
+        },
+        {
+            "name": "Moving Image Technologies Inc_MITQ",
+            "Close": 0.75,
+            "Volumne": 5800,
+            "MC": 4350.0,
+            "Change": 0.02400000000000002
+        },
+        {
+            "name": "Cornerstone Strategic Value Closed Fund_CLM",
+            "Close": 7.24,
+            "Volumne": 1220900,
+            "MC": 8839316.0,
+            "Change": -0.009999999999999787
+        },
+        {
+            "name": "Indonesia Energy Corp Ltd_INDO",
+            "Close": 3.2,
+            "Volumne": 57400,
+            "MC": 183680.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "Ampio Pharmaceuticals Inc_AMPE",
+            "Close": 2.76,
+            "Volumne": 19000,
+            "MC": 52439.99999999999,
+            "Change": -0.14000000000000012
+        },
+        {
+            "name": "Northern Dynasty Minerals Ltd_NAK",
+            "Close": 0.33,
+            "Volumne": 596800,
+            "MC": 196944.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Clough Global Opportunities Closed Fund_GLO",
+            "Close": 4.42,
+            "Volumne": 164200,
+            "MC": 725764.0,
+            "Change": -0.04999999999999982
+        },
+        {
+            "name": "Electromed Inc_ELMD",
+            "Close": 9.91,
+            "Volumne": 13800,
+            "MC": 136758.0,
+            "Change": 0.13000000000000078
+        },
+        {
+            "name": "GoldMining Inc_GLDG",
+            "Close": 0.78,
+            "Volumne": 267600,
+            "MC": 208728.0,
+            "Change": 0.0
+        },
+        {
+            "name": "CEL-SCI Corp_CVM",
+            "Close": 2.39,
+            "Volumne": 734000,
+            "MC": 1754260.0,
+            "Change": -0.1599999999999997
+        },
+        {
+            "name": "Trilogy Metals Inc_TMQ",
+            "Close": 0.45,
+            "Volumne": 51600,
+            "MC": 23220.0,
+            "Change": 0.010000000000000009
+        },
+        {
+            "name": "Income Opportunity Realty Investors Inc_IOR",
+            "Close": 11.99,
+            "Volumne": 2200,
+            "MC": 26378.0,
+            "Change": -0.20999999999999908
+        },
+        {
+            "name": "Evolution Petroleum Corp_EPM",
+            "Close": 5.68,
+            "Volumne": 494200,
+            "MC": 2807056.0,
+            "Change": -0.16000000000000014
+        },
+        {
+            "name": "First Trust Energy Income _ Growth Fund_FEN",
+            "Close": 14.35,
+            "Volumne": 47600,
+            "MC": 683060.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Maia Biotechnology Inc_MAIA",
+            "Close": 2.07,
+            "Volumne": 65000,
+            "MC": 134550.0,
+            "Change": -0.010000000000000231
+        },
+        {
+            "name": "Kartoon Studios Inc_TOON",
+            "Close": 1.03,
+            "Volumne": 220600,
+            "MC": 227218.0,
+            "Change": -0.050000000000000044
+        },
+        {
+            "name": "Genius Group Ltd_GNS",
+            "Close": 0.533,
+            "Volumne": 2052700,
+            "MC": 1094089.1,
+            "Change": -0.02300000000000002
+        },
+        {
+            "name": "Solitario Resources Corp_XPL",
+            "Close": 0.5,
+            "Volumne": 29700,
+            "MC": 14850.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Abrdn National Municipal Income Mutual Fund_VFL",
+            "Close": 8.71,
+            "Volumne": 42100,
+            "MC": 366691.00000000006,
+            "Change": -0.05999999999999872
+        },
+        {
+            "name": "Loop Media Inc_LPTV",
+            "Close": 0.384,
+            "Volumne": 81000,
+            "MC": 31104.0,
+            "Change": -0.03199999999999997
+        },
+        {
+            "name": "New Gold Inc_NGD",
+            "Close": 1.17,
+            "Volumne": 2446700,
+            "MC": 2862639.0,
+            "Change": 0.010000000000000009
+        },
+        {
+            "name": "abrdn Global Income Mutual Fund_FCO",
+            "Close": 6.04,
+            "Volumne": 22000,
+            "MC": 132880.0,
+            "Change": 0.040000000000000036
+        },
+        {
+            "name": "Zedge Inc_ZDGE",
+            "Close": 1.81,
+            "Volumne": 14100,
+            "MC": 25521.0,
+            "Change": -0.030000000000000027
+        },
+        {
+            "name": "NUBURU Inc_BURU",
+            "Close": 0.33,
+            "Volumne": 4263200,
+            "MC": 1406856.0,
+            "Change": 0.0020000000000000018
+        },
+        {
+            "name": "Athena Technology Acquisition Corp II_ATEK",
+            "Close": 10.78,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Trinity Place Holdings Inc_TPHS",
+            "Close": 0.3946,
+            "Volumne": 3600,
+            "MC": 1420.56,
+            "Change": -0.005400000000000016
+        },
+        {
+            "name": "Espey MFG and Electronics Corp_ESP",
+            "Close": 16.780001,
+            "Volumne": 4700,
+            "MC": 78866.00469999999,
+            "Change": 0.12000099999999847
+        },
+        {
+            "name": "NightHawk Biosciences Inc_NHWK",
+            "Close": 0.42,
+            "Volumne": 30100,
+            "MC": 12642.0,
+            "Change": -0.04999999999999999
+        },
+        {
+            "name": "Ibio Inc_IBIO",
+            "Close": 0.28,
+            "Volumne": 386200,
+            "MC": 108136.00000000001,
+            "Change": 0.0
+        },
+        {
+            "name": "Aeon Biopharma Inc_AEON",
+            "Close": 4.41,
+            "Volumne": 5600,
+            "MC": 24696.0,
+            "Change": -0.10999999999999943
+        },
+        {
+            "name": "Graphex Group Ltd ADR_GRFX",
+            "Close": 1.17,
+            "Volumne": 20400.0,
+            "MC": 23868.0,
+            "Change": 0.020000000000000018
+        },
+        {
+            "name": "Northern Star Investment Corp II_NSTB",
+            "Close": 10.235,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "CompX International Inc_CIX",
+            "Close": 18.76,
+            "Volumne": 1200,
+            "MC": 22512.000000000004,
+            "Change": -1.0300009999999986
+        },
+        {
+            "name": "InterPrivate III Financial Partners Inc_IPVF",
+            "Close": 10.68,
+            "Volumne": 22800,
+            "MC": 243504.0,
+            "Change": 0.08000000000000007
+        },
+        {
+            "name": "Viveon Health Acquisition Corp_VHAQ",
+            "Close": 11.38,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Retractable Technologies Inc_RVP",
+            "Close": 0.99,
+            "Volumne": 216100,
+            "MC": 213939.0,
+            "Change": -0.08000000000000007
+        },
+        {
+            "name": "Americas Gold and Silver Corporation_USAS",
+            "Close": 0.24,
+            "Volumne": 270200,
+            "MC": 64848.0,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "Ur-Energy Inc_URG",
+            "Close": 1.54,
+            "Volumne": 1933400,
+            "MC": 2977436.0,
+            "Change": 0.010000000000000009
+        },
+        {
+            "name": "Silvercorp Metals Inc_SVM",
+            "Close": 2.15,
+            "Volumne": 1020300,
+            "MC": 2193645.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Pioneer Diversified High Income Fund Inc_HNW",
+            "Close": 10.22,
+            "Volumne": 15800,
+            "MC": 161476.0,
+            "Change": -0.10999999999999943
+        },
+        {
+            "name": "abrdn Australia Equity Mutual Fund_IAF",
+            "Close": 3.77,
+            "Volumne": 33800,
+            "MC": 127426.0,
+            "Change": -0.009999999999999787
+        },
+        {
+            "name": "Envela Corp_ELA",
+            "Close": 3.34,
+            "Volumne": 126200,
+            "MC": 421508.0,
+            "Change": -0.5700000000000003
+        },
+        {
+            "name": "Lineage Cell Therapeutics Inc_LCTX",
+            "Close": 1.07,
+            "Volumne": 317400,
+            "MC": 339618.0,
+            "Change": -0.030000000000000027
+        },
+        {
+            "name": "Eaton Vance New York Municipal Bond Closed Fund_ENX",
+            "Close": 8.67,
+            "Volumne": 47400,
+            "MC": 410958.0,
+            "Change": 0.09999999999999964
+        },
+        {
+            "name": "Williams Rowland Acquisition Corp_WRAC",
+            "Close": 10.47,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "EVe Mobility Acquisition Corp_EVE",
+            "Close": 10.73,
+            "Volumne": 500,
+            "MC": 5365.0,
+            "Change": -0.014999999999998792
+        },
+        {
+            "name": "Belpointe PREP Units Class A_OZ",
+            "Close": 66.0,
+            "Volumne": 7400,
+            "MC": 488400.0,
+            "Change": 1.0
+        },
+        {
+            "name": "Asensus Surgical Inc_ASXC",
+            "Close": 0.22,
+            "Volumne": 915100,
+            "MC": 201322.0,
+            "Change": -0.01999999999999999
+        },
+        {
+            "name": "TRX Gold Corp_TRX",
+            "Close": 0.39,
+            "Volumne": 91900,
+            "MC": 35841.0,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "Cheniere Energy Inc_LNG",
+            "Close": 170.669998,
+            "Volumne": 1313600,
+            "MC": 224192109.3728,
+            "Change": 0.4499969999999962
+        },
+        {
+            "name": "DMY Squared Technology Group Inc_DMYY",
+            "Close": 10.51,
+            "Volumne": 33100,
+            "MC": 347881.0,
+            "Change": 0.009999999999999787
+        },
+        {
+            "name": "Nft Ltd_MI",
+            "Close": 0.131,
+            "Volumne": 411900,
+            "MC": 53958.9,
+            "Change": -0.007000000000000006
+        },
+        {
+            "name": "NovaBay Pharmaceuticals Inc_NBY",
+            "Close": 0.35,
+            "Volumne": 74600,
+            "MC": 26110.0,
+            "Change": 0.019999999999999962
+        },
+        {
+            "name": "Air Industries Group_AIRI",
+            "Close": 3.19,
+            "Volumne": 2600,
+            "MC": 8294.0,
+            "Change": -0.050000000000000266
+        },
+        {
+            "name": "BK Technologies Corp_BKTI",
+            "Close": 13.77,
+            "Volumne": 11600,
+            "MC": 159732.0,
+            "Change": -0.41999999999999993
+        },
+        {
+            "name": "Dunxin Financial Holdings Ltd ADR_DXF",
+            "Close": 0.34,
+            "Volumne": 109600,
+            "MC": 37264.0,
+            "Change": -0.03999999999999998
+        },
+        {
+            "name": "Theriva Biologics Inc_TOVX",
+            "Close": 0.45,
+            "Volumne": 8300,
+            "MC": 3735.0,
+            "Change": -0.019999999999999962
+        },
+        {
+            "name": "Signing Day Sports Inc_SGN",
+            "Close": 38.48,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Gabelli Global Utility and Income Closed Fund_GLU",
+            "Close": 11.78,
+            "Volumne": 30700,
+            "MC": 361646.0,
+            "Change": -0.120000000000001
+        },
+        {
+            "name": "Eaton Vance Limited Duration Income Closed Fund_EVV",
+            "Close": 8.915,
+            "Volumne": 366300,
+            "MC": 3265564.4999999995,
+            "Change": -0.1487480000000012
+        },
+        {
+            "name": "Vizsla Silver Corp_VZLA",
+            "Close": 0.99,
+            "Volumne": 143600,
+            "MC": 142164.0,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "Catheter Precision Inc_VTAK",
+            "Close": 0.44,
+            "Volumne": 7100,
+            "MC": 3124.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Neuberger Berman High Yield Strategies Fund Inc_NHS",
+            "Close": 7.52,
+            "Volumne": 101900,
+            "MC": 766288.0,
+            "Change": -0.0600000000000005
+        },
+        {
+            "name": "New Found Gold Corp_NFGC",
+            "Close": 3.6,
+            "Volumne": 132100,
+            "MC": 475560.0,
+            "Change": -0.04999999999999982
+        },
+        {
+            "name": "Emerson Radio Corp_MSN",
+            "Close": 0.55,
+            "Volumne": 3500,
+            "MC": 1925.0000000000002,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "Altisource Asset Management Corp_AAMC",
+            "Close": 3.17,
+            "Volumne": 32800,
+            "MC": 103976.0,
+            "Change": -0.41000000000000014
+        },
+        {
+            "name": "Park National Corp_PRK",
+            "Close": 103.839996,
+            "Volumne": 43400,
+            "MC": 4506655.8264,
+            "Change": -1.2100070000000045
+        },
+        {
+            "name": "Ellomay Capital Ltd_ELLO",
+            "Close": 12.17,
+            "Volumne": 600,
+            "MC": 7302.0,
+            "Change": 0.08999999999999986
+        },
+        {
+            "name": "Intellinetics Inc_INLX",
+            "Close": 4.2,
+            "Volumne": 900,
+            "MC": 3780.0,
+            "Change": 0.20000000000000018
+        },
+        {
+            "name": "Avalon Holdings Corp_AWX",
+            "Close": 2.0,
+            "Volumne": 400,
+            "MC": 800.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Neuberger Berman Municipal Fund Inc_NBH",
+            "Close": 9.44,
+            "Volumne": 118900,
+            "MC": 1122416.0,
+            "Change": -0.02000000000000135
+        },
+        {
+            "name": "Arena Group Holdings Inc_AREN",
+            "Close": 4.0,
+            "Volumne": 6200,
+            "MC": 24800.0,
+            "Change": 0.3799999999999999
+        },
+        {
+            "name": "Empire State Realty Operating Partnership Units Series 250_FISK",
+            "Close": 9.1,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Caledonia Mining Corporation PLC_CMCL",
+            "Close": 10.69,
+            "Volumne": 24600,
+            "MC": 262974.0,
+            "Change": -0.5200000000000014
+        },
+        {
+            "name": "IGC Pharma Inc_IGC",
+            "Close": 0.3,
+            "Volumne": 185400,
+            "MC": 55620.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "Adit EdTech Acquisition Cor_ADEX",
+            "Close": 10.75,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Perspective Therapeutics Inc_CATX",
+            "Close": 0.26,
+            "Volumne": 372800,
+            "MC": 96928.0,
+            "Change": -0.010000000000000009
+        },
+        {
+            "name": "Clough Global Equity Closed Fund_GLQ",
+            "Close": 5.52,
+            "Volumne": 96800,
+            "MC": 534336.0,
+            "Change": -0.10000000000000053
+        },
+        {
+            "name": "Empire Petroleum Corp_EP",
+            "Close": 5.72,
+            "Volumne": 98400,
+            "MC": 562848.0,
+            "Change": -0.5700000000000003
+        },
+        {
+            "name": "Cybin Inc_CYBN",
+            "Close": 0.505,
+            "Volumne": 2731000,
+            "MC": 1379155.0,
+            "Change": -0.01100000000000001
+        },
+        {
+            "name": "DecisionPoint Systems Inc_DPSI",
+            "Close": 5.15,
+            "Volumne": 5200,
+            "MC": 26780.000000000004,
+            "Change": -0.02999999999999936
+        },
+        {
+            "name": "Merrill Lynch Depositor Corporate Backed Trust Certificates Series 2003-1 Exp_IPB",
+            "Close": 24.6,
+            "Volumne": 1400,
+            "MC": 34440.0,
+            "Change": -0.14999999999999858
+        },
+        {
+            "name": "Cornerstone Total Return Closed Fund_CRF",
+            "Close": 7.14,
+            "Volumne": 669700,
+            "MC": 4781658.0,
+            "Change": -0.040000000000000036
+        },
+        {
+            "name": "Better Choice Company Inc_BTTR",
+            "Close": 0.217,
+            "Volumne": 300100,
+            "MC": 65121.7,
+            "Change": 0.015999999999999986
+        },
+        {
+            "name": "inTest Corp_INTT",
+            "Close": 12.34,
+            "Volumne": 83300,
+            "MC": 1027922.0,
+            "Change": 0.3000000000000007
+        },
+        {
+            "name": "Planet Green Holdings Corp_PLAG",
+            "Close": 0.53,
+            "Volumne": 6200,
+            "MC": 3286.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "Know Labs Inc_KNW",
+            "Close": 0.34,
+            "Volumne": 394500,
+            "MC": 134130.0,
+            "Change": 0.030000000000000027
+        },
+        {
+            "name": "Boqii Holding Ltd ADR_BQ",
+            "Close": 3.0,
+            "Volumne": 0,
+            "MC": 0.0,
+            "Change": 0.0
+        },
+        {
+            "name": "NanoViricides Inc_NNVC",
+            "Close": 1.07,
+            "Volumne": 45000,
+            "MC": 48150.0,
+            "Change": -0.030000000000000027
+        },
+        {
+            "name": "Trio-Tech International_TRT",
+            "Close": 6.01,
+            "Volumne": 6700,
+            "MC": 40267.0,
+            "Change": 0.34999999999999964
+        },
+        {
+            "name": "American Shared Hospital Services_AMS",
+            "Close": 2.19,
+            "Volumne": 26500,
+            "MC": 58035.0,
+            "Change": -0.06000000000000005
+        },
+        {
+            "name": "New Pacific Metals Corp_NEWP",
+            "Close": 1.52,
+            "Volumne": 427100,
+            "MC": 649192.0,
+            "Change": -0.10999999999999988
+        },
+        {
+            "name": "AIM ImmunoTech Inc_AIM",
+            "Close": 0.43,
+            "Volumne": 149300,
+            "MC": 64199.0,
+            "Change": -0.03999999999999998
+        },
+        {
+            "name": "Barnwell Industries Inc_BRN",
+            "Close": 2.43,
+            "Volumne": 3000,
+            "MC": 7290.000000000001,
+            "Change": 0.010000000000000231
+        },
+        {
+            "name": "Credit Suisse High Yield Bond Closed Fund_DHY",
+            "Close": 1.91,
+            "Volumne": 389800,
+            "MC": 744518.0,
+            "Change": 0.030000000000000027
+        },
+        {
+            "name": "Cohen _ Company Inc_COHN",
+            "Close": 7.78,
+            "Volumne": 9500,
+            "MC": 73910.0,
+            "Change": 0.28000000000000025
+        },
+        {
+            "name": "Neuberger Berman Real Estate Securities Income Closed Fund_NRO",
+            "Close": 2.65,
+            "Volumne": 138600,
+            "MC": 367290.0,
+            "Change": -0.050000000000000266
+        },
+        {
+            "name": "Friedman Industries Inc_FRD",
+            "Close": 11.08,
+            "Volumne": 7900,
+            "MC": 87532.0,
+            "Change": 0.6300000000000008
+        },
+        {
+            "name": "Eaton Vance California Municipal Bond Closed Fund_EVM",
+            "Close": 8.27,
+            "Volumne": 138600,
+            "MC": 1146222.0,
+            "Change": 0.02999999999999936
+        },
+        {
+            "name": "Delta Apparel Inc_DLA",
+            "Close": 8.26,
+            "Volumne": 6500,
+            "MC": 53690.0,
+            "Change": 0.11999999999999922
+        },
+        {
+            "name": "Ambipar Emergency Response_AMBI",
+            "Close": 5.65,
+            "Volumne": 10400,
+            "MC": 58760.00000000001,
+            "Change": -0.07499999999999929
+        },
+        {
+            "name": "EMX Royalty Corp_EMX",
+            "Close": 1.68,
+            "Volumne": 155900,
+            "MC": 261912.0,
+            "Change": 0.0
+        },
+        {
+            "name": "Bar Harbor Bankshares_BHB",
+            "Close": 25.209999,
+            "Volumne": 14900,
+            "MC": 375628.9851,
+            "Change": -0.19000099999999875
+        },
+        {
+            "name": "Orla Mining Ltd_ORLA",
+            "Close": 2.98,
+            "Volumne": 634000,
+            "MC": 1889320.0,
+            "Change": -0.04999999999999982
+        },
+        {
+            "name": "Foxo Technologies Inc_FOXO",
+            "Close": 0.371,
+            "Volumne": 199700,
+            "MC": 74088.7,
+            "Change": -0.0040000000000000036
+        },
+        {
+            "name": "Strawberry Fields Reit Inc_STRW",
+            "Close": 6.97,
+            "Volumne": 300,
+            "MC": 2091.0,
+            "Change": 0.08000000000000007
+        },
+        {
+            "name": "Cboe Global Markets Inc_CBOE",
+            "Close": 176.350006,
+            "Volumne": 604900,
+            "MC": 106674118.6294,
+            "Change": 2.360001000000011
+        },
+        {
+            "name": "Seaboard Corp_SEB",
+            "Close": 3478.189941,
+            "Volumne": 1300,
+            "MC": 4521646.9233,
+            "Change": -74.07006899999988
+        },
+        {
+            "name": "Southland Holdings Inc_SLND",
+            "Close": 5.65,
+            "Volumne": 12800,
+            "MC": 72320.0,
+            "Change": -0.040000000000000036
+        },
+        {
+            "name": "Chase Corp_CCF",
+            "Close": 127.400002,
+            "Volumne": 360000,
+            "MC": 45864000.72,
+            "Change": 0.39000000000000057
+        },
+        {
+            "name": "Central Securities Closed Fund_CET",
+            "Close": 34.68,
+            "Volumne": 20200,
+            "MC": 700536.0,
+            "Change": -0.20046299999999917
+        },
+        {
+            "name": "Western Copper and Gold Corp_WRN",
+            "Close": 1.22,
+            "Volumne": 40900,
+            "MC": 49898.0,
+            "Change": -0.020000000000000018
+        },
+        {
+            "name": "Tellurian 8 25 Senior Notes due 2028_TELZ",
+            "Close": 8.65,
+            "Volumne": 9100,
+            "MC": 78715.0,
+            "Change": -0.09999999999999964
+        },
+        {
+            "name": "Sprott Physical Platinum and Palladium Trust_SPPP",
+            "Close": 9.62,
+            "Volumne": 90800,
+            "MC": 873495.9999999999,
+            "Change": -0.2900000000000009
+        },
+        {
+            "name": "Cheniere Energy Partners Units_CQP",
+            "Close": 57.34,
+            "Volumne": 99100,
+            "MC": 5682394.0,
+            "Change": 0.00999800000000306
+        }
+    ]
+}
