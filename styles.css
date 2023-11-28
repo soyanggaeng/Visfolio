@@ -403,7 +403,13 @@ footer {
 .wordcloud-section {
     text-align: center;
     margin: 20px;
-    color: white
+    color: white;
+    /* Set a minimum width and height or set it to a percentage of the container */
+    min-width: 900px; 
+    min-height: 600px;
+    /* Optional: you can use width and height as a percentage if you prefer */
+    width: 100%;
+    height: auto; /* This will ensure that the section scales with the content */
 }
 
 
