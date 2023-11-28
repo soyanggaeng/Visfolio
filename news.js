@@ -187,6 +187,22 @@ function generateWordCloud(words) {
             })
             .text(function(d) { return d.text; });
     }
+
+    // Define the drag behavior
+    var drag = d3.drag()
+        .on("start", function(event, d) {
+            d3.select(this).raise().classed("active", true);
+        })
+        .on("drag", function(event, d) {
+            d3.select(this).attr("x", d.x = event.x).attr("y", d.y = event.y);
+        })
+        .on("end", function(event, d) {
+            d3.select(this).classed("active", false);
+        });
+    
+    // Apply the drag behavior to each word
+    svg.selectAll("text")
+        .call(drag);
 }
 
 async function displayNews(companyName) {
