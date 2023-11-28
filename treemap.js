@@ -42,9 +42,50 @@ function createTreemap(data, containerId) {
         .attr("x", d => d.x0 + 5)    
         .attr("y", d => d.y0 + 20)    
         .text(d => d.data.name)
-        .attr("font-size", "15px")
-        .attr("fill", "white");
+        .style("font-size", d => `${Math.min(20, (d.x1 - d.x0) / 5)}px`) // Dynamic font size
+        .attr("fill", "white")
+        .call(wrap, (d) => d.x1 - d.x0); // Wrap text function call
 }
+
+// Function to wrap text in SVG
+function wrap(text, width) {
+    text.each(function() {
+        var text = d3.select(this),
+            words = text.text().split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.1, // ems
+            y = text.attr("y"),
+            dy = parseFloat(text.attr("dy") || 0),
+            tspan = text.text(null).append("tspan").attr("x", text.attr("x")).attr("y", y).attr("dy", dy + "em");
+        
+        while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+                line.pop();
+                tspan.text(line.join(" "));
+                line = [word];
+                tspan = text.append("tspan").attr("x", text.attr("x")).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+            }
+        }
+    });
+}
+
+// Tooltip setup (using d3-tip)
+const tip = d3.tip()
+    .attr('class', 'd3-tip')
+    .offset([-10, 0])
+    .html(d => `Name: ${d.data.name}<br>Market Cap: ${d.data.MC}<br>Change: ${d.data.Change}%`);
+
+// Call the tooltip in the svg
+svg.call(tip);
+
+// On mouseover, call the tooltip
+svg.selectAll("rect")
+    .on('mouseover', tip.show)
+    .on('mouseout', tip.hide);
 
 // Load the data and create the treemaps
 d3.json("data/Kospi_20231109.json").then(data => {
