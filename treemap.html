@@ -10,28 +10,30 @@
 </head>
 <body>
     <header id="header-placeholder"></header>
-    <div class="column" id="left-column">
-        <h3>KOSPI</h3>
-        <div id="treemapKospi" class="treemap-container"></div>
-
-        <h3>KOSDAQ</h3>
-        <div id="treemapKosdaq" class="treemap-container"></div>
-
-        <h3>KONEX</h3>
-        <div id="treemapKonex" class="treemap-container"></div>
-    </div>
-
-    <div class="column" id="right-column">
-        <h3>NASDAQ</h3>
-        <div id="treemapNasdaq" class="treemap-container"></div>
-
-        <h3>NYSE</h3>
-        <div id="treemapNyse" class="treemap-container"></div>
-
-        <h3>AMEX</h3>
-        <div id="treemapAmex" class="treemap-container"></div>
-    </div>
+    <div id="columns-container">
+        <div class="column" id="left-column">
+            <h3>KOSPI</h3>
+            <div id="treemapKospi" class="treemap-container"></div>
     
+            <h3>KOSDAQ</h3>
+            <div id="treemapKosdaq" class="treemap-container"></div>
+    
+            <h3>KONEX</h3>
+            <div id="treemapKonex" class="treemap-container"></div>
+        </div>
+    
+        <div class="column" id="right-column">
+            <h3>NASDAQ</h3>
+            <div id="treemapNasdaq" class="treemap-container"></div>
+    
+            <h3>NYSE</h3>
+            <div id="treemapNyse" class="treemap-container"></div>
+    
+            <h3>AMEX</h3>
+            <div id="treemapAmex" class="treemap-container"></div>
+        </div>
+    </div>
+        
     <footer id="footer-placeholder"></footer>
     <script src="treemap.js"></script>
     <script src="scripts.js"></script>
