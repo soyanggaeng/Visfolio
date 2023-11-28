@@ -2,12 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> 2023.11.09. Global Stock Market Overview </title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="treemap_style.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="treemap.js"></script>
-    <link rel="stylesheet" href="treemap_style.css"> <!-- Link to your external CSS file -->
 </head>
 <body>
+    <header id="header-placeholder"></header>
     <div class="column" id="left-column">
         <h3>KOSPI</h3>
         <div id="treemapKospi" class="treemap-container"></div>
@@ -29,9 +31,9 @@
         <h3>AMEX</h3>
         <div id="treemapAmex" class="treemap-container"></div>
     </div>
-
-    <script src="treemap.js"></script>
-
     
+    <footer id="footer-placeholder"></footer>
+    <script src="scripts.js"></script>
+    <script src="treemap.js"></script>
 </body>
 </html>
