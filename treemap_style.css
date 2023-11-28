@@ -39,6 +39,24 @@ h3 {
     clear: both;
 }
 
+/* Add some styles for the tooltip */
+.d3-tip {
+    line-height: 1;
+    font-weight: bold;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    border-radius: 2px;
+    font-size: 12px;
+    pointer-events: none; /* Ignore pointer events */
+}
+
+/* Add style for tspan for better control */
+tspan {
+    font-size: inherit; /* Use the same font size as the text element */
+}
+
+
 /* Update the media query for responsiveness */
 @media screen and (max-width: 768px) {
     #columns-container {
