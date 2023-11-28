@@ -141,8 +141,9 @@ async function displayWordCloud(companyName) {
 function generateWordCloud(words) {
     // Set up the dimensions and margins of the graph
     var margin = {top: 10, right: 10, bottom: 10, left: 10},
-        width = 450 - margin.left - margin.right,
-        height = 450 - margin.top - margin.bottom;
+        // Increase the width and height as desired
+        width = 900 - margin.left - margin.right,
+        height = 600 - margin.top - margin.bottom;
 
     // Append the svg object to the body of the page
     var svg = d3.select(".wordcloud-section").append("svg")
