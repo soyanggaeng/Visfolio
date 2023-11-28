@@ -5,6 +5,17 @@ const margin = { top: 10, right: 10, bottom: 10, left: 10 };
 
 // Function to create a treemap
 function createTreemap(data, containerId) {
+    // Create a tooltip div
+    const tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip") // Style this in CSS
+        .style("opacity", 0)
+        .style("position", "absolute")
+        .style("background", "rgba(0, 0, 0, 0.6)")
+        .style("color", "white")
+        .style("padding", "5px")
+        .style("border-radius", "5px")
+        .style("pointer-events", "none"); // Ignore pointer events on the tooltip
+
     let leaves = d3.hierarchy(data).leaves();
     leaves.sort((a, b) => b.data.MC - a.data.MC);
     leaves = leaves.slice(0, 20);
@@ -33,7 +44,20 @@ function createTreemap(data, containerId) {
         .attr('y', d => d.y0)
         .attr('width', d => d.x1 - d.x0)
         .attr('height', d => d.y1 - d.y0)
-        .style("fill", d => d.data.Change > 0 ? "red" : "blue");  // Color based on 'Change'
+        .style("fill", d => d.data.Change > 0 ? "red" : "blue") // Color based on 'Change'
+        .on('mouseover', (event, d) => {
+            tooltip.transition()
+                .duration(200)
+                .style("opacity", .9);
+            tooltip.html(`Name: ${d.data.name}<br>Market Cap: ${d.data.MC}<br>Change: ${d.data.Change}%`)
+                .style("left", (event.pageX) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on('mouseout', () => {
+            tooltip.transition()
+                .duration(500)
+                .style("opacity", 0);
+        });
 
     svg.selectAll("text")
         .data(root.leaves())
