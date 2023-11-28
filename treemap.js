@@ -47,26 +47,26 @@ function createTreemap(data, containerId) {
 }
 
 // Load the data and create the treemaps
-d3.json("Kospi_20231109.json").then(data => {
+d3.json("data/Kospi_20231109.json").then(data => {
     createTreemap(data, "#treemapKospi");
 });
 
-d3.json("Kosdaq_20231109.json").then(data => {
+d3.json("data/Kosdaq_20231109.json").then(data => {
     createTreemap(data, "#treemapKosdaq");
 });
 
-d3.json("KONEX_20231109.json").then(data => {
+d3.json("data/KONEX_20231109.json").then(data => {
     createTreemap(data, "#treemapKonex");
 });
 
-d3.json("Nasdaq_20231109.json").then(data => {
+d3.json("data/Nasdaq_20231109.json").then(data => {
     createTreemap(data, "#treemapNasdaq");
 });
 
-d3.json("NYSE_20231109.json").then(data => {
+d3.json("data/NYSE_20231109.json").then(data => {
     createTreemap(data, "#treemapNyse");
 });
 
-d3.json("AMEX_20231109.json").then(data => {
+d3.json("data/AMEX_20231109.json").then(data => {
     createTreemap(data, "#treemapAmex");
 });
