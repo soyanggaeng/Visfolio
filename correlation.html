@@ -18,27 +18,33 @@
 </head>
 <body>
     <header id="header-placeholder"></header>
-  <div id="heatmap-container"></div>
+    <div id="heatmap-container"></div>
 
-  <script>
-    // Your data for the correlation matrix (assuming it's loaded into 'correlationData' variable)
-    const correlationData = [
-      [1.0, 0.8, 0.6],
-      [0.8, 1.0, 0.4],
-      [0.6, 0.4, 1.0]
-      // Add your correlation matrix data here
-    ];
-  
-    // Create a heatmap using Plotly.js
-    const data = [{
-      z: correlationData,
-      type: 'heatmap',
-      colorscale: 'RdYlGn' // Choose your preferred colorscale
-    }];
-  
-    const layout = {
-      title: 'Correlation Matrix Heatmap'
-      // You can customize the layout here
-    };
-  
-    Plotly.newPlot('heatmap-container', data, layout);
+    <footer id="footer-placeholder"></footer>
+    <script src="scripts.js"></script>
+    <script>
+        // Your data for the correlation matrix (assuming it's loaded into 'correlationData' variable)
+        const correlationData = [
+          [1.0, 0.8, 0.6],
+          [0.8, 1.0, 0.4],
+          [0.6, 0.4, 1.0]
+          // Add your correlation matrix data here
+        ];
+      
+        // Create a heatmap using Plotly.js
+        const data = [{
+          z: correlationData,
+          type: 'heatmap',
+          colorscale: 'RdYlGn' // Choose your preferred colorscale
+        }];
+      
+        const layout = {
+          title: 'Correlation Matrix Heatmap'
+          // You can customize the layout here
+        };
+      
+        Plotly.newPlot('heatmap-container', data, layout);
+    </script>
+
+</body>
+</html>
