@@ -1,0 +1,232 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #ffffff;
+}
+
+
+header {
+    background-color: #000000;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+h3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+
+p {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    line-height: 1.6;
+}
+
+main {
+    padding: 2rem;
+    background: linear-gradient(to bottom, #000004 0%, #050120 50%, #0f4370 100%);
+
+}
+
+.backtest-container {
+    max-width: 1200px;
+    margin: auto;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.main-title {
+    color: #ffffff;
+    text-align: center;
+}
+
+.overview-section {
+    margin-top: 2rem;
+}
+
+.section-title {
+    background-color: #ffffff;
+    color: #ffffff;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.overview-body p {
+    line-height: 1.6;
+}
+
+.card {
+    background-color: transparent; /* Makes the background transparent */
+    border: 1px solid white; /* Sets a white border */
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+
+.card-header {
+    background-color: #112d4e;
+    color: #f9f7f7;
+    padding: .5rem 1rem;
+    border-radius: 4px 4px 0 0;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; /* This aligns the items vertically in the center */
+    justify-content: start; /* Align items to the start of the row */
+
+}
+
+.asset-row {
+    margin-bottom: .5rem!important;
+    margin-top: .5rem!important;
+}
+
+.topBorder{
+    margin-top: 3rem!important;
+
+}
+
+.bottomBorder{
+    margin-bottom: 1.5rem!important;
+
+}
+
+.form-buttons input[type="submit"], .panel-buttons input[type="submit"], .form-buttons input[type="button"], .panel-buttons input[type="button"] {
+    margin-right: 15px;
+}
+
+
+.form-buttons{
+    margin-top:1rem;
+    margin-right: 15px;
+}
+
+.label-column {
+    flex: 0 0 auto; /* Do not grow, do not shrink, and be based on the width of its content */
+    margin-right: 10px;
+    padding-bottom: 10px; /* Adjust as needed */
+    /* Optional: adds margin to the right of the label */
+}
+
+.select-column {
+    flex: 1; /* Take up the remaining space */
+    min-width: 50%; /* Ensures the dropdown doesn't get too small */
+    padding-bottom: 10px; /* Adjust as needed */
+
+}
+
+/* Custom style for the tooltip text */
+.tooltip-inner {
+    font-size: 12px; /* Change font size */
+    color: #fff; /* Change text color */
+    background-color: #333; /* Change background color */
+    max-width: 150px; /* Adjust this value to make the tooltip narrower */
+    padding: 5px 6px; /* Adjust padding if needed */
+    /* Add more styling as needed */
+}
+
+/* Custom style for the tooltip arrow */
+.tooltip .arrow::before {
+    border-color: #333; /* Match arrow color to tooltip background */
+}
+
+.custom-select {
+    width: 30%; /* Adjust as needed */
+    height: 40px; /* Adjust the height as needed */
+    font-size: 14px; /* Adjust font size if necessary */
+    
+}
+
+.separateTop {
+    margin-bottom: 0; /* Reduces the bottom margin */
+    font-size: 15px;
+}
+
+.asset-column {
+    padding-left: 0; /* Reduces left padding if needed */
+}
+
+.input-group.smallMargin {
+    width: 100%; /* Ensure input group takes full width */
+    margin-top: 0;
+    padding: 0; /* Remove padding if it's affecting the width */
+    justify-content: center; /* Horizontally center the flex items */
+    display: flex; /* Set to flex to enable flexbox properties */
+
+
+}
+
+.select-stock {
+    width: 100%; /* Ensure select stock takes full width */
+    padding-left: 5px; /* Remove padding that might restrict the width */
+}
+
+.select-stock select.form-control {
+    width: 90%;
+    height: 40px;
+    padding: 10px 10px;
+    font-size: 16px;
+}
+
+.table {
+    color : #fff;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd){
+    color : #fff;
+}
+
+td.numberCell, th.numberCell, th.numberCellNW {
+    text-align: right;
+    padding-right: .625rem;
+    }
+
+/* These are optional, for responsiveness */
+@media (max-width: 768px) {
+    .col {
+        flex-basis: 100%; /* On small screens, the columns take full width */
+        max-width: 100%; /* On small screens, the columns take full width */
+    }
+}

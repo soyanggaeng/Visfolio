@@ -4,14 +4,686 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Backtest - Visfolio</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <!-- Include your custom stylesheet after Bootstrap's stylesheet -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="backtest-style.css">
 </head>
+
 <body>
     <header id="header-placeholder"></header>
+    <!-- <button onclick="javascript:test()">Show</button> -->
     <main>
+        <div class = "Backtest">
+            <h1>Backtest Portfolio Asset Allocation</h1>
+            <div class="Overview">
+                <h2>Portfolio Backtesting Overview</h2>
+                <div class="overview-body">
+                    <p>This portfolio backtesting tool allows you to construct one or more portfolios based on the selected ETFs, and stocks. You can analyze and backtest portfolio returns, risk characteristics, style exposures, and drawdowns. The results cover both returns and fund fundamentals based portfolio style analysis along with risk and return decomposition by each portfolio asset. You can compare up to three different portfolios against the selected benchmark, and you can also specify any periodic contribution or withdrawal cashflows and the preferred portfolio rebalancing strategy. </p>
 
+                </div>
+                <!-- Error Messages Container -->
+                <div id="error-messages" class="alert alert-danger" style="display: none;">
+                    <!-- Error messages will be added here -->
+                </div>
+
+                <div class="card my-3 form-section">
+                    <div class="card-header bg-gradient fw-bold">
+                        <h3>Portfolio Model Configuration</h3></div>
+                        <div class="card-body">
+                            <!-- <form action="backtest-portfolio#analysisResults" method="post" class="pv-form" novalidate autocomplete="off"> -->
+                            <form action="http://localhost:5001/api/analyze" method="post" class="pv-form" novalidate autocomplete="off">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="label-column">
+                                            <label for="timePeriod" class="col-form-label">
+                                                Time Period
+                                            </label>
+                                            <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Specify time period in years or in months"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="select-column">
+                                            <div class="select-parent">
+                                                <select id="timePeriod" name="timePeriod" class="form-control form-select custom-select" onchange="toggleTimeframe()">
+
+                                                    <option value="4" selected>Year-to-Year</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="label-column">
+                                            <label for="startYearSelect" class="col-form-label">
+                                                Start Year
+                                            </label>
+                                            <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Start year for porfolio backtest"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="select-column">
+                                            <div class="select-parent">
+                                                <select id="startYearSelect" name="startYear" class="form-control form-select custom-select">
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="label-column">
+                                            <label for="endYearSelect" class="col-form-label">
+                                                End Year
+                                            </label>
+                                            <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="End year for porfolio backtest"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="select-column">
+                                            <div class="select-parent">
+                                                <select id="endYearSelect" name="endYear" class="form-control form-select custom-select">
+                
+                                                    <!-- Add more options as needed -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="label-column">
+                                            <label for="initialAmount" class="col-form-label">
+                                                Initial Amount
+                                            </label>
+                                            <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Initial portfolio balance"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="input-group flex-nowrap">
+                                            <span class="input-group-text">$</span>
+                                            <input type="number" id="initialAmount" name="initialAmount" class="form-control fmt-posint" value="10000" placeholder="Amount..." autocomplete="off">
+                                            <span class="input-group-text">.00</span>
+                                        </div>
+                                        </div>
+                                </div>
+                                <div id="pfSection" class="portfolio-section pv-allow-expansion pv-multiple pv-allow-short" data-count="3" data-maxrows="150" data-advanced="false">
+                                    <div class="row topBorder bottomBorder asset-row">
+                                        <div class="col-md-6 separateTop text-nowrap">
+                                            <b>Portfolio Assets</b>&nbsp;
+                                            <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Assets"></span>
+                                        </div>
+                                        <div class="col-md-2 separateTop text-nowrap">
+                                            <b>Portfolio #1</b>
+                                            <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Enter percentage allocation of each asset"></span>
+                                        </div>
+                                        <div class="col-md-2 separateTop text-nowrap">
+                                            <b>Portfolio #2</b>
+                                            <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Enter percentage allocation of each asset"></span>
+                                        </div>
+                                        <div class="col-md-2 separateTop text-nowrap">
+                                            <b>Portfolio #3</b>
+                                            <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Enter percentage allocation of each asset"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row asset-row">
+                                        <div class="col-md-1 separateTop">Asset 1</div>
+                                        <div class="col-md-5 asset-column">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <!-- Dropdown Menu 1 -->
+                                                <div class="select-stock">
+                                                    <select id="market1" name="market1" class="form-control form-select" onchange="toggleTimeframe1()">
+                                                        <option value="" disabled selected>Market</option>
+                                                        
+                                                        <!-- Add more options specific to timePeriod1 here -->
+                                                    </select>
+                                                </div>
+                                            
+                                                <!-- Dropdown Menu 2 -->
+                                                <div class="select-stock">
+                                                    <input type="text" id="item1" name="item1" class="form-control" placeholder="Enter partial name or ticker..." list="itemList1" autocomplete="off">
+                                                    <datalist id="itemList1">
+                                                        <!-- Autocomplete options will be populated here by JavaScript -->
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation1_1" name="allocation1_1" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation1_2" name="allocation1_2" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation1_3" name="allocation1_3" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    <div class="row asset-row">
+                                        <div class="col-md-1 separateTop">Asset 2</div>
+                                        <div class="col-md-5 asset-column">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <!-- Dropdown Menu 1 -->
+                                                <div class="select-stock">
+                                                    <select id="market2" name="market2" class="form-control form-select" onchange="toggleTimeframe1()">
+                                                        <option value="" disabled selected>Market</option>
+                                                        
+                                                        <!-- Add more options specific to timePeriod1 here -->
+                                                    </select>
+                                                </div>
+                                            
+                                                <!-- Dropdown Menu 2 -->
+                                                <div class="select-stock">
+                                                    <input type="text" id="item2" name="item2" class="form-control" placeholder="Enter partial name or ticker..." list="itemList2" autocomplete="off">
+                                                    <datalist id="itemList2">
+                                                        <!-- Autocomplete options will be populated here by JavaScript -->
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation2_1" name="allocation2_1" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation2_2" name="allocation2_2" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation2_3" name="allocation2_3" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    <div class="row asset-row">
+                                        <div class="col-md-1 separateTop">Asset 3</div>
+                                        <div class="col-md-5 asset-column">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <!-- Dropdown Menu 1 -->
+                                                <div class="select-stock">
+                                                    <select id="market3" name="market3" class="form-control form-select" onchange="toggleTimeframe1()">
+                                                        <option value="" disabled selected>Market</option>
+                                                        
+                                                        <!-- Add more options specific to timePeriod1 here -->
+                                                    </select>
+                                                </div>
+                                            
+                                                <!-- Dropdown Menu 2 -->
+                                                <div class="select-stock">
+                                                    <input type="text" id="item3" name="item3" class="form-control" placeholder="Enter partial name or ticker..." list="itemList3" autocomplete="off">
+                                                    <datalist id="itemList3">
+                                                        <!-- Autocomplete options will be populated here by JavaScript -->
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation3_1" name="allocation3_1" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation3_2" name="allocation3_2" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation3_3" name="allocation3_3" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    <div class="row asset-row">
+                                        <div class="col-md-1 separateTop">Asset 4</div>
+                                        <div class="col-md-5 asset-column">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <!-- Dropdown Menu 1 -->
+                                                <div class="select-stock">
+                                                    <select id="market4" name="market4" class="form-control form-select" onchange="toggleTimeframe1()">
+                                                        <option value="" disabled selected>Market</option>
+                                                        
+                                                        <!-- Add more options specific to timePeriod1 here -->
+                                                    </select>
+                                                </div>
+                                            
+                                                <!-- Dropdown Menu 2 -->
+                                                <div class="select-stock">
+                                                    <input type="text" id="item4" name="item4" class="form-control" placeholder="Enter partial name or ticker..." list="itemList4" autocomplete="off">
+                                                    <datalist id="itemList4">
+                                                        <!-- Autocomplete options will be populated here by JavaScript -->
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation4_1" name="allocation4_1" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation4_2" name="allocation4_2" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation4_3" name="allocation4_3" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    <div class="row asset-row">
+                                        <div class="col-md-1 separateTop">Asset 5</div>
+                                        <div class="col-md-5 asset-column">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <!-- Dropdown Menu 1 -->
+                                                <div class="select-stock">
+                                                    <select id="market5" name="market5" class="form-control form-select" onchange="toggleTimeframe1()">
+                                                        <option value="" disabled selected>Market</option>
+                                                        
+                                                        <!-- Add more options specific to timePeriod1 here -->
+                                                    </select>
+                                                </div>
+                                            
+                                                <!-- Dropdown Menu 2 -->
+                                                <div class="select-stock">
+                                                    <input type="text" id="item5" name="item5" class="form-control" placeholder="Enter partial name or ticker..." list="itemList5" autocomplete="off">
+                                                    <datalist id="itemList5">
+                                                        <!-- Autocomplete options will be populated here by JavaScript -->
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation5_1" name="allocation5_1" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation5_2" name="allocation5_2" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation5_3" name="allocation5_3" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    <div class="row asset-row">
+                                        <div class="col-md-1 separateTop">Asset 6</div>
+                                        <div class="col-md-5 asset-column">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <!-- Dropdown Menu 1 -->
+                                                <div class="select-stock">
+                                                    <select id="market6" name="market6" class="form-control form-select" onchange="toggleTimeframe1()">
+                                                        <option value="" disabled selected>Market</option>
+                                                        
+                                                        <!-- Add more options specific to timePeriod1 here -->
+                                                    </select>
+                                                </div>
+                                            
+                                                <!-- Dropdown Menu 2 -->
+                                                <div class="select-stock">
+                                                    <input type="text" id="item6" name="item6" class="form-control" placeholder="Enter partial name or ticker..." list="itemList6" autocomplete="off">
+                                                    <datalist id="itemList6">
+                                                        <!-- Autocomplete options will be populated here by JavaScript -->
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation6_1" name="allocation6_1" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation6_2" name="allocation6_2" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation6_3" name="allocation6_3" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    <div class="row asset-row">
+                                        <div class="col-md-1 separateTop">Asset 7</div>
+                                        <div class="col-md-5 asset-column">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <!-- Dropdown Menu 1 -->
+                                                <div class="select-stock">
+                                                    <select id="market7" name="market7" class="form-control form-select" onchange="toggleTimeframe1()">
+                                                        <option value="" disabled selected>Market</option>
+                                                        
+                                                        <!-- Add more options specific to timePeriod1 here -->
+                                                    </select>
+                                                </div>
+                                            
+                                                <!-- Dropdown Menu 2 -->
+                                                <div class="select-stock">
+                                                    <input type="text" id="item7" name="item7" class="form-control" placeholder="Enter partial name or ticker..." list="itemList7" autocomplete="off">
+                                                    <datalist id="itemList7">
+                                                        <!-- Autocomplete options will be populated here by JavaScript -->
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation7_1" name="allocation7_1" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation7_2" name="allocation7_2" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation7_3" name="allocation7_3" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    <div class="row asset-row">
+                                        <div class="col-md-1 separateTop">Asset 8</div>
+                                        <div class="col-md-5 asset-column">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <!-- Dropdown Menu 1 -->
+                                                <div class="select-stock">
+                                                    <select id="market8" name="market8" class="form-control form-select" onchange="toggleTimeframe1()">
+                                                        <option value="" disabled selected>Market</option>
+                                                        
+                                                        <!-- Add more options specific to timePeriod1 here -->
+                                                    </select>
+                                                </div>
+                                               
+                                                <!-- Dropdown Menu 2 -->
+                                                <div class="select-stock">
+                                                    <input type="text" id="item8" name="item8" class="form-control" placeholder="Enter partial name or ticker..." list="itemList8" autocomplete="off">
+                                                    <datalist id="itemList8">
+                                                        <!-- Autocomplete options will be populated here by JavaScript -->
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    <div class="col-md-2">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <input type="number" id="allocation8_1" name="allocation8_1" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>    
+                                    <div class="col-md-2">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <input type="number" id="allocation8_2" name="allocation8_2" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>    
+                                    <div class="col-md-2">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <input type="number" id="allocation8_3" name="allocation8_3" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>   
+                                </div>    
+                                    <div class="row asset-row">
+                                        <div class="col-md-1 separateTop">Asset 9</div>
+                                        <div class="col-md-5 asset-column">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <!-- Dropdown Menu 1 -->
+                                                <div class="select-stock">
+                                                    <select id="market9" name="market9" class="form-control form-select" onchange="toggleTimeframe1()">
+                                                        <option value="" disabled selected>Market</option>
+                                                        
+                                                        <!-- Add more options specific to timePeriod1 here -->
+                                                    </select>
+                                                </div>
+                                            
+                                                <!-- Dropdown Menu 2 -->
+                                                <div class="select-stock">
+                                                    <input type="text" id="item9" name="item9" class="form-control" placeholder="Enter partial name or ticker..." list="itemList9" autocomplete="off">
+                                                    <datalist id="itemList9">
+                                                        <!-- Autocomplete options will be populated here by JavaScript -->
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation9_1" name="allocation9_1" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation9_2" name="allocation9_2" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation9_3" name="allocation9_3" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    <div class="row asset-row">
+                                        <div class="col-md-1 separateTop">Asset 10</div>
+                                        <div class="col-md-5 asset-column">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <!-- Dropdown Menu 1 -->
+                                                <div class="select-stock">
+                                                    <select id="market10" name="market10" class="form-control form-select" onchange="toggleTimeframe1()">
+                                                        <option value="" disabled selected>Market</option>
+                                                        
+                                                        <!-- Add more options specific to timePeriod1 here -->
+                                                    </select>
+                                                </div>
+                                            
+                                                <!-- Dropdown Menu 2 -->
+                                                <div class="select-stock">
+                                                    <input type="text" id="item10" name="item10" class="form-control" placeholder="Enter partial name or ticker..." list="itemList10" autocomplete="off">
+                                                    <datalist id="itemList10">
+                                                        <!-- Autocomplete options will be populated here by JavaScript -->
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation10_1" name="allocation10_1" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation10_2" name="allocation10_2" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="allocation10_3" name="allocation10_3" class="form-control fmt-pct asset-weight" autocomplete="off">
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    <div class="row asset-row bottomBorder">
+                                        <div class="col-md-1 separateTop">Total</div>
+                                        <div class="col-md-5 asset-column">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="total1" name="total1" class="form-control fmt-pct asset-weight" autocomplete="off"  readonly>
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="total2" name="total2" class="form-control fmt-pct asset-weight" autocomplete="off"  readonly>
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>    
+                                        <div class="col-md-2">
+                                            <div class="input-group flex-nowrap smallMargin">
+                                                <input type="number" id="total3" name="total3" class="form-control fmt-pct asset-weight" autocomplete="off"  readonly>
+                                                    <span class="input-group-text">%</span>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                    
+                                    
+                                </div>
+                                <div class="row form-buttons">
+                                    <div class="offset-md-4 col-md-9">
+                                    <input type="submit" id="submitButton" value="Analyze Portfolios" class="btn btn-primary" onclick="showResults()" autocomplete="off">
+
+                                    <input type="button" id="cancelButton" value="Cancel" class="btn btn-secondary" onclick="window.location.reload(true)" autocomplete="off">
+                                    </div>
+                            
+                                </div>
+                            </form>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+            <!-- 여기서부터 버튼 누르면 나오게 -->
+            <div style="display: none;" id="result-content" class="tab-content">
+                <h2 class="anchor result-header" id="analysisResults">
+                    Portfolio Analysis Results
+                    <span class="resultsRange">(날짜받아오기)</span>
+                </h2>
+                    <div role="tabpanel" class="tab-pane active show" id="growthChart" aria-labelledby="#growthChart_btn">
+                    <div class="card my-3 result-section">
+                    </div>
+                    </div>
+                    <div class="card my-3 result-section">
+                        <div class="card-header bg-gradient fw-bold">
+                            <h3>Performance Summary</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Portfolio</th>
+                                            <th class="numberCell">Initial Amount</th>
+                                            <th class="numberCell">Final Amount</th>
+                                            <th class="numberCell">Annualized Returns</th>
+                                            <th class="numberCell">Annualized Volatilty</th>
+                                            <th class="numberCell">Maximum Drawdown</th>
+                                            <th class="numberCell">Sharpe Ratio</th>
+                                            <th class="numberCell">Sortino Ratio</th>
+                                            <th class="numberCell">% of positive returns</th>
+                                            <th class="numberCell">Profit/Loss ratio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                        <tr>
+                                            <td class="text-nowrap">Portfolio 1</td>
+                                            <td class="numberCell">$10,000</td>
+                                            <td class="numberCell">$11,009
+                                                <span class="fa fa-pv-info" data-bs-toggle="tooltip" aria-label="Inflation adjusted end balance is $9,191" data-bs-original-title="Inflation adjusted end balance is $9,191"></span>
+                                            </td>
+                                            <td class="numberCell">2.54%
+                                                <span class="fa fa-pv-info" data-bs-toggle="tooltip" aria-label="Inflation adjusted CAGR is -2.18%" data-bs-original-title="Inflation adjusted CAGR is -2.18%"></span>
+                                            </td>
+                                            <td class="numberCell">17.06%</td>
+                                            <td class="numberCell">18.60%</td>
+                                            <td class="numberCell">-10.29%</td>
+                                            <td class="numberCell">-23.72%
+                                                <span class="fa fa-pv-info" data-bs-toggle="tooltip" aria-label="Drawdown period based on monthly returns is January 2020 to March 2020. Drawdown recovery by November 2020." data-bs-original-title="Drawdown period based on monthly returns is January 2020 to March 2020. Drawdown recovery by November 2020."></span>
+                                            </td>
+                                            <td class="numberCell">0.13</td>
+                                            <td class="numberCell">0.18</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-nowrap">Portfolio 2</td>
+                                            <td class="numberCell">$10,000</td>
+                                            <td class="numberCell">$10,755
+                                                <span class="fa fa-pv-info" data-bs-toggle="tooltip" aria-label="Inflation adjusted end balance is $8,979" data-bs-original-title="Inflation adjusted end balance is $8,979"></span>
+                                            </td>
+                                            <td class="numberCell">1.92%
+                                                <span class="fa fa-pv-info" data-bs-toggle="tooltip" aria-label="Inflation adjusted CAGR is -2.77%" data-bs-original-title="Inflation adjusted CAGR is -2.77%"></span>
+                                            </td>
+                                            <td class="numberCell">13.18%</td>
+                                            <td class="numberCell">12.77%</td>
+                                            <td class="numberCell">-9.76%</td>
+                                            <td class="numberCell">-17.97%
+                                                <span class="fa fa-pv-info" data-bs-toggle="tooltip" aria-label="Drawdown period based on monthly returns is January 2020 to March 2020. Drawdown recovery by November 2020." data-bs-original-title="Drawdown period based on monthly returns is January 2020 to March 2020. Drawdown recovery by November 2020."></span>
+                                            </td>
+                                            <td class="numberCell">0.08</td>
+                                            <td class="numberCell">0.11</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    </div>                    
+                    <div class="card my-3 result-section result-chart">
+                        <div class="card-header bg-gradient fw-bold">
+                            <h3>Portfolio Growth</h3>
+                        </div>
+                        <div class="card-body">
+                            <!-- 차트 추가 -->
+                        </div>
+                    </div>
+                    <div class="card my-3 result-section result-chart">
+                        <div class="card-header bg-gradient fw-bold">
+                            <h3>Annual Returns</h3>
+                        </div>
+                        <div class="card-body">
+                            <!-- 차트 추가 -->
+                        </div>
+
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
     </main>
     <footer id="footer-placeholder"></footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="scripts.js"></script>
+    <script src="backtest.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    <script>
+        
+    </script>
 </body>
 </html>
