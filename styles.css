@@ -15,6 +15,7 @@ body, html {
     overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
+
 .logo-container {
     cursor: pointer;
 }
@@ -22,6 +23,8 @@ body, html {
 .logo {
     height: 40px;
     padding: 10px;
+    box-sizing: content-box;
+
 }
 
 header {
