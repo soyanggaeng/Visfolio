@@ -107,25 +107,47 @@ function setupSearch(companies) {
     });
 }
 
-// This function is correct as is and should work with your data structure.
-function createWordCloudData(newsData) {
+function createWordCloudData(newsData, companyName) {
     let wordCounts = new Map();
+    
+    const stopwords = new Set(['s', '주가', companyName]); // 불용어 목록에 회사 이름 추가
+    const filterStopwords = word => !stopwords.has(word);
+    const filterShortWords = word => word.length > 1; // 한 글자 단어 제외
+
     newsData.forEach(newsItem => {
-        if (!newsItem[1]) { // Check if the title exists
-            return;
-        }
-        let words = newsItem[1].toLowerCase().match(/\b(\w+)\b/g);
+        // 한글을 포함한 단어 추출을 위한 정규 표현식 수정
+        let words = newsItem[1].match(/[가-힣A-Za-z0-9_]+/g);
         if (words) {
+            words = words.filter(filterStopwords).filter(filterShortWords);
+
+            // 한글 조사 제거 (간단한 예시, 더 정교한 접근이 필요할 수 있음)
+            words = words.map(word => word.replace(/은|는|이|가|을|를|와|과|의|에|로|으로|만|도|으로써|에서|에게|에게서|하다$/, ''));
+
             words.forEach(word => {
-                wordCounts.set(word, (wordCounts.get(word) || 0) + 1);
+                if (!stopwords.has(word)) {
+                    wordCounts.set(word, (wordCounts.get(word) || 0) + 1);
+                }
             });
         }
     });
-    return Array.from(wordCounts).map(([text, size]) => ({text, size}));
+
+    // 콘솔 로그를 추가하여 생성된 워드 카운트 데이터를 확인
+    console.log('Word Counts:', wordCounts);
+
+    // 상위 100개 단어만 포함
+    return Array.from(wordCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 100)
+        .map(([text, size]) => ({text, size}));
 }
+
+// 이 함수를 호출할 때, companyName으로 회사 이름을 전달하세요.
+// 예: createWordCloudData(newsData, 'AJ네트웍스');
 
 async function displayWordCloud(wordcloudData) {
     // 워드클라우드 생성 로직
+    // Remove existing word cloud SVG elements from the DOM
+    d3.select(".wordcloud-section").selectAll("svg").remove();
     generateWordCloud(wordcloudData);
 }
 
@@ -236,7 +258,7 @@ async function displayNews(companyName, country) {
             newsSection.appendChild(article);
         });
     
-        const wordcloudData = createWordCloudData(newsData);
+        const wordcloudData = createWordCloudData(newsData, companyName);
         generateWordCloud(wordcloudData);
     } catch (error) {
         console.error('Failed to fetch news:', error);
