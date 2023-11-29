@@ -109,32 +109,218 @@ function setupSearch(companies) {
 
 function createWordCloudData(newsData, companyName) {
     let wordCounts = new Map();
+
+    // Load the stopwords from external files (assuming you have them as arrays)
+    const koreanStopwords = ["우리", "저희", "따라", "의해", "뿐이다", "저희", "물론", "또한", "그리고", "그러나", "그런데", "하지만", "비록", "제외하고", "따라서", "그리하여", "하지만", "각각", "그래서", "그러므로", "결국"]; // Load Korean stopwords here
+    const englishStopwords = [
+        "about",
+        "above",
+        "after",
+        "again",
+        "against",
+        "all",
+        "am",
+        "an",
+        "and",
+        "any",
+        "are",
+        "aren't",
+        "as",
+        "at",
+        "be",
+        "because",
+        "been",
+        "before",
+        "being",
+        "below",
+        "between",
+        "both",
+        "but",
+        "by",
+        "can't",
+        "cannot",
+        "could",
+        "couldn't",
+        "did",
+        "didn't",
+        "do",
+        "does",
+        "doesn't",
+        "doing",
+        "don't",
+        "down",
+        "during",
+        "each",
+        "few",
+        "for",
+        "from",
+        "further",
+        "had",
+        "hadn't",
+        "has",
+        "hasn't",
+        "have",
+        "haven't",
+        "having",
+        "he",
+        "he'd",
+        "he'll",
+        "he's",
+        "her",
+        "here",
+        "here's",
+        "hers",
+        "herself",
+        "him",
+        "himself",
+        "his",
+        "how",
+        "how's",
+        "i",
+        "i'd",
+        "i'll",
+        "i'm",
+        "i've",
+        "if",
+        "in",
+        "into",
+        "is",
+        "isn't",
+        "it",
+        "it's",
+        "its",
+        "itself",
+        "let's",
+        "me",
+        "more",
+        "most",
+        "mustn't",
+        "my",
+        "myself",
+        "no",
+        "nor",
+        "not",
+        "of",
+        "off",
+        "on",
+        "once",
+        "only",
+        "or",
+        "other",
+        "ought",
+        "our",
+        "ourselves",
+        "out",
+        "over",
+        "own",
+        "same",
+        "shan't",
+        "she",
+        "she'd",
+        "she'll",
+        "she's",
+        "should",
+        "shouldn't",
+        "so",
+        "some",
+        "such",
+        "than",
+        "that",
+        "that's",
+        "the",
+        "their",
+        "theirs",
+        "them",
+        "themselves",
+        "then",
+        "there",
+        "there's",
+        "these",
+        "they",
+        "they'd",
+        "they'll",
+        "they're",
+        "they've",
+        "this",
+        "those",
+        "through",
+        "to",
+        "too",
+        "under",
+        "until",
+        "up",
+        "very",
+        "was",
+        "wasn't",
+        "we",
+        "we'd",
+        "we'll",
+        "we're",
+        "we've",
+        "were",
+        "weren't",
+        "what",
+        "what's",
+        "when",
+        "when's",
+        "where",
+        "where's",
+        "which",
+        "while",
+        "who",
+        "who's",
+        "whom",
+        "why",
+        "why's",
+        "with",
+        "won't",
+        "would",
+        "wouldn't",
+        "you",
+        "you'd",
+        "you'll",
+        "you're",
+        "you've",
+        "your",
+        "yours",
+        "yourself",
+        "yourselves"
+      ];
+       // Load English stopwords here
+
+    // Combine the loaded stopwords with existing ones
+    const stopwords = new Set([
+        '주가', 
+        companyName,
+        ...koreanStopwords,
+        ...englishStopwords
+        // 추가적인 불용어를 여기에 넣을 수 있습니다.
+    ]);
     
-    const stopwords = new Set(['s', '주가', companyName]); // 불용어 목록에 회사 이름 추가
-    const filterStopwords = word => !stopwords.has(word);
-    const filterShortWords = word => word.length > 1; // 한 글자 단어 제외
+    // 한 글자 단어와 불용어를 제외하는 필터링 함수입니다.
+    const filterStopwordsAndShortWords = word => 
+        word.length > 1 && !stopwords.has(word) && isNaN(word);
 
     newsData.forEach(newsItem => {
-        // 한글을 포함한 단어 추출을 위한 정규 표현식 수정
         let words = newsItem[1].match(/[가-힣A-Za-z0-9_]+/g);
         if (words) {
-            words = words.filter(filterStopwords).filter(filterShortWords);
+            words = words
+                .map(word => word.toLowerCase()) // 모든 영문자를 소문자로 변환합니다.
+                .filter(filterStopwordsAndShortWords);
 
-            // 한글 조사 제거 (간단한 예시, 더 정교한 접근이 필요할 수 있음)
-            words = words.map(word => word.replace(/은|는|이|가|을|를|와|과|의|에|로|으로|만|도|으로써|에서|에게|에게서|하다$/, ''));
+            // 한글 조사와 영어 불필요 단어를 제거합니다.
+            words = words.map(word => word.replace(/(은|는|이|가|을|를|와|과|의|에|로|으로|만|도|로써|까지|등|등등|으로써|에서|에게|에게서|부터)$/, ''));
 
             words.forEach(word => {
-                if (!stopwords.has(word)) {
-                    wordCounts.set(word, (wordCounts.get(word) || 0) + 1);
-                }
+                wordCounts.set(word, (wordCounts.get(word) || 0) + 1);
             });
         }
     });
 
-    // 콘솔 로그를 추가하여 생성된 워드 카운트 데이터를 확인
+    // 콘솔 로그로 워드 카운트 데이터를 확인합니다.
     console.log('Word Counts:', wordCounts);
 
-    // 상위 100개 단어만 포함
+    // 워드 카운트를 내림차순으로 정렬하고 상위 100개 단어만 포함합니다.
     return Array.from(wordCounts)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 100)
