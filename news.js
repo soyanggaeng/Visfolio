@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(console.error);
 });
 
-const colorScale = d3.scaleOrdinal(d3.schemeSet3); // You can use a color scheme of your choice
+const colorScale = d3.scaleOrdinal(d3.schemeSet3);
 
 async function initializePage() {
     const companies = await fetchCompanies();
@@ -93,49 +93,40 @@ function setupSearch(companies) {
         const selectedCountry = countrySelect.value;
         const selectedSector = sectorSelect.value;
 
-        // Find the first matching company based on the search criteria, ensuring case-insensitive comparison
-        const selectedCompany = companies.find(company => 
+        const selectedCompany = companies.find(company =>
             company.name.toLowerCase() === searchQuery &&
             company.country === selectedCountry &&
             (company.sector === selectedSector || selectedSector === 'all')
         );
 
-        // If a company is found, display its word cloud and news
         if (selectedCompany) {
-            displayWordCloud(selectedCompany.name);
-            displayNews(selectedCompany.name);
+            displayNews(selectedCompany.name, selectedCountry);
         } else {
             console.log("No company found matching the search criteria");
         }
     });
 }
 
-async function displayWordCloud(companyName) {
-    console.log("displayWordCloud called for", companyName);
-
-    const csvFilePath = `wordcloud/${companyName}_wordcloud.csv`;
-    console.log("Fetching data from", csvFilePath);
-
-    const response = await fetch(csvFilePath);
-    if (!response.ok) {
-        console.error('Failed to load word cloud data');
-        return;
-    }
-    const csvText = await response.text();
-
-    console.log("CSV data fetched:", csvText.substring(0, 100)); // Log first 100 chars
-
-    // Remove existing word cloud SVG elements from the DOM
-    d3.select(".wordcloud-section").selectAll("svg").remove();
-
-    // Parse the CSV data
-    const parsedData = d3.csvParse(csvText, d => {
-        // Make sure to parse the frequency to a number if it's not already
-        return { text: d.word, size: +d.frequency };
+// This function is correct as is and should work with your data structure.
+function createWordCloudData(newsData) {
+    let wordCounts = new Map();
+    newsData.forEach(newsItem => {
+        if (!newsItem[1]) { // Check if the title exists
+            return;
+        }
+        let words = newsItem[1].toLowerCase().match(/\b(\w+)\b/g);
+        if (words) {
+            words.forEach(word => {
+                wordCounts.set(word, (wordCounts.get(word) || 0) + 1);
+            });
+        }
     });
+    return Array.from(wordCounts).map(([text, size]) => ({text, size}));
+}
 
-    // Now, use the parsed data to generate the word cloud
-    generateWordCloud(parsedData);
+async function displayWordCloud(wordcloudData) {
+    // 워드클라우드 생성 로직
+    generateWordCloud(wordcloudData);
 }
 
 function generateWordCloud(words) {
@@ -206,18 +197,52 @@ function generateWordCloud(words) {
         .call(drag);
 }
 
-async function displayNews(companyName) {
-    const csvFilePath = `crawling/${companyName}.csv`;
+async function displayNews(companyName, country) {
+    try {
+        const response = await fetch(`http://34.41.31.204:5000/scrape?company_name=${encodeURIComponent(companyName)}&country=${country}`);
+        const responseData = await response.json();
+        console.log(responseData); // 서버 응답의 구조를 콘솔에서 확인
 
-    const response = await fetch(csvFilePath);
-    if (!response.ok) {
-        console.error('Failed to load news data');
-        return;
+        if (!response.ok) {
+            throw new Error(responseData.message || 'Network response was not ok');
+        }
+
+        const newsData = responseData.newsData || [];
+        const newsSection = document.querySelector('.news-section');
+        newsSection.innerHTML = '';
+    
+        newsData.forEach(newsItem => {
+            const article = document.createElement('article');
+            article.className = 'news-item';
+    
+            const title = document.createElement('h2');
+            title.className = 'news-title';
+            title.textContent = newsItem[1]; // Access title with array indexing
+    
+            const date = document.createElement('p');
+            date.className = 'news-date';
+            date.textContent = newsItem[2]; // Access date with array indexing
+    
+            const link = document.createElement('a');
+            link.className = 'news-link';
+            link.href = newsItem[3]; // Access link with array indexing
+            link.textContent = 'Read more';
+            link.target = '_blank';
+    
+            article.appendChild(title);
+            article.appendChild(date);
+            article.appendChild(link);
+    
+            newsSection.appendChild(article);
+        });
+    
+        const wordcloudData = createWordCloudData(newsData);
+        generateWordCloud(wordcloudData);
+    } catch (error) {
+        console.error('Failed to fetch news:', error);
     }
-    const csvText = await response.text();
-
-    parseAndDisplayNews(csvText);
 }
+
 
 function parseAndDisplayNews(csvText) {
     let newsSection = document.querySelector('.news-section');
