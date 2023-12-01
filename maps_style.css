@@ -1,0 +1,52 @@
+/* Existing styles */
+
+/* New styles for visualization sections */
+.visualization-section {
+    background: #0f4370; /* Choose a background color */
+    color: white;
+    padding: 40px;
+    margin: 20px auto;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.visualization-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.visualization-section p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.visualization-link {
+    background-color: #495a75; /* Button background color */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.visualization-link:hover {
+    background-color: #5b6d8a; /* Button hover color */
+}
+
+/* Media queries for responsive design */
+@media only screen and (max-width: 768px) {
+    /* Adjust visualization sections for smaller screens */
+    .visualization-section {
+        padding: 20px;
+        margin: 10px;
+    }
+    .visualization-section h2 {
+        font-size: 1.5rem;
+    }
+    .visualization-section p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Additional existing responsive styles */
