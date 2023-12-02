@@ -2,10 +2,10 @@
 .search-section {
     display: flex;
     justify-content: center;
-    gap: 10px; /* Add some space between the elements */
-    align-items: center; /* Center align the items vertically */
+    gap: 10px;
+    align-items: center;
     margin: 20px;
-    color: #ffffff; /* Set text color to white */
+    color: #ffffff;
 }
 
 .search-section select,
@@ -13,10 +13,10 @@
 .search-section button {
     padding: 10px;
     margin: 0 5px;
-    border: 2px solid #B6EADA; /* Border color */
-    background: transparent; /* Transparent background */
+    border: 2px solid #B6EADA;
+    background: transparent;
     border-radius: 5px;
-    color: #828282; /* Text color */
+    color: #828282;
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 1rem;
 }
@@ -27,8 +27,8 @@
 }
 
 .search-section input::placeholder {
-    color: #ffffff; /* Placeholder text color */
-    opacity: 0.7; /* Placeholder text opacity */
+    color: #ffffff;
+    opacity: 0.7;
 }
 
 .search-section input:focus,
@@ -40,44 +40,40 @@
 
 .search-section button {
     cursor: pointer;
-    background-color: #B6EADA; /* Button background color */
-    color: #03001C; /* Button text color */
+    background-color: #B6EADA;
+    color: #03001C;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .search-section button:hover {
-    background-color: #a0d2c8; /* Darker background on hover */
-    color: #ffffff; /* White text on hover */
+    background-color: #a0d2c8;
+    color: #ffffff;
 }
-
 
 /* Styles for the word cloud image section */
 .wordcloud-section {
     text-align: center;
     margin: 20px;
     color: white;
-    /* Set a minimum width and height or set it to a percentage of the container */
-    min-width: 900px; 
+    min-width: 900px;
     min-height: 600px;
-    /* Optional: you can use width and height as a percentage if you prefer */
     width: 100%;
-    height: auto; /* This will ensure that the section scales with the content */
+    height: auto;
     cursor: pointer;
 }
-
 
 /* Styles for the news section */
 .news-section {
     background: linear-gradient(to bottom, #000004 0%, #050120 50%, #0f4370 100%);
-    padding: 20px; /* Adjust the padding as needed */
+    padding: 20px;
     color: #ffffff;
 }
 
 .news-item {
     display: flex;
-    justify-content: space-between; /* Adjusts items to be on opposite ends */
-    align-items: center; /* Aligns items vertically */
-    padding: 10px 0; /* Top and bottom padding for each item */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
     border-bottom: 1px solid #333;
     transition: background-color 0.3s;
 }
@@ -96,4 +92,63 @@
 
 .news-title:hover {
     text-decoration: underline;
+}
+
+/* Responsive Design Adjustments */
+@media only screen and (max-width: 768px) {
+    /* Search Section */
+    .search-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-section select,
+    .search-section input,
+    .search-section button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .search-section label {
+        width: 100%;
+        text-align: left;
+    }
+
+    /* Word Cloud Section */
+    .wordcloud-section {
+        min-width: auto;
+        min-height: 300px;
+    }
+
+    /* News Section */
+    .news-section {
+        padding: 10px;
+    }
+
+    .news-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .news-outlet,
+    .news-time {
+        font-size: 0.7rem;
+    }
+
+    .news-title {
+        font-size: 0.9rem;
+    }
+
+    /* General Font Size and Padding */
+    body, html {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    /* Button and Input Adjustments */
+    .search-section button,
+    .search-section input,
+    .search-section select {
+        font-size: 0.9rem;
+    }
 }
