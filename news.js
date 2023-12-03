@@ -108,6 +108,10 @@ function setupSearch(companies) {
 }
 
 function createWordCloudData(newsData, companyName) {
+    // 워드클라우드 섹션에서 기존 SVG 요소 제거
+    const wordcloudSection = d3.select('.wordcloud-section');
+    wordcloudSection.selectAll('svg').remove();
+
     let wordCounts = new Map();
 
     // Load the stopwords from external files (assuming you have them as arrays)
@@ -290,7 +294,8 @@ function createWordCloudData(newsData, companyName) {
 
     // Combine the loaded stopwords with existing ones
     const stopwords = new Set([
-        '주가', 
+        '주가', '오늘', 
+        'stock', 'stocks',
         companyName,
         ...koreanStopwords,
         ...englishStopwords
@@ -331,11 +336,10 @@ function createWordCloudData(newsData, companyName) {
 // 예: createWordCloudData(newsData, 'AJ네트웍스');
 
 async function displayWordCloud(wordcloudData) {
-    // 워드클라우드 생성 로직
-    // Remove existing word cloud SVG elements from the DOM
-    d3.select(".wordcloud-section").selectAll("svg").remove();
+    // 새로운 워드 클라우드 생성
     generateWordCloud(wordcloudData);
 }
+
 
 function generateWordCloud(words) {
     // Set up the dimensions and margins of the graph
@@ -407,7 +411,7 @@ function generateWordCloud(words) {
 
 async function displayNews(companyName, country) {
     try {
-        const response = await fetch(`http://34.71.84.47:5000/scrape?company_name=${encodeURIComponent(companyName)}&country=${country}`);
+        const response = await fetch(`http://35.209.80.221:5000/scrape?company_name=${encodeURIComponent(companyName)}&country=${country}`);
         const responseData = await response.json();
         console.log(responseData); // 서버 응답의 구조를 콘솔에서 확인
 
