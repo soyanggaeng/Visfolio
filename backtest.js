@@ -500,7 +500,7 @@ $(document).ready(function() {
     var query = $(this).val();
     var dataListId = $(this).attr('list');
 
-    if (query.length < 3) { // Only search if at least 3 characters are typed
+    if (query.length < 2) { // Only search if at least 3 characters are typed
       return;
     }
 
