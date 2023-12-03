@@ -3,6 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correlation Visualization - Visfolio</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="correlation_style.css">
+    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+    <script src="https://d3js.org/d3.v6.js"></script> 
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+</head>
+
+<body>
+    <header id="header-placeholder"></header>
+    <main>
+      <div class = "Correlation">
+        <h1>Correlation Visualization</h1>
+        <div class="Overview">
+          <div id="error-messages" class="alert alert-danger" style="display: none;">
+            <!-- Error messages will be added here -->
+          </div>
+
+          <!-- Heatmap visualization section -->
+          <div id="heatmapSection">
+            <!-- <h2>Heatmap Visualization</h2> -->
+            <div class="card my-3 form-section">
+              <div class="card-header bg-gradient fw-bold">
+                  <h3>Heatmap Visualization</h3></div>
+                  <div class="card-body">
+                    <form action="" method="post" class="pv-form" novalidate autocomplete="off">
+                        <!-- <label for="startYear">Start Year :</label>
+                        <select id="startYear">
+                        </select><br><br>
+
+                        <label for="endYear">End Year :</label>
+                        <select id="endYear">
+                        </select><br><br> -->
+
+                        <div class="row">
+                          <div class="col-md-4">
+                              <div class="label-column">
+                                  <label for="startYearSelect" class="col-form-label">
+                                      Start Year
+                                  </label>
+                                  <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Start year for correlation"></span>
+                              </div>
+                          </div>
+                          <div class="col-md-5">
+                              <div class="select-column">
+                                  <div class="select-parent">
+                                      <select id="startYearSelect" name="startYear" class="form-control form-select custom-select">
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                              <div class="label-column">
+                                  <label for="endYearSelect" class="col-form-label">
+                                      End Year
+                                  </label>
+                                  <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="End year for correlation"></span>
+                              </div>
+                          </div>
+                          <div class="col-md-5">
+                              <div class="select-column">
+                                  <div class="select-parent">
+                                      <select id="endYearSelect" name="endYear" class="form-control form-select custom-select">
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div id="pfSection" class="portfolio-section pv-allow-expansion pv-multiple pv-allow-short" data-count="3" data-maxrows="150" data-advanced="false">
+                          <div class="row topBorder bottomBorder asset-row">
+                              <div class="col-md-6 separateTop text-nowrap">
+                                  <b>Select 10 Assets for correlation</b>&nbsp;     
+                              </div>
+                          </div>
+                        
+                          <div class="row asset-row">
+                              <div class="col-md-1 separateTop">Asset 1</div>
+                              <div class="col-md-5 asset-column">
+                                  <div class="input-group flex-nowrap smallMargin">
+                                      <!-- Dropdown Menu 1 -->
+                                      <div class="select-stock">
+                                          <select id="market" name="market" class="form-control form-select">
+                                              <option value="" disabled selected>Market</option>
+                                          </select>
+                                      </div>
+                                  
+                                      <!-- Dropdown Menu 2 -->
+                                      <div class="select-stock">
+                                          <select id="item" name="item" class="form-control form-select" onchange="toggleTimeframe2()">
+                                              <option value="" disabled selected>Item</option>
+
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div> 
+                          </div>
+                          <div class="row asset-row">
+                              <div class="col-md-1 separateTop">Asset 2</div>
+                              <div class="col-md-5 asset-column">
+                                  <div class="input-group flex-nowrap smallMargin">
+                                      <!-- Dropdown Menu 1 -->
+                                      <div class="select-stock">
+                                        <select id="market" name="market" class="form-control form-select">
+                                            <option value="" disabled selected>Market</option>
+                                        </select>
+                                    </div>
+                                  
+                                      <!-- Dropdown Menu 2 -->
+                                      <div class="select-stock">
+                                          <select id="item" name="item" class="form-control form-select" onchange="toggleTimeframe2()">
+                                              <option value="" disabled selected>Item</option>
+                                              
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row asset-row">
+                              <div class="col-md-1 separateTop">Asset 3</div>
+                              <div class="col-md-5 asset-column">
+                                  <div class="input-group flex-nowrap smallMargin">
+                                      <!-- Dropdown Menu 1 -->
+                                      <div class="select-stock">
+                                          <select id="market3" name="market" class="form-control form-select" onchange="toggleTimeframe1()">
+                                              <option value="" disabled selected>Market</option>
+                                              
+                                          </select>
+                                      </div>
+                                  
+                                      <!-- Dropdown Menu 2 -->
+                                      <div class="select-stock">
+                                          <select id="item" name="item" class="form-control form-select" onchange="toggleTimeframe2()">
+                                              <option value="" disabled selected>Item</option>
+                                              
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row asset-row">
+                              <div class="col-md-1 separateTop">Asset 4</div>
+                              <div class="col-md-5 asset-column">
+                                  <div class="input-group flex-nowrap smallMargin">
+                                      <!-- Dropdown Menu 1 -->
+                                      <div class="select-stock">
+                                          <select id="market" name="market" class="form-control form-select" onchange="toggleTimeframe1()">
+                                              <option value="" disabled selected>Market</option>
+                                              
+                                          </select>
+                                      </div>
+                                  
+                                      <!-- Dropdown Menu 2 -->
+                                      <div class="select-stock">
+                                          <select id="item" name="item" class="form-control form-select" onchange="toggleTimeframe2()">
+                                              <option value="" disabled selected>Item</option>
+                                              
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>  
+                          </div>
+                          <div class="row asset-row">
+                              <div class="col-md-1 separateTop">Asset 5</div>
+                              <div class="col-md-5 asset-column">
+                                  <div class="input-group flex-nowrap smallMargin">
+                                      <!-- Dropdown Menu 1 -->
+                                      <div class="select-stock">
+                                          <select id="market" name="market" class="form-control form-select" onchange="toggleTimeframe1()">
+                                              <option value="" disabled selected>Market</option>
+                                             
+                                          </select>
+                                      </div>
+                                  
+                                      <!-- Dropdown Menu 2 -->
+                                      <div class="select-stock">
+                                          <select id="item" name="item" class="form-control form-select" onchange="toggleTimeframe2()">
+                                              <option value="" disabled selected>Item</option>
+                                             
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row asset-row">
+                              <div class="col-md-1 separateTop">Asset 6</div>
+                              <div class="col-md-5 asset-column">
+                                  <div class="input-group flex-nowrap smallMargin">
+                                      <!-- Dropdown Menu 1 -->
+                                      <div class="select-stock">
+                                          <select id="market" name="market" class="form-control form-select" onchange="toggleTimeframe1()">
+                                              <option value="" disabled selected>Market</option>
+                                              
+                                          </select>
+                                      </div>
+                                  
+                                      <!-- Dropdown Menu 2 -->
+                                      <div class="select-stock">
+                                          <select id="item" name="item" class="form-control form-select" onchange="toggleTimeframe2()">
+                                              <option value="" disabled selected>Item</option>
+                                              
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div> 
+                          </div>
+                          <div class="row asset-row">
+                              <div class="col-md-1 separateTop">Asset 7</div>
+                              <div class="col-md-5 asset-column">
+                                  <div class="input-group flex-nowrap smallMargin">
+                                      <!-- Dropdown Menu 1 -->
+                                      <div class="select-stock">
+                                          <select id="market" name="market" class="form-control form-select" onchange="toggleTimeframe1()">
+                                              <option value="" disabled selected>Market</option>
+                                             
+                                          </select>
+                                      </div>
+                                  
+                                      <!-- Dropdown Menu 2 -->
+                                      <div class="select-stock">
+                                          <select id="item" name="item" class="form-control form-select" onchange="toggleTimeframe2()">
+                                              <option value="" disabled selected>Item</option>
+                                             
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row asset-row">
+                              <div class="col-md-1 separateTop">Asset 8</div>
+                              <div class="col-md-5 asset-column">
+                                  <div class="input-group flex-nowrap smallMargin">
+                                      <!-- Dropdown Menu 1 -->
+                                      <div class="select-stock">
+                                          <select id="market" name="market" class="form-control form-select" onchange="toggleTimeframe1()">
+                                              <option value="" disabled selected>Market</option>
+                                              
+                                          </select>
+                                      </div>
+                                  
+                                      <!-- Dropdown Menu 2 -->
+                                      <div class="select-stock">
+                                          <select id="item" name="item" class="form-control form-select" onchange="toggleTimeframe2()">
+                                              <option value="" disabled selected>Item</option>
+                                             
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>  
+                          </div>
+                          <div class="row asset-row">
+                              <div class="col-md-1 separateTop">Asset 9</div>
+                              <div class="col-md-5 asset-column">
+                                  <div class="input-group flex-nowrap smallMargin">
+                                      <!-- Dropdown Menu 1 -->
+                                      <div class="select-stock">
+                                          <select id="market" name="market" class="form-control form-select" onchange="toggleTimeframe1()">
+                                              <option value="" disabled selected>Market</option>
+                                             
+                                          </select>
+                                      </div>
+                                  
+                                      <!-- Dropdown Menu 2 -->
+                                      <div class="select-stock">
+                                          <select id="item" name="item" class="form-control form-select" onchange="toggleTimeframe2()">
+                                              <option value="" disabled selected>Item</option>
+                                             
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>   
+                          </div>
+                          <div class="row asset-row">
+                              <div class="col-md-1 separateTop">Asset 10</div>
+                              <div class="col-md-5 asset-column">
+                                  <div class="input-group flex-nowrap smallMargin">
+                                      <!-- Dropdown Menu 1 -->
+                                      <div class="select-stock">
+                                          <select id="market" name="market" class="form-control form-select" onchange="toggleTimeframe1()">
+                                              <option value="" disabled selected>Market</option>
+                                              
+                                          </select>
+                                      </div>
+                                  
+                                      <!-- Dropdown Menu 2 -->
+                                      <div class="select-stock">
+                                          <select id="item" name="item" class="form-control form-select" onchange="toggleTimeframe2()">
+                                              <option value="" disabled selected>Item</option>
+                                             
+                                          </select>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+             
+                    <div id="my_dataviz" style="margin-top: 40px;"></div>
+                    <div id="heatmap-container"></div>
+     
+                    </form>
+                  </div>
+            </div>
+          </div>
+
+          <!-- Network visualization section -->
+          <div id="networkSection">
+            <!-- <h2>Network Visualization</h2> -->
+            <div class="card my-3 form-section">
+              <div class="card-header bg-gradient fw-bold">
+                  <h3>Network Visualization</h3></div>
+                  <div class="card-body">
+                    <!-- Content for network visualization goes here -->
+                    <form action="" method="post" class="pv-form" novalidate autocomplete="off">
+                      
+                      <div class="network-container"></div>
+                    </form>
+                  </div>
+            </div>
+          </div>
+
+        </div>
+      </div>  
+    
+    </main>
+    <footer id="footer-placeholder"></footer>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="scripts.js"></script>
+    <script src="correlation.js"></script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Correlation Matrix Heatmap - Visfolio</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -46,4 +389,4 @@
     </script>
 
 </body>
-</html>
+</html> -->

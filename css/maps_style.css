@@ -1,0 +1,63 @@
+/* Existing styles */
+
+/* Adjusted styles for the map features container */
+.map-features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.map-feature {
+    background: linear-gradient(145deg, #495a75, #3a4860); /* Gradient background similar to .content li */
+    padding: 30px; /* Similar padding to .content li */
+    margin: 10px;
+    border-radius: 15px; /* Rounded corners like .content li */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Shadow similar to .content li */
+    flex-basis: 52%; /* Adjust size of feature cards */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.map-feature:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); /* Increase shadow for hover effect */
+}
+
+.map-feature h3 {
+    font-size: 1.5rem;
+    color: #fafdfc; /* Changed to white color like .content h2 */
+    margin-bottom: 15px;
+}
+
+.map-feature p {
+    font-size: 1rem;
+    color: #ffffff; /* Changed to white color */
+    margin-bottom: 20px;
+}
+
+.visualization-link {
+    background-color: #0f4370; /* Button background color */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.visualization-link:hover {
+    background-color: #0f4370; /* Button hover color */
+}
+
+/* Media queries for responsive design */
+@media only screen and (max-width: 768px) {
+    .map-features-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .map-feature {
+        flex-basis: 90%; /* Adjust size of feature cards on smaller screens */
+    }
+}
+
+/* Additional existing responsive styles */
