@@ -102,7 +102,7 @@ function mouseLeave() {
 
 Promise.all([
     d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson"),
-    d3.json('world_finance_data.json')
+    d3.json('data/world_finance_data.json')
 ]).then(function([topo, financeData]) {
     jsonData = financeData
 
