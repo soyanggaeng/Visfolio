@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Worldmap - Visfolio</title>
-    <script src="https://d3js.org/d3.v6.js"></script>
-    <script defer src="maps.js"></script>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <title>Worldmap - Visfolio</title> 
+  <script src="https://d3js.org/d3.v6.js"></script>
+  <script defer src="maps4.js"></script>
+  <link rel="stylesheet" href="maps_style.css">
 </head>
 <body>
-    <header id="header-placeholder"></header>
-    <main>
-  <!-- <svg id="my_dataviz" width="800" height="400"></svg>  -->
-  <div id="sliding-window" class="hidden">
-    <div id="country-name"></div>
-    <div id="latest-date"></div>
-    <div id="latest-close"></div>
-    <div id="history-close"></div>
-    <div id="latest-currency"></div>
-    <div id="history-currency"></div>
-    <!-- Add more elements here if needed -->        
-    </main>
-    <footer id="footer-placeholder"></footer>
-    <script src="scripts.js"></script>
+  <header id="header-placeholder"></header>
+  <main>
+    <h2>Global Financial Market on ${latelyDate}</h2>  <!-- Add this line -->
+    <!-- SVG container for the D3 world map -->
+    <svg id="my_dataviz" width="1000" height="800"></svg>
+
+    <!-- Sliding window for additional information (adjust as needed) -->
+    <div id="sliding-window">
+      <div id="country-name"></div>
+      <button id="close-btn">Close</button>
+      <div id="latest-date"></div>
+      <div id="latest-close"></div>
+      <div id="history-close"></div>
+      <div id="latest-currency"></div>
+      <div id="history-currency"></div>
+      <!-- Add more elements here if needed -->
+    </div>
+  </main>
+  <footer id="footer-placeholder"></footer>
+  <script src="scripts.js"></script>
+
+  <!-- Tooltip container for displaying financial data -->
+  <div class="tooltip" style="position: absolute; display: none;"></div>
 </body>
 </html>
