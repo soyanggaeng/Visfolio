@@ -211,6 +211,7 @@ function showResults(data) {
   .style("stroke", "#778899") // Lighten the grid lines
   .style("stroke-width", "0.3px"); // Optional: Adjust the stroke width
 
+  
 
   // Draw each portfolio's line on the shared SVG
   Object.keys(data).forEach((portfolioKey, index) => {

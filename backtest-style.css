@@ -23,6 +23,7 @@ h1 {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
+    color: #ffffff;
 }
 h2 {
     display: block;
@@ -32,6 +33,7 @@ h2 {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
+    color: #ffffff;
 }
 
 h3 {
@@ -43,6 +45,7 @@ h3 {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     font-weight: bold;
+    color: #ffffff;
 }
 
 p {
@@ -53,6 +56,7 @@ p {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     line-height: 1.6;
+    color: #ffffff;
 }
 
 main {
@@ -230,3 +234,4 @@ td.numberCell, th.numberCell, th.numberCellNW {
         max-width: 100%; /* On small screens, the columns take full width */
     }
 }
+
