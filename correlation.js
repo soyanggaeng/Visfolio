@@ -1,15 +1,33 @@
-// set the dimensions and margins of the graph
-const margin = {top: 80, right: 25, bottom: 30, left: 30},
-  width = 480 - margin.left - margin.right,
-  height = 480 - margin.top - margin.bottom;
+//////////////////////////// Heatmap /////////////////////////////////
 
-// append the svg object to the body of the page
-const svg = d3.select("#my_dataviz")
-.append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-.append("g")
-  .attr("transform", `translate(${margin.left}, ${margin.top})`);
+var corr_data = [{'item1': 'AJ네트웍스', 'item2': 'AJ네트웍스', 'cor': 1.0}, {'item1': 'AJ네트웍스', 'item2': 'AK홀딩스', 'cor': 0.5808991997452422}, {'item1': 'AJ네트웍스', 'item2': 'BGF', 'cor': 0.616733883261061}, {'item1': 'AJ네트웍스', 'item2': '삼성전자', 'cor': -0.4618927786873072}, {'item1': 'AJ네트웍스', 'item2': '아모레퍼시픽', 'cor': 0.6468522834150147}, {'item1': 'AJ네트웍스', 'item2': '카카오', 'cor': -0.22246497296865567}, {'item1': 'AJ네트웍스', 'item2': '경동나비엔', 'cor': -0.13246063488448556}, {'item1': 'AJ네트웍스', 'item2': '금호타이어', 'cor': 0.5240724651068914}, {'item1': 'AJ네트웍스', 'item2': '기아', 'cor': -0.070655577945304}, {'item1': 'AJ네트웍스', 'item2': '빙그레', 'cor': 0.2524327211079841}, {'item1': 'AK홀딩스', 'item2': 'AJ네트웍스', 'cor': 0.5808991997452422}, {'item1': 'AK홀딩스', 'item2': 'AK홀딩스', 'cor': 1.0}, {'item1': 'AK홀딩스', 'item2': 'BGF', 'cor': 0.6891861915340353}, {'item1': 'AK홀딩스', 'item2': '삼성전자', 'cor': -0.6739445868991941}, {'item1': 'AK홀딩스', 'item2': '아모레퍼시픽', 'cor': 0.8034018018942896}, {'item1': 'AK홀딩스', 'item2': '카카오', 'cor': -0.6289256377252997}, {'item1': 'AK홀딩스', 'item2': '경동나비엔', 'cor': 0.060416649043513605}, {'item1': 'AK홀딩스', 'item2': '금호타이어', 'cor': 0.6914095198327443}, {'item1': 'AK홀딩스', 'item2': '기아', 'cor': -0.6507087866352705}, {'item1': 'AK홀딩스', 'item2': '빙그레', 'cor': 0.7106891377164657}, {'item1': 'BGF', 'item2': 'AJ네트웍스', 'cor': 0.616733883261061}, {'item1': 'BGF', 'item2': 'AK홀딩스', 'cor': 0.6891861915340353}, {'item1': 'BGF', 'item2': 'BGF', 'cor': 1.0}, {'item1': 'BGF', 'item2': '삼성전자', 'cor': -0.6938834209837871}, {'item1': 'BGF', 'item2': '아모레퍼시픽', 'cor': 0.8274508560518724}, {'item1': 'BGF', 'item2': '카카오', 'cor': -0.5181140714213462}, {'item1': 'BGF', 'item2': '경동나비엔', 'cor': -0.24971555714036314}, {'item1': 'BGF', 'item2': '금호타이어', 'cor': 0.8403869490093576}, {'item1': 'BGF', 'item2': '기아', 'cor': -0.4042511668097954}, {'item1': 'BGF', 'item2': '빙그레', 'cor': 0.5027003371693426}, {'item1': '삼성전자', 'item2': 'AJ네트웍스', 'cor': -0.4618927786873072}, {'item1': '삼성전자', 'item2': 'AK홀딩스', 'cor': -0.6739445868991941}, {'item1': '삼성전자', 'item2': 'BGF', 'cor': -0.6938834209837871}, {'item1': '삼성전자', 'item2': '삼성전자', 'cor': 1.0}, {'item1': '삼성전자', 'item2': '아모레퍼시픽', 'cor': -0.6298299847678832}, {'item1': '삼성전자', 'item2': '카카오', 'cor': 0.8200594535994847}, {'item1': '삼성전자', 'item2': '경동나비엔', 'cor': 0.38351606811199934}, {'item1': '삼성전자', 'item2': '금호타이어', 'cor': -0.5794978446569281}, {'item1': '삼성전자', 'item2': '기아', 'cor': 0.7094213381186582}, {'item1': '삼성전자', 'item2': '빙그레', 'cor': -0.5527141864779478}, {'item1': '아모레퍼시픽', 'item2': 'AJ네트웍스', 'cor': 0.6468522834150147}, {'item1': '아모레퍼시픽', 'item2': 'AK홀딩스', 'cor': 0.8034018018942896}, {'item1': '아모레퍼시픽', 'item2': 'BGF', 'cor': 0.8274508560518724}, {'item1': '아모레퍼시픽', 'item2': '삼성전자', 'cor': -0.6298299847678832}, {'item1': '아모레퍼시픽', 'item2': '아모레퍼시픽', 'cor': 1.0}, {'item1': '아모레퍼시픽', 'item2': '카카오', 'cor': -0.39512984211874325}, {'item1': '아모레퍼시픽', 'item2': '경동나비엔', 'cor': 0.07986781914642205}, {'item1': '아모레퍼시픽', 'item2': '금호타이어', 'cor': 0.8169264066274052}, {'item1': '아모레퍼시픽', 'item2': '기아', 'cor': -0.413828187468009}, {'item1': '아모레퍼시픽', 'item2': '빙그레', 'cor': 0.6231240609694045}, {'item1': '카카오', 'item2': 'AJ네트웍스', 'cor': -0.22246497296865567}, {'item1': '카카오', 'item2': 'AK홀딩스', 'cor': -0.6289256377252997}, {'item1': '카카오', 'item2': 'BGF', 'cor': -0.5181140714213462}, {'item1': '카카오', 'item2': '삼성전자', 'cor': 0.8200594535994847}, {'item1': '카카오', 'item2': '아모레퍼시픽', 'cor': -0.39512984211874325}, {'item1': '카카오', 'item2': '카카오', 'cor': 1.0}, {'item1': '카카오', 'item2': '경동나비엔', 'cor': 0.4335783001493612}, {'item1': '카카오', 'item2': '금호타이어', 'cor': -0.37990674413517656}, {'item1': '카카오', 'item2': '기아', 'cor': 0.7842802046837066}, {'item1': '카카오', 'item2': '빙그레', 'cor': -0.40465518330605255}, {'item1': '경동나비엔', 'item2': 'AJ네트웍스', 'cor': -0.13246063488448556}, {'item1': '경동나비엔', 'item2': 'AK홀딩스', 'cor': 0.060416649043513605}, {'item1': '경동나비엔', 'item2': 'BGF', 'cor': -0.24971555714036314}, {'item1': '경동나비엔', 'item2': '삼성전자', 'cor': 0.38351606811199934}, {'item1': '경동나비엔', 'item2': '아모레퍼시픽', 'cor': 0.07986781914642205}, {'item1': '경동나비엔', 'item2': '카카오', 'cor': 0.4335783001493612}, {'item1': '경동나비엔', 'item2': '경동나비엔', 'cor': 1.0}, {'item1': '경동나비엔', 'item2': '금호타이어', 'cor': 0.13729048430124374}, {'item1': '경동나비엔', 'item2': '기아', 'cor': 0.17846387802449665}, {'item1': '경동나비엔', 'item2': '빙그레', 'cor': 0.08892821421248875}, {'item1': '금호타이어', 'item2': 'AJ네트웍스', 'cor': 0.5240724651068914}, {'item1': '금호타이어', 'item2': 'AK홀딩스', 'cor': 0.6914095198327443}, {'item1': '금호타이어', 'item2': 'BGF', 'cor': 0.8403869490093576}, {'item1': '금호타이어', 'item2': '삼성전자', 'cor': -0.5794978446569281}, {'item1': '금호타이어', 'item2': '아모레퍼시픽', 'cor': 0.8169264066274052}, {'item1': '금호타이어', 'item2': '카카오', 'cor': -0.37990674413517656}, {'item1': '금호타이어', 'item2': '경동나비엔', 'cor': 0.13729048430124374}, {'item1': '금호타이어', 'item2': '금호타이어', 'cor': 1.0}, {'item1': '금호타이어', 'item2': '기아', 'cor': -0.3012610019711417}, {'item1': '금호타이어', 'item2': '빙그레', 'cor': 0.5133655469514059}, {'item1': '기아', 'item2': 'AJ네트웍스', 'cor': -0.070655577945304}, {'item1': '기아', 'item2': 'AK홀딩스', 'cor': -0.6507087866352705}, {'item1': '기아', 'item2': 'BGF', 'cor': -0.4042511668097954}, {'item1': '기아', 'item2': '삼성전자', 'cor': 0.7094213381186582}, {'item1': '기아', 'item2': '아모레퍼시픽', 'cor': -0.413828187468009}, {'item1': '기아', 'item2': '카카오', 'cor': 0.7842802046837066}, {'item1': '기아', 'item2': '경동나비엔', 'cor': 0.17846387802449665}, {'item1': '기아', 'item2': '금호타이어', 'cor': -0.3012610019711417}, {'item1': '기아', 'item2': '기아', 'cor': 1.0}, {'item1': '기아', 'item2': '빙그레', 'cor': -0.5769556894996385}, {'item1': '빙그레', 'item2': 'AJ네트웍스', 'cor': 0.2524327211079841}, {'item1': '빙그레', 'item2': 'AK홀딩스', 'cor': 0.7106891377164657}, {'item1': '빙그레', 'item2': 'BGF', 'cor': 0.5027003371693426}, {'item1': '빙그레', 'item2': '삼성전자', 'cor': -0.5527141864779478}, {'item1': '빙그레', 'item2': '아모레퍼시픽', 'cor': 0.6231240609694045}, {'item1': '빙그레', 'item2': '카카오', 'cor': -0.40465518330605255}, {'item1': '빙그레', 'item2': '경동나비엔', 'cor': 0.08892821421248875}, {'item1': '빙그레', 'item2': '금호타이어', 'cor': 0.5133655469514059}, {'item1': '빙그레', 'item2': '기아', 'cor': -0.5769556894996385}, {'item1': '빙그레', 'item2': '빙그레', 'cor': 1.0}]
+
+// Vega-Lite specification
+var vlSpec = {
+  $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+  width: 340, 
+  height: 340, 
+  mark: { type: 'rect', tooltip: { content: 'data' }, clip: true },
+  data: { values: corr_data },
+  encoding: {
+    x: { field: 'item1', type: 'nominal' },
+    y: { field: 'item2', type: 'nominal' },
+    color: { field: 'cor', type: 'quantitative' }
+    // Add more encodings or transformations as needed
+  }
+};
+
+// Embed the visualization in the 'heatmap' div
+vegaEmbed('#heatmap', vlSpec)
+  .then(function(result) {})
+  .catch(console.error);
+
+//////////////////////////// select box ///////////////////////////////
+
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
 
 // Populate start year and end year options
 document.addEventListener('DOMContentLoaded', function () {
@@ -30,22 +48,59 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
-
 document.addEventListener('DOMContentLoaded', function () {
-  // Define the number of select boxes (you mentioned market1 to market10)
+  // Define the number of select boxes (market1 to market10)
   const numberOfSelects = 10;
 
   // Define the options for the market selection
-  const marketOptions = ['Kospi', 'Kosdaq', 'KONEX', 'AMEX', 'NYSE', 'Nasdaq'];
+  const marketOptions = ['Korea Stock Market', 'US Stock Market'];
 
   // Loop through each select box
   for (let i = 1; i <= numberOfSelects; i++) {
       // Select each market select box by its ID
       const marketSelect = document.getElementById(`market${i}`);
+      const itemList = document.getElementById(`itemList${i}`);
+      const itemInput = document.getElementById(`item${i}`);
+
+      // Function to fetch and filter item list based on market and search query
+      function filterItems(marketValue, searchQuery) {
+          itemList.innerHTML = ''; // Clear previous options
+          
+          // File paths based on market selection
+          const filePath = (marketValue === 'US Stock Market') ? 'data/file_names_us.csv' : 'data/file_names_kor.csv';
+
+          // Fetch data from the file and filter based on search query
+          fetch(filePath)
+              .then(response => response.text())
+              .then(data => {
+                  const lines = data.split('\n');
+                  lines.forEach(line => {
+                      const companyName = line.split(',')[0]; // Assuming the company name is in the first column
+                      
+                      if (companyName.toLowerCase().includes(searchQuery.toLowerCase())) {
+                          const optionElement = document.createElement('option');
+                          optionElement.value = companyName;
+                          itemList.appendChild(optionElement);
+                      }
+                  });
+              })
+              .catch(error => {
+                  console.error('Error fetching data:', error);
+              });
+      }
+
+      // Select box event listeners for market and item input
+      marketSelect.addEventListener('change', function () {
+          const selectedMarket = this.value;
+          const searchQuery = itemInput.value.trim();
+          filterItems(selectedMarket, searchQuery);
+      });
+
+      itemInput.addEventListener('input', function () {
+          const selectedMarket = marketSelect.value;
+          const searchQuery = this.value.trim();
+          filterItems(selectedMarket, searchQuery);
+      });
 
       // Populate the market selection dropdown
       marketOptions.forEach(option => {
@@ -57,1126 +112,822 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   const jsonURL = 'data/market-items.json';
+//////////////////////////// select box for Network ///////////////////////////////////////
 
-//   // Fetch JSON data
-//   fetch(jsonURL)
-//       .then(response => response.json())
-//       .then(data => {
-//           // Function to update items based on selected market
-//           function updateItems(market, index) {
-//               const selectedItemDropdown = document.getElementById(`item${index}`);
-//               selectedItemDropdown.innerHTML = '<option value="" disabled selected>Item</option>';
+// Populate both dropdowns on page load
+populateDropdown('sector1');
+populateDropdown('sector2');
 
-//               // Get items based on selected market
-//               const items = data[market];
+// Function to populate dropdown with sectors
+function populateDropdown(sectorId) {
+  var sectorList = ['서비스업','기타금융','유통업','섬유의복','운수창고업',
+  '음식료품','비금속광물','증권','보험','전기전자','화학','건설업','철강금속','기계','운수장비','광업','의약품',
+  '통신업','기타제조업','전기가스업','종이목재','은행','의료정밀','농업, 임업 및 어업']
 
-//               // Populate items in the Item dropdown
-//               items.forEach(item => {
-//                   const option = document.createElement('option');
-//                   option.value = item;
-//                   option.textContent = item;
-//                   selectedItemDropdown.appendChild(option);
-//               });
-//           }
+  // 제공된 sectorId를 사용하여 드롭다운 요소를 가져옴
+  var dropdown = document.getElementById(sectorId);
 
-//           // Populate Market dropdown options
-//           const markets = ['Kospi', 'Kosdaq', 'KONEX', 'AMEX', 'NYSE', 'Nasdaq'];
-//           for (let i = 1; i <= 10; i++) {
-//               const marketDropdown = document.getElementById(`market${i}`);
-//               markets.forEach(market => {
-//                   const option = document.createElement('option');
-//                   option.value = market;
-//                   option.textContent = market;
-//                   marketDropdown.appendChild(option);
-//               });
+  // 드롭다운 내의 기존 옵션을 모두 지움. 새 옵션으로 드롭다운을 채우기 전에 드롭다운이 비어 있는지 확인
+  dropdown.innerHTML = '';
 
-//               marketDropdown.addEventListener('change', function () {
-//                   const selectedMarket = this.value;
-//                   updateItems(selectedMarket, i);
-//               });
-//           }
-//       })
-//       .catch(error => {
-//           console.error('Error fetching JSON:', error);
-//       });
-// });
-// document.addEventListener('DOMContentLoaded', function () {
-//   const jsonURL = 'data/market-items.json';
+  // 각 섹터에 대해 새로운 <option> 요소를 생성
+  sectorList.forEach(function (sector) {
+    var option = document.createElement('option');
+    option.text = sector;
+    option.value = sector;
+    // 새로 생성된 <option> 요소를 드롭다운에 추가
+    dropdown.appendChild(option);
+  });
 
-//   // Fetch JSON data
-//   fetch(jsonURL)
-//       .then(response => response.json())
-//       .then(data => {
-//           // Select all Market and Item dropdowns
-//           const marketDropdowns = document.querySelectorAll('select[name="market"]');
-//           const itemDropdowns = document.querySelectorAll('select[name="item"]');
-
-//           // Function to update items based on selected market
-//           function updateItems(market, index) {
-//               const selectedItemDropdown = itemDropdowns[index - 1];
-//               selectedItemDropdown.innerHTML = '<option value="" disabled selected>Item</option>';
-              
-//               // Get items based on selected market
-//               const items = data[market];
-
-//               // Populate items in the Item dropdown
-//               items.forEach(item => {
-//                   const option = document.createElement('option');
-//                   option.value = item;
-//                   option.textContent = item;
-//                   selectedItemDropdown.appendChild(option);
-//               });
-//           }
-
-//           // Event listener for Market dropdown change
-//           marketDropdowns.forEach((marketDropdown, index) => {
-//               marketDropdown.addEventListener('change', function () {
-//                   const selectedMarket = this.value;
-//                   updateItems(selectedMarket, index + 1);
-//               });
-//           });
-
-//           // Populate Market dropdown options
-//           const markets = ['Kospi', 'Kosdaq', 'KONEX', 'AMEX', 'NYSE', 'Nasdaq'];
-//           marketDropdowns.forEach(marketDropdown => {
-//               markets.forEach(market => {
-//                   const option = document.createElement('option');
-//                   option.value = market;
-//                   option.textContent = market;
-//                   marketDropdown.appendChild(option);
-//               });
-//           });
-//       })
-//       .catch(error => {
-//           console.error('Error fetching JSON:', error);
-//       });
-// });
-// items 선택하는 박스
-// document.addEventListener('DOMContentLoaded', function () {
-//   const assetSelection = document.getElementById('assetSelection');
-
-//   for (let i = 1; i <= 10; i++) {
-//       const rowDiv = document.createElement('div');
-//       rowDiv.className = 'row asset-row';
-
-//       const assetLabelDiv = document.createElement('div');
-//       assetLabelDiv.className = 'col-md-1 separateTop';
-//       assetLabelDiv.textContent = `Asset ${i}`;
-
-//       const assetColumnDiv = document.createElement('div');
-//       assetColumnDiv.className = 'col-md-11';
-
-//       const selectGroupDiv = document.createElement('div');
-//       selectGroupDiv.className = 'input-group flex-nowrap smallMargin select-stock';
-
-//       const marketSelect = createSelectElement(`market${i}`, 'Market');
-//       marketSelect.style.width = '150px'; // Adjust the width here as needed
-
-//       const itemSelect = createSelectElement(`item${i}`, 'Item');
-//       itemSelect.style.width = '150px'; // Adjust the width here as needed
-
-//       selectGroupDiv.appendChild(marketSelect);
-//       selectGroupDiv.appendChild(itemSelect);
-
-//       assetColumnDiv.appendChild(selectGroupDiv);
-
-//       rowDiv.appendChild(assetLabelDiv);
-//       rowDiv.appendChild(assetColumnDiv);
-
-//       assetSelection.appendChild(rowDiv);
-//   }
-// });
-
-// document.addEventListener('DOMContentLoaded', function () {
-//   const assetSelection = document.getElementById('assetSelection');
-
-//   for (let i = 1; i <= 10; i++) {
-//       const rowDiv = document.createElement('div');
-//       rowDiv.className = 'row asset-row';
-
-//       const assetLabelDiv = document.createElement('div');
-//       assetLabelDiv.className = 'col-md-1 separateTop';
-//       assetLabelDiv.textContent = `Asset ${i}`;
-
-//       const assetColumnDiv = document.createElement('div');
-//       assetColumnDiv.className = 'col-md-11'; // Column size adjusted to accommodate both selects
-
-//       const selectGroupDiv = document.createElement('div');
-//       selectGroupDiv.className = 'input-group flex-nowrap smallMargin select-stock';
-
-//       const marketSelect = createSelectElement(`market${i}`, 'Market');
-//       const itemSelect = createSelectElement(`item${i}`, 'Item');
-
-//       selectGroupDiv.appendChild(marketSelect);
-//       selectGroupDiv.appendChild(itemSelect);
-
-//       assetColumnDiv.appendChild(selectGroupDiv);
-
-//       rowDiv.appendChild(assetLabelDiv);
-//       rowDiv.appendChild(assetColumnDiv);
-
-//       assetSelection.appendChild(rowDiv);
-//   }
-// });
-
-function createSelectElement(id, placeholder) {
-  const select = document.createElement('select');
-  select.id = id;
-  select.name = id;
-  select.className = 'form-control form-select';
-  const option = document.createElement('option');
-  option.value = '';
-  option.textContent = placeholder;
-  option.disabled = true;
-  option.selected = true;
-  select.appendChild(option);
-  // Add more options specific to the select here
-  return select;
+  // Attach event listener to handle selection change
+  // 'change' 이벤트가 발생하면(예: 사용자가 드롭다운에서 다른 옵션을 선택하는 경우) 
+  // anonymous function인 (function () { /* code here */ }를 사용하여 정의됨)가 실행
+  dropdown.addEventListener('change', function () {
+    handleSelectionChange(); // Call handleSelectionChange when a selection changes
+  });
 }
-//##############
-document.addEventListener('DOMContentLoaded', function () {
-  const selectionBoxes = document.getElementById('selectionBoxes');
 
-  for (let i = 1; i <= 10; i++) {
-    const marketSelect = document.createElement('select');
-    marketSelect.id = `market${i}`;
-    marketSelect.className = 'marketSelect';
+// Step 1: Function to handle selection change in sector1 and sector2
+// handleSelectionChange()는 두 개의 선택 상자(sector1과 sector2)에서 선택이 변경되었을 때 호출되며, 
+// 선택된 섹터에 해당하는 노드를 찾고, 해당 노드에 연결된 링크를 추출하는 일련의 작업을 수행
+function handleSelectionChange() {
+  // Assuming sector1 and sector2 are the IDs of the selection boxes
+  const sector1 = document.getElementById('sector1').value;
+  const sector2 = document.getElementById('sector2').value;
 
-    const itemSelect = document.createElement('select');
-    itemSelect.id = `item${i}`;
-    itemSelect.className = 'itemSelect';
+  // Load and parse the kospi_nodes.json file
+  fetch('data/kospi_nodes_final.json')
+    .then(response => response.json())  // 이 파일은 데이터를 포함하고 있으며, 데이터는 JSON 형식으로 파싱됨
+    .then(data => { // .then(data => { /* 코드 */ })를 사용하여 JSON 데이터에 접근
+      // 선택된 섹터에 해당하는 노드들을 필터링하여 nodes 배열에 저장
+      const nodes = data.nodes.filter(node =>
+        node.group === sector1 || node.group === sector2
+      );
 
-    const defaultOptions = ['Kospi', 'Kosdaq', 'KONEX', 'AMEX', 'NYSE', 'Nasdaq'];
-    defaultOptions.forEach(option => {
-      const marketOption = document.createElement('option');
-      marketOption.value = option;
-      marketOption.textContent = option;
-      marketSelect.appendChild(marketOption);
-    });
+      // Add the matched nodes to selected_nodes
+      // 선택된 노드를 selected_nodes 배열에 추가. selected_nodes는 id와 group을 포함하는 객체들의 배열임
+      selected_nodes = nodes.map(node => ({ id: node.id, group: node.group }));
+      console.log('Selected nodes:', selected_nodes);
+      // 선택된 노드의 id만을 포함하는 배열
+      selected_nodes_list = selected_nodes.map(node => node.id);
+      // console.log('selected_nodes_list:', selected_nodes_list);
+      
+      // Once nodes are selected, extract corresponding links
+      // 선택된 노드를 기반으로 해당하는 링크를 추출
+      extractSelectedLinks();
+    })
+    .catch(error => console.error('Error fetching nodes:', error));
+}
 
-    selectionBoxes.appendChild(marketSelect);
-    selectionBoxes.appendChild(itemSelect);
+// Step 2: Extract corresponding links from kospi_links_one_side.json
+// Function to filter and extract links based on selected_nodes
+function extractSelectedLinks() {
+  // Load and parse the kospi_links_one_side.json file
+  fetch('data/kospi_links_one_side.json')
+    .then(response => response.json())
+    .then(linksData => {
+      // Filter links matching the selected nodes - 선택된 노드에 맞는 링크를 필터링
+      const links = linksData.links.filter(link =>
+        link.value >= 0.85 &&
+        selected_nodes_list.includes(link.source) && selected_nodes_list.includes(link.target)
+      );
 
-    // Event listener for market selection
-    marketSelect.addEventListener('change', function () {
-      const selectedMarket = this.value;
-      const itemOptions = getItemOptions(selectedMarket);
-      itemSelect.innerHTML = '';
+      // Add the matched links to selected_links - 선택된 링크를 selected_links에 추가
+      selected_links = links.map(link => ({
+        source: link.source,
+        target: link.target,
+        value: link.value
+        // s: selected_nodes_list.includes(link.source),
+        // t: selected_nodes_list.includes(link.target)
+      }));
+      console.log('Selected links:', selected_links);
 
-      itemOptions.forEach(item => {
-        const itemOption = document.createElement('option');
-        itemOption.value = item;
-        itemOption.textContent = item;
-        itemSelect.appendChild(itemOption);
-      });
-    });
+      // Save selected nodes and links - 선택된 노드 및 링크를 저장
+      saveData(selected_nodes, selected_links);
+    })
+    .catch(error => console.error('Error fetching links:', error));
+}
 
-    // Event listener for item selection
-    itemSelect.addEventListener('change', function () {
-      const selectedItems = [...this.selectedOptions].map(option => option.value);
-      console.log(`Selected Items for Item${i}:`, selectedItems);
-    });
+
+
+var graph;
+
+// Step 3: Save selected_nodes and selected_links in data variable in JSON format
+function saveData(nodes, links) {
+  graph = {
+    node: nodes,
+    links: links
+  };
+  console.log('Final data:', graph);
+
+  drawNetworkGraph(graph);
+}
+
+
+////////////////////////// Network visualization ///////////////////////////////
+
+let selected_nodes_list = [];
+let selected_links_list = [];
+
+// Example of toggling visibility using plain JavaScript
+// submitButton2 버튼을 눌렀을 때, 결과창 보여지기 하는 코드
+
+// 1) submitButton2를 클릭하면, showResults 함수 호출
+document.getElementById('submitButton1').addEventListener('click', toggleVisibility1);
+document.getElementById('submitButton2').addEventListener('click', showResults);
+const resultContent1 = document.getElementById('result-content1');
+const resultContent2 = document.getElementById('result-content2');
+// Function to toggle visibility
+function toggleVisibility1() {
+    if (resultContent1.style.display === 'none') {
+        resultContent1.style.display = 'block'; // Show the content
+    } else {
+        resultContent1.style.display = 'none'; // Hide the content
+    }
+}
+function toggleVisibility2() {
+  if (resultContent2.style.display === 'none') {
+      resultContent2.style.display = 'block'; // Show the content
+  } else {
+      resultContent2.style.display = 'none'; // Hide the content
   }
+}
+// 2) showResults 함수 호출하면 -> toggleVisibility() 함수 호출되면서 화면에 보여짐
+// Function to show results (assuming data parameter is used to draw the graph)
+function showResults(data) {
+  if (!data) {
+    console.error("Invalid data received:", data);
+    return;
+  }
+
+  // Show the result content after drawing the graph
+  toggleVisibility2();
+
+}
+
+
+function drawNetworkGraph(graph) {
+  // const svg = d3.select("#network-graph");
+  console.log('data in draNetwork:', graph);
+  // var svg = d3.select("#network-graph")
+  // .append("svg")
+  // .attr("width", width)
+  // .attr("height", height)
+  // .append("g")
+  // .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  // var svg = d3.select("#network-graph"),
+  var svg = d3.select("svg"),
+      width = +svg.attr("width"),
+      height = +svg.attr("height");
+
+  var color = d3.scaleOrdinal()
+      .range(["#FF6666", "#3366FF"]);
+
+  var simulation = d3.forceSimulation()
+      .force("link", d3.forceLink().id(function(d) { return d.id; }))
+      .force("charge", d3.forceManyBody())
+      .force("center", d3.forceCenter(width / 2, height / 2));
+
+  // Tooltip element
+  var tooltip = d3.select("body")
+      .append("div")
+      .attr("class", "tooltip");
+
+  // var data = {
+  //   "nodes": selected_nodes_list,
+  //   "links": selected_links_list
+  // };
+  
+  // Use the provided data directly
+  // var graph = {
+  //   "nodes": data.nodes,
+  //   "links": data.links
+  // };
+  
+  // Filter links based on the value being 0.5 or higher
+  // var filteredLinks = graph.links.filter(function(link) {
+  //   return link.value >= 0.85;
+  // });
+  
+    // // Count the number of links connected to each node
+    // var nodeLinksCount = {};
+    // filteredLinks.forEach(function(link) {
+    //   nodeLinksCount[link.source.id] = (nodeLinksCount[link.source.id] || 0) + 1;
+    //   nodeLinksCount[link.target.id] = (nodeLinksCount[link.target.id] || 0) + 1;
+    // });
+  
+    var link = svg.append("g")
+        .attr("class", "links")
+      .selectAll("line")
+      // .data(filteredLinks)
+      .data(graph.links)
+      .enter().append("line")
+        .attr("stroke-width", function(d) { return Math.sqrt(d.value); })
+        // .attr("stroke-width", function(d) { 
+        // // Map link values to stroke widths using a power scale
+        // // Adjust the exponent (e.g., 2) to control the scaling effect
+        // var scale = d3.scalePow().exponent(2).domain([0.8, 1]).range([-5, 5]); // Example domain and range
+        // return scale(d.value);
+        // })
+        .on("mouseover", showLinkInfo) // Show link information on mouseover
+        .on("mouseout", hideTooltip);
+  
+    var node = svg.append("g")
+        .attr("class", "nodes")
+      .selectAll("circle")
+      .data(graph.nodes)
+      .enter().append("circle")
+        .attr("r", 5)
+        // .attr("r", function(d) { 
+        //   // Set radius based on the number of links connected to each node
+        //   return Math.max(5, nodeLinksCount[d.id] * 1.5); // Adjust the scale factor as needed
+        // })
+        .attr("fill", function(d) { return color(d.group); })
+        .on("mouseover", showNodeInfo) // Show node information on mouseover
+        .on("mouseout", hideTooltip) // Hide tooltip on mouseout
+        .call(d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended));
+  
+    node.append("title")
+        .text(function(d) { return d.id; });
+  
+    simulation
+        .nodes(graph.nodes)
+        .on("tick", ticked);
+  
+    simulation.force("link")
+        .links(graph.links);
+  
+    function ticked() {
+      link
+          .attr("x1", function(d) { return d.source.x; })
+          .attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; })
+          .attr("y2", function(d) { return d.target.y; });
+  
+      node
+          .attr("cx", function(d) { return d.x; })
+          .attr("cy", function(d) { return d.y; });
+    }
+  
+    // Function to show link information
+    function showLinkInfo(d) {
+      var sourceId = d.source.id;
+      var targetId = d.target.id;
+      tooltip.style("display", "block");
+      tooltip.html(`<strong>[Link Information]</strong><br><strong>Source:</strong> ${sourceId}<br><strong>Target:</strong> ${targetId}<br><strong>Value:</strong> ${d.value}`)
+        .style("left", (width - 200) + "px") // Adjust x-coordinate for horizontal positioning
+        .style("top", "100px"); // Fixed y-coordinate for top positioning
+    }
+  
+  
+    // Function to show node information
+    function showNodeInfo(d) {
+      tooltip.style("display", "block");
+      tooltip.html(`<strong>Item ID:</strong> ${d.id}<br><strong>Group:</strong> ${d.group}`)
+        .style("left", (width - 200) + "px") // Adjust x-coordinate for horizontal positioning
+        .style("top", "100px"); // Fixed y-coordinate for top positioning
+    }
+  
+  // //Function to show node information
+  // function showNodeInfo(d) {
+  //   var xPos = d3.event.pageX + 10;
+  //   var yPos = d3.event.pageY + 10;
+  
+  //   tooltip.style("display", "block")
+  //     .html(`<strong>Item ID:</strong> ${d.id}<br><strong>Group:</strong> ${d.group}`)
+  //     .style("left", xPos + "px")
+  //     .style("top", yPos + "px");
+  // }
+  
+    // Function to hide tooltip
+    function hideTooltip() {
+      tooltip.style("display", "none");
+    }
+  // });
+  
+  function dragstarted(d) {
+    if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+    d.fx = d.x;
+    d.fy = d.y;
+  }
+  
+  function dragged(d) {
+    d.fx = d3.event.x;
+    d.fy = d3.event.y;
+  }
+  
+  function dragended(d) {
+    if (!d3.event.active) simulation.alphaTarget(0);
+    d.fx = null;
+    d.fy = null;
+  }
+
+}
+
+
+////////// 샘플 예시 (스크립트 코드에 있는 data를 읽어서 화면에 바로 표시한 그림) /////////////
+
+// // Append the SVG to the network-container div
+// d3.select("#network-graph")
+//   .append("svg")
+//   .attr("width", width) // Set the width attribute of the SVG
+//   .attr("height", height) // Set the height attribute of the SVG
+//   .append("g") // Append a group element to hold the network graph
+//   .attr("transform", "translate(" + margin.left + "," + margin.top + ")"); // Optional 
+// // const svg = d3.select("#map").select("svg")
+
+var svg = d3.select("#sample-graph"),
+// var svg = d3.select("svg"),
+    width = +svg.attr("width"),
+    height = +svg.attr("height");
+
+var color = d3.scaleOrdinal()
+    .range(["#FF6666", "#3366FF"]);
+
+var simulation = d3.forceSimulation()
+    .force("link", d3.forceLink().id(function(d) { return d.id; }))
+    .force("charge", d3.forceManyBody())
+    .force("center", d3.forceCenter(width / 2, height / 2));
+
+// Tooltip element
+var tooltip = d3.select("body")
+    .append("div")
+    .attr("class", "tooltip");
+
+var sample_selected_nodes_list = [
+  {"id": "Myriel", "group": 1},
+  {"id": "Napoleon", "group": 1},
+  {"id": "Mlle.Baptistine", "group": 1},
+  {"id": "Mme.Magloire", "group": 1},
+  {"id": "CountessdeLo", "group": 1},
+  {"id": "Geborand", "group": 1},
+  {"id": "Champtercier", "group": 1},
+  {"id": "Cravatte", "group": 1},
+  {"id": "Count", "group": 1},
+  {"id": "OldMan", "group": 1},
+  {"id": "Labarre", "group": 2},
+  {"id": "Valjean", "group": 2},
+  {"id": "Marguerite", "group": 3},
+  {"id": "Mme.deR", "group": 2},
+  {"id": "Isabeau", "group": 2},
+  {"id": "Gervais", "group": 2},
+  {"id": "Tholomyes", "group": 3},
+  {"id": "Listolier", "group": 3},
+  {"id": "Fameuil", "group": 3},
+  {"id": "Blacheville", "group": 3},
+  {"id": "Favourite", "group": 3},
+  {"id": "Dahlia", "group": 3},
+  {"id": "Zephine", "group": 3},
+  {"id": "Fantine", "group": 3},
+  {"id": "Mme.Thenardier", "group": 4},
+  {"id": "Thenardier", "group": 4},
+  {"id": "Cosette", "group": 5},
+  {"id": "Javert", "group": 4},
+  {"id": "Fauchelevent", "group": 0},
+  {"id": "Bamatabois", "group": 2},
+  {"id": "Perpetue", "group": 3},
+  {"id": "Simplice", "group": 2},
+  {"id": "Scaufflaire", "group": 2},
+  {"id": "Woman1", "group": 2},
+  {"id": "Judge", "group": 2},
+  {"id": "Champmathieu", "group": 2},
+  {"id": "Brevet", "group": 2},
+  {"id": "Chenildieu", "group": 2},
+  {"id": "Cochepaille", "group": 2},
+  {"id": "Pontmercy", "group": 4},
+  {"id": "Boulatruelle", "group": 6},
+  {"id": "Eponine", "group": 4},
+  {"id": "Anzelma", "group": 4},
+  {"id": "Woman2", "group": 5},
+  {"id": "MotherInnocent", "group": 0},
+  {"id": "Gribier", "group": 0},
+  {"id": "Jondrette", "group": 7},
+  {"id": "Mme.Burgon", "group": 7},
+  {"id": "Gavroche", "group": 8},
+  {"id": "Gillenormand", "group": 5},
+  {"id": "Magnon", "group": 5},
+  {"id": "Mlle.Gillenormand", "group": 5},
+  {"id": "Mme.Pontmercy", "group": 5},
+  {"id": "Mlle.Vaubois", "group": 5},
+  {"id": "Lt.Gillenormand", "group": 5},
+  {"id": "Marius", "group": 8},
+  {"id": "BaronessT", "group": 5},
+  {"id": "Mabeuf", "group": 8},
+  {"id": "Enjolras", "group": 8},
+  {"id": "Combeferre", "group": 8},
+  {"id": "Prouvaire", "group": 8},
+  {"id": "Feuilly", "group": 8},
+  {"id": "Courfeyrac", "group": 8},
+  {"id": "Bahorel", "group": 8},
+  {"id": "Bossuet", "group": 8},
+  {"id": "Joly", "group": 8},
+  {"id": "Grantaire", "group": 8},
+  {"id": "MotherPlutarch", "group": 9},
+  {"id": "Gueulemer", "group": 4},
+  {"id": "Babet", "group": 4},
+  {"id": "Claquesous", "group": 4},
+  {"id": "Montparnasse", "group": 4},
+  {"id": "Toussaint", "group": 5},
+  {"id": "Child1", "group": 10},
+  {"id": "Child2", "group": 10},
+  {"id": "Brujon", "group": 4},
+  {"id": "Mme.Hucheloup", "group": 8}
+];
+
+var sample_selected_links_list = [
+  {"source": "Napoleon", "target": "Myriel", "value": 1},
+  {"source": "Mlle.Baptistine", "target": "Myriel", "value": 8},
+  {"source": "Mme.Magloire", "target": "Myriel", "value": 10},
+  {"source": "Mme.Magloire", "target": "Mlle.Baptistine", "value": 6},
+  {"source": "CountessdeLo", "target": "Myriel", "value": 1},
+  {"source": "Geborand", "target": "Myriel", "value": 1},
+  {"source": "Champtercier", "target": "Myriel", "value": 1},
+  {"source": "Cravatte", "target": "Myriel", "value": 1},
+  {"source": "Count", "target": "Myriel", "value": 2},
+  {"source": "OldMan", "target": "Myriel", "value": 1},
+  {"source": "Valjean", "target": "Labarre", "value": 1},
+  {"source": "Valjean", "target": "Mme.Magloire", "value": 3},
+  {"source": "Valjean", "target": "Mlle.Baptistine", "value": 3},
+  {"source": "Valjean", "target": "Myriel", "value": 5},
+  {"source": "Marguerite", "target": "Valjean", "value": 1},
+  {"source": "Mme.deR", "target": "Valjean", "value": 1},
+  {"source": "Isabeau", "target": "Valjean", "value": 1},
+  {"source": "Gervais", "target": "Valjean", "value": 1},
+  {"source": "Listolier", "target": "Tholomyes", "value": 4},
+  {"source": "Fameuil", "target": "Tholomyes", "value": 4},
+  {"source": "Fameuil", "target": "Listolier", "value": 4},
+  {"source": "Blacheville", "target": "Tholomyes", "value": 4},
+  {"source": "Blacheville", "target": "Listolier", "value": 4},
+  {"source": "Blacheville", "target": "Fameuil", "value": 4},
+  {"source": "Favourite", "target": "Tholomyes", "value": 3},
+  {"source": "Favourite", "target": "Listolier", "value": 3},
+  {"source": "Favourite", "target": "Fameuil", "value": 3},
+  {"source": "Favourite", "target": "Blacheville", "value": 4},
+  {"source": "Dahlia", "target": "Tholomyes", "value": 3},
+  {"source": "Dahlia", "target": "Listolier", "value": 3},
+  {"source": "Dahlia", "target": "Fameuil", "value": 3},
+  {"source": "Dahlia", "target": "Blacheville", "value": 3},
+  {"source": "Dahlia", "target": "Favourite", "value": 5},
+  {"source": "Zephine", "target": "Tholomyes", "value": 3},
+  {"source": "Zephine", "target": "Listolier", "value": 3},
+  {"source": "Zephine", "target": "Fameuil", "value": 3},
+  {"source": "Zephine", "target": "Blacheville", "value": 3},
+  {"source": "Zephine", "target": "Favourite", "value": 4},
+  {"source": "Zephine", "target": "Dahlia", "value": 4},
+  {"source": "Fantine", "target": "Tholomyes", "value": 3},
+  {"source": "Fantine", "target": "Listolier", "value": 3},
+  {"source": "Fantine", "target": "Fameuil", "value": 3},
+  {"source": "Fantine", "target": "Blacheville", "value": 3},
+  {"source": "Fantine", "target": "Favourite", "value": 4},
+  {"source": "Fantine", "target": "Dahlia", "value": 4},
+  {"source": "Fantine", "target": "Zephine", "value": 4},
+  {"source": "Fantine", "target": "Marguerite", "value": 2},
+  {"source": "Fantine", "target": "Valjean", "value": 9},
+  {"source": "Mme.Thenardier", "target": "Fantine", "value": 2},
+  {"source": "Mme.Thenardier", "target": "Valjean", "value": 7},
+  {"source": "Thenardier", "target": "Mme.Thenardier", "value": 13},
+  {"source": "Thenardier", "target": "Fantine", "value": 1},
+  {"source": "Thenardier", "target": "Valjean", "value": 12},
+  {"source": "Cosette", "target": "Mme.Thenardier", "value": 4},
+  {"source": "Cosette", "target": "Valjean", "value": 31},
+  {"source": "Cosette", "target": "Tholomyes", "value": 1},
+  {"source": "Cosette", "target": "Thenardier", "value": 1},
+  {"source": "Javert", "target": "Valjean", "value": 17},
+  {"source": "Javert", "target": "Fantine", "value": 5},
+  {"source": "Javert", "target": "Thenardier", "value": 5},
+  {"source": "Javert", "target": "Mme.Thenardier", "value": 1},
+  {"source": "Javert", "target": "Cosette", "value": 1},
+  {"source": "Fauchelevent", "target": "Valjean", "value": 8},
+  {"source": "Fauchelevent", "target": "Javert", "value": 1},
+  {"source": "Bamatabois", "target": "Fantine", "value": 1},
+  {"source": "Bamatabois", "target": "Javert", "value": 1},
+  {"source": "Bamatabois", "target": "Valjean", "value": 2},
+  {"source": "Perpetue", "target": "Fantine", "value": 1},
+  {"source": "Simplice", "target": "Perpetue", "value": 2},
+  {"source": "Simplice", "target": "Valjean", "value": 3},
+  {"source": "Simplice", "target": "Fantine", "value": 2},
+  {"source": "Simplice", "target": "Javert", "value": 1},
+  {"source": "Scaufflaire", "target": "Valjean", "value": 1},
+  {"source": "Woman1", "target": "Valjean", "value": 2},
+  {"source": "Woman1", "target": "Javert", "value": 1},
+  {"source": "Judge", "target": "Valjean", "value": 3},
+  {"source": "Judge", "target": "Bamatabois", "value": 2},
+  {"source": "Champmathieu", "target": "Valjean", "value": 3},
+  {"source": "Champmathieu", "target": "Judge", "value": 3},
+  {"source": "Champmathieu", "target": "Bamatabois", "value": 2},
+  {"source": "Brevet", "target": "Judge", "value": 2},
+  {"source": "Brevet", "target": "Champmathieu", "value": 2},
+  {"source": "Brevet", "target": "Valjean", "value": 2},
+  {"source": "Brevet", "target": "Bamatabois", "value": 1},
+  {"source": "Chenildieu", "target": "Judge", "value": 2},
+  {"source": "Chenildieu", "target": "Champmathieu", "value": 2},
+  {"source": "Chenildieu", "target": "Brevet", "value": 2},
+  {"source": "Chenildieu", "target": "Valjean", "value": 2},
+  {"source": "Chenildieu", "target": "Bamatabois", "value": 1},
+  {"source": "Cochepaille", "target": "Judge", "value": 2},
+  {"source": "Cochepaille", "target": "Champmathieu", "value": 2},
+  {"source": "Cochepaille", "target": "Brevet", "value": 2},
+  {"source": "Cochepaille", "target": "Chenildieu", "value": 2},
+  {"source": "Cochepaille", "target": "Valjean", "value": 2},
+  {"source": "Cochepaille", "target": "Bamatabois", "value": 1},
+  {"source": "Pontmercy", "target": "Thenardier", "value": 1},
+  {"source": "Boulatruelle", "target": "Thenardier", "value": 1},
+  {"source": "Eponine", "target": "Mme.Thenardier", "value": 2},
+  {"source": "Eponine", "target": "Thenardier", "value": 3},
+  {"source": "Anzelma", "target": "Eponine", "value": 2},
+  {"source": "Anzelma", "target": "Thenardier", "value": 2},
+  {"source": "Anzelma", "target": "Mme.Thenardier", "value": 1},
+  {"source": "Woman2", "target": "Valjean", "value": 3},
+  {"source": "Woman2", "target": "Cosette", "value": 1},
+  {"source": "Woman2", "target": "Javert", "value": 1},
+  {"source": "MotherInnocent", "target": "Fauchelevent", "value": 3},
+  {"source": "MotherInnocent", "target": "Valjean", "value": 1},
+  {"source": "Gribier", "target": "Fauchelevent", "value": 2},
+  {"source": "Mme.Burgon", "target": "Jondrette", "value": 1},
+  {"source": "Gavroche", "target": "Mme.Burgon", "value": 2},
+  {"source": "Gavroche", "target": "Thenardier", "value": 1},
+  {"source": "Gavroche", "target": "Javert", "value": 1},
+  {"source": "Gavroche", "target": "Valjean", "value": 1},
+  {"source": "Gillenormand", "target": "Cosette", "value": 3},
+  {"source": "Gillenormand", "target": "Valjean", "value": 2},
+  {"source": "Magnon", "target": "Gillenormand", "value": 1},
+  {"source": "Magnon", "target": "Mme.Thenardier", "value": 1},
+  {"source": "Mlle.Gillenormand", "target": "Gillenormand", "value": 9},
+  {"source": "Mlle.Gillenormand", "target": "Cosette", "value": 2},
+  {"source": "Mlle.Gillenormand", "target": "Valjean", "value": 2},
+  {"source": "Mme.Pontmercy", "target": "Mlle.Gillenormand", "value": 1},
+  {"source": "Mme.Pontmercy", "target": "Pontmercy", "value": 1},
+  {"source": "Mlle.Vaubois", "target": "Mlle.Gillenormand", "value": 1},
+  {"source": "Lt.Gillenormand", "target": "Mlle.Gillenormand", "value": 2},
+  {"source": "Lt.Gillenormand", "target": "Gillenormand", "value": 1},
+  {"source": "Lt.Gillenormand", "target": "Cosette", "value": 1},
+  {"source": "Marius", "target": "Mlle.Gillenormand", "value": 6},
+  {"source": "Marius", "target": "Gillenormand", "value": 12},
+  {"source": "Marius", "target": "Pontmercy", "value": 1},
+  {"source": "Marius", "target": "Lt.Gillenormand", "value": 1},
+  {"source": "Marius", "target": "Cosette", "value": 21},
+  {"source": "Marius", "target": "Valjean", "value": 19},
+  {"source": "Marius", "target": "Tholomyes", "value": 1},
+  {"source": "Marius", "target": "Thenardier", "value": 2},
+  {"source": "Marius", "target": "Eponine", "value": 5},
+  {"source": "Marius", "target": "Gavroche", "value": 4},
+  {"source": "BaronessT", "target": "Gillenormand", "value": 1},
+  {"source": "BaronessT", "target": "Marius", "value": 1},
+  {"source": "Mabeuf", "target": "Marius", "value": 1},
+  {"source": "Mabeuf", "target": "Eponine", "value": 1},
+  {"source": "Mabeuf", "target": "Gavroche", "value": 1},
+  {"source": "Enjolras", "target": "Marius", "value": 7},
+  {"source": "Enjolras", "target": "Gavroche", "value": 7},
+  {"source": "Enjolras", "target": "Javert", "value": 6},
+  {"source": "Enjolras", "target": "Mabeuf", "value": 1},
+  {"source": "Enjolras", "target": "Valjean", "value": 4},
+  {"source": "Combeferre", "target": "Enjolras", "value": 15},
+  {"source": "Combeferre", "target": "Marius", "value": 5},
+  {"source": "Combeferre", "target": "Gavroche", "value": 6},
+  {"source": "Combeferre", "target": "Mabeuf", "value": 2},
+  {"source": "Prouvaire", "target": "Gavroche", "value": 1},
+  {"source": "Prouvaire", "target": "Enjolras", "value": 4},
+  {"source": "Prouvaire", "target": "Combeferre", "value": 2},
+  {"source": "Feuilly", "target": "Gavroche", "value": 2},
+  {"source": "Feuilly", "target": "Enjolras", "value": 6},
+  {"source": "Feuilly", "target": "Prouvaire", "value": 2},
+  {"source": "Feuilly", "target": "Combeferre", "value": 5},
+  {"source": "Feuilly", "target": "Mabeuf", "value": 1},
+  {"source": "Feuilly", "target": "Marius", "value": 1},
+  {"source": "Courfeyrac", "target": "Marius", "value": 9},
+  {"source": "Courfeyrac", "target": "Enjolras", "value": 17},
+  {"source": "Courfeyrac", "target": "Combeferre", "value": 13},
+  {"source": "Courfeyrac", "target": "Gavroche", "value": 7},
+  {"source": "Courfeyrac", "target": "Mabeuf", "value": 2},
+  {"source": "Courfeyrac", "target": "Eponine", "value": 1},
+  {"source": "Courfeyrac", "target": "Feuilly", "value": 6},
+  {"source": "Courfeyrac", "target": "Prouvaire", "value": 3},
+  {"source": "Bahorel", "target": "Combeferre", "value": 5},
+  {"source": "Bahorel", "target": "Gavroche", "value": 5},
+  {"source": "Bahorel", "target": "Courfeyrac", "value": 6},
+  {"source": "Bahorel", "target": "Mabeuf", "value": 2},
+  {"source": "Bahorel", "target": "Enjolras", "value": 4},
+  {"source": "Bahorel", "target": "Feuilly", "value": 3},
+  {"source": "Bahorel", "target": "Prouvaire", "value": 2},
+  {"source": "Bahorel", "target": "Marius", "value": 1},
+  {"source": "Bossuet", "target": "Marius", "value": 5},
+  {"source": "Bossuet", "target": "Courfeyrac", "value": 12},
+  {"source": "Bossuet", "target": "Gavroche", "value": 5},
+  {"source": "Bossuet", "target": "Bahorel", "value": 4},
+  {"source": "Bossuet", "target": "Enjolras", "value": 10},
+  {"source": "Bossuet", "target": "Feuilly", "value": 6},
+  {"source": "Bossuet", "target": "Prouvaire", "value": 2},
+  {"source": "Bossuet", "target": "Combeferre", "value": 9},
+  {"source": "Bossuet", "target": "Mabeuf", "value": 1},
+  {"source": "Bossuet", "target": "Valjean", "value": 1},
+  {"source": "Joly", "target": "Bahorel", "value": 5},
+  {"source": "Joly", "target": "Bossuet", "value": 7},
+  {"source": "Joly", "target": "Gavroche", "value": 3},
+  {"source": "Joly", "target": "Courfeyrac", "value": 5},
+  {"source": "Joly", "target": "Enjolras", "value": 5},
+  {"source": "Joly", "target": "Feuilly", "value": 5},
+  {"source": "Joly", "target": "Prouvaire", "value": 2},
+  {"source": "Joly", "target": "Combeferre", "value": 5},
+  {"source": "Joly", "target": "Mabeuf", "value": 1},
+  {"source": "Joly", "target": "Marius", "value": 2},
+  {"source": "Grantaire", "target": "Bossuet", "value": 3},
+  {"source": "Grantaire", "target": "Enjolras", "value": 3},
+  {"source": "Grantaire", "target": "Combeferre", "value": 1},
+  {"source": "Grantaire", "target": "Courfeyrac", "value": 2},
+  {"source": "Grantaire", "target": "Joly", "value": 2},
+  {"source": "Grantaire", "target": "Gavroche", "value": 1},
+  {"source": "Grantaire", "target": "Bahorel", "value": 1},
+  {"source": "Grantaire", "target": "Feuilly", "value": 1},
+  {"source": "Grantaire", "target": "Prouvaire", "value": 1},
+  {"source": "MotherPlutarch", "target": "Mabeuf", "value": 3},
+  {"source": "Gueulemer", "target": "Thenardier", "value": 5},
+  {"source": "Gueulemer", "target": "Valjean", "value": 1},
+  {"source": "Gueulemer", "target": "Mme.Thenardier", "value": 1},
+  {"source": "Gueulemer", "target": "Javert", "value": 1},
+  {"source": "Gueulemer", "target": "Gavroche", "value": 1},
+  {"source": "Gueulemer", "target": "Eponine", "value": 1},
+  {"source": "Babet", "target": "Thenardier", "value": 6},
+  {"source": "Babet", "target": "Gueulemer", "value": 6},
+  {"source": "Babet", "target": "Valjean", "value": 1},
+  {"source": "Babet", "target": "Mme.Thenardier", "value": 1},
+  {"source": "Babet", "target": "Javert", "value": 2},
+  {"source": "Babet", "target": "Gavroche", "value": 1},
+  {"source": "Babet", "target": "Eponine", "value": 1},
+  {"source": "Claquesous", "target": "Thenardier", "value": 4},
+  {"source": "Claquesous", "target": "Babet", "value": 4},
+  {"source": "Claquesous", "target": "Gueulemer", "value": 4},
+  {"source": "Claquesous", "target": "Valjean", "value": 1},
+  {"source": "Claquesous", "target": "Mme.Thenardier", "value": 1},
+  {"source": "Claquesous", "target": "Javert", "value": 1},
+  {"source": "Claquesous", "target": "Eponine", "value": 1},
+  {"source": "Claquesous", "target": "Enjolras", "value": 1},
+  {"source": "Montparnasse", "target": "Javert", "value": 1},
+  {"source": "Montparnasse", "target": "Babet", "value": 2},
+  {"source": "Montparnasse", "target": "Gueulemer", "value": 2},
+  {"source": "Montparnasse", "target": "Claquesous", "value": 2},
+  {"source": "Montparnasse", "target": "Valjean", "value": 1},
+  {"source": "Montparnasse", "target": "Gavroche", "value": 1},
+  {"source": "Montparnasse", "target": "Eponine", "value": 1},
+  {"source": "Montparnasse", "target": "Thenardier", "value": 1},
+  {"source": "Toussaint", "target": "Cosette", "value": 2},
+  {"source": "Toussaint", "target": "Javert", "value": 1},
+  {"source": "Toussaint", "target": "Valjean", "value": 1},
+  {"source": "Child1", "target": "Gavroche", "value": 2},
+  {"source": "Child2", "target": "Gavroche", "value": 2},
+  {"source": "Child2", "target": "Child1", "value": 3},
+  {"source": "Brujon", "target": "Babet", "value": 3},
+  {"source": "Brujon", "target": "Gueulemer", "value": 3},
+  {"source": "Brujon", "target": "Thenardier", "value": 3},
+  {"source": "Brujon", "target": "Gavroche", "value": 1},
+  {"source": "Brujon", "target": "Eponine", "value": 1},
+  {"source": "Brujon", "target": "Claquesous", "value": 1},
+  {"source": "Brujon", "target": "Montparnasse", "value": 1},
+  {"source": "Mme.Hucheloup", "target": "Bossuet", "value": 1},
+  {"source": "Mme.Hucheloup", "target": "Joly", "value": 1},
+  {"source": "Mme.Hucheloup", "target": "Grantaire", "value": 1},
+  {"source": "Mme.Hucheloup", "target": "Bahorel", "value": 1},
+  {"source": "Mme.Hucheloup", "target": "Courfeyrac", "value": 1},
+  {"source": "Mme.Hucheloup", "target": "Gavroche", "value": 1},
+  {"source": "Mme.Hucheloup", "target": "Enjolras", "value": 1}
+];
+
+// selected_nodes_list와 selected_links_list가 채워진 후에 위치해야 함
+// Your data in JSON format
+var data = {
+  "nodes": sample_selected_nodes_list,
+  "links": sample_selected_links_list
+};
+
+// Use the provided data directly
+var graph = {
+  "nodes": data.nodes,
+  "links": data.links
+};
+
+// Filter links based on the value being 0.5 or higher
+var filteredLinks = graph.links.filter(function(link) {
+  return link.value >= 0.85;
 });
 
-// // Country와 Market
-// document.addEventListener('DOMContentLoaded', function() {
-//   const marketSelect = document.getElementById('market');
-//   const defaultOptions = ['Kospi', 'Kosdaq', 'KONEX'];
+  // // Count the number of links connected to each node
+  // var nodeLinksCount = {};
+  // filteredLinks.forEach(function(link) {
+  //   nodeLinksCount[link.source.id] = (nodeLinksCount[link.source.id] || 0) + 1;
+  //   nodeLinksCount[link.target.id] = (nodeLinksCount[link.target.id] || 0) + 1;
+  // });
 
-//   defaultOptions.forEach(option => {
-//     const marketOption = document.createElement('option');
-//     marketOption.value = option;
-//     marketOption.textContent = option;
-//     marketSelect.appendChild(marketOption);
-//   });
+  var link = svg.append("g")
+      .attr("class", "links")
+    .selectAll("line")
+    .data(filteredLinks)
+    .enter().append("line")
+      .attr("stroke-width", function(d) { return Math.sqrt(d.value); })
+      // .attr("stroke-width", function(d) { 
+      // // Map link values to stroke widths using a power scale
+      // // Adjust the exponent (e.g., 2) to control the scaling effect
+      // var scale = d3.scalePow().exponent(2).domain([0.8, 1]).range([-5, 5]); // Example domain and range
+      // return scale(d.value);
+      // })
+      .on("mouseover", showLinkInfo) // Show link information on mouseover
+      .on("mouseout", hideTooltip);
 
-//   // Handle country selection to populate market options
-//   const countrySelect = document.getElementById('country');
-//   countrySelect.addEventListener('change', function() {
-//     marketSelect.innerHTML = '';
+  var node = svg.append("g")
+      .attr("class", "nodes")
+    .selectAll("circle")
+    .data(graph.nodes)
+    .enter().append("circle")
+      .attr("r", 5)
+      // .attr("r", function(d) { 
+      //   // Set radius based on the number of links connected to each node
+      //   return Math.max(5, nodeLinksCount[d.id] * 1.5); // Adjust the scale factor as needed
+      // })
+      .attr("fill", function(d) { return color(d.group); })
+      .on("mouseover", showNodeInfo) // Show node information on mouseover
+      .on("mouseout", hideTooltip) // Hide tooltip on mouseout
+      .call(d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended));
 
-//     const selectedCountry = this.value;
-//     const marketOptions = selectedCountry === 'Korea' ?
-//       ['Kospi', 'Kosdaq', 'KONEX'] :
-//       ['AMEX', 'NYSE', 'Nasdaq'];
+  node.append("title")
+      .text(function(d) { return d.id; });
 
-//     marketOptions.forEach(option => {
-//       const marketOption = document.createElement('option');
-//       marketOption.value = option;
-//       marketOption.textContent = option;
-//       marketSelect.appendChild(marketOption);
-//     });
-//   });
+  simulation
+      .nodes(graph.nodes)
+      .on("tick", ticked);
+
+  simulation.force("link")
+      .links(filteredLinks);
+
+  function ticked() {
+    link
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node
+        .attr("cx", function(d) { return d.x; })
+        .attr("cy", function(d) { return d.y; });
+  }
+
+  // Function to show link information
+  function showLinkInfo(d) {
+    var sourceId = d.source.id;
+    var targetId = d.target.id;
+    tooltip.style("display", "block");
+    tooltip.html(`<strong>[Link Information]</strong><br><strong>Source:</strong> ${sourceId}<br><strong>Target:</strong> ${targetId}<br><strong>Value:</strong> ${d.value}`)
+      .style("left", (width - 200) + "px") // Adjust x-coordinate for horizontal positioning
+      .style("top", "100px"); // Fixed y-coordinate for top positioning
+  }
+
+
+  // Function to show node information
+  function showNodeInfo(d) {
+    tooltip.style("display", "block");
+    tooltip.html(`<strong>Item ID:</strong> ${d.id}<br><strong>Group:</strong> ${d.group}`)
+      .style("left", (width - 200) + "px") // Adjust x-coordinate for horizontal positioning
+      .style("top", "100px"); // Fixed y-coordinate for top positioning
+  }
+
+// //Function to show node information
+// function showNodeInfo(d) {
+//   var xPos = d3.event.pageX + 10;
+//   var yPos = d3.event.pageY + 10;
+
+//   tooltip.style("display", "block")
+//     .html(`<strong>Item ID:</strong> ${d.id}<br><strong>Group:</strong> ${d.group}`)
+//     .style("left", xPos + "px")
+//     .style("top", yPos + "px");
+// }
+
+  // Function to hide tooltip
+  function hideTooltip() {
+    tooltip.style("display", "none");
+  }
 // });
 
-///////////////
-// document.addEventListener('DOMContentLoaded', function () {
-//   const selectedItemsContainer = document.getElementById('selectedItemsContainer');
-//   const marketsAndItemsDiv = document.createElement('div');
-//   marketsAndItemsDiv.id = 'marketsAndItems';
-
-//   for (let i = 1; i <= 10; i++) {
-//     const assetLabel = document.createElement('label');
-//     assetLabel.textContent = `Asset${i}: `;
-//     const assetDiv = document.createElement('div');
-//     assetDiv.className = 'assetDiv';
-
-//     const marketSelect = document.createElement('select');
-//     marketSelect.className = 'marketSelect';
-//     marketSelect.id = `market_${i}`;
-
-//     const itemSelect = document.createElement('select');
-//     itemSelect.className = 'itemSelect';
-//     itemSelect.id = `item_${i}`;
-
-//     const defaultOptions = ['Kospi', 'Kosdaq', 'KONEX', 'AMEX', 'NYSE', 'Nasdaq'];
-//     defaultOptions.forEach(option => {
-//       const marketOption = document.createElement('option');
-//       marketOption.value = option;
-//       marketOption.textContent = option;
-//       marketSelect.appendChild(marketOption);
-//     });
-
-//     assetDiv.appendChild(assetLabel);
-//     assetDiv.appendChild(marketSelect);
-//     assetDiv.appendChild(itemSelect);
-//     marketsAndItemsDiv.appendChild(assetDiv);
-//   }
-
-//   selectedItemsContainer.appendChild(marketsAndItemsDiv);
-// });
-
-// Items 리스트 가져오기
-// Function to fetch data from the file_names.json file
-async function fetchData() {
-  const response = await fetch('data/file_names.json');
-  const data = await response.json();
-  return data;
+function dragstarted(d) {
+  if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x;
+  d.fy = d.y;
 }
 
+function dragged(d) {
+  d.fx = d3.event.x;
+  d.fy = d3.event.y;
+}
+
+function dragended(d) {
+  if (!d3.event.active) simulation.alphaTarget(0);
+  d.fx = null;
+  d.fy = null;
+}
+
+////////////////////////////////////////////////////////
 
-// // Handle item selection and display
-// const itemsSelect = document.getElementById('items');
-// const countrySelect = document.getElementById('country');
-// const marketSelect = document.getElementById('market');
-// const selectedItemsList = document.getElementById('selectedItemsList');
-
-// function populateItems(country, market) {
-//   fetchData().then(data => {
-//     itemsSelect.innerHTML = '';
-//     const companies = data[country][market];
-//     companies.forEach(company => {
-//       const option = document.createElement('option');
-//       option.value = company;
-//       option.textContent = company;
-//       itemsSelect.appendChild(option);
-//     });
-//   });
-// }
-
-// countrySelect.addEventListener('change', function() {
-//   const selectedCountry = this.value;
-//   const selectedMarket = marketSelect.value;
-//   populateItems(selectedCountry, selectedMarket);
-// });
-
-// marketSelect.addEventListener('change', function() {
-//   const selectedCountry = countrySelect.value;
-//   const selectedMarket = this.value;
-//   populateItems(selectedCountry, selectedMarket);
-// });
-
-// itemsSelect.addEventListener('change', function() {
-//   const selectedItems = [...this.selectedOptions].map(option => option.value);
-//   console.log('Selected Items:', selectedItems);
-
-//   // Display selected items
-//   selectedItemsList.innerHTML = '';
-//   selectedItems.forEach(item => {
-//     const li = document.createElement('li');
-//     li.textContent = item;
-//     selectedItemsList.appendChild(li);
-//   });
-
-//   // Show the message to select up to 10 items
-//   const remainingCount = 10 - selectedItems.length;
-//   const message = remainingCount > 0 ? `Select ${remainingCount} more items` : 'Maximum items selected (10)';
-//   alert(message);
-// });
-
-// // Handle item selection and display
-// const itemsSelect = document.getElementById('items');
-// const countrySelect = document.getElementById('country');
-// const marketSelect = document.getElementById('market');
-// const selectedItemsDiv = document.getElementById('selectedItems');
-
-// function populateItems(country, market) {
-//   fetchData().then(data => {
-//     itemsSelect.innerHTML = '';
-//     const companies = data[country][market];
-//     companies.forEach(company => {
-//       const option = document.createElement('option');
-//       option.value = company;
-//       option.textContent = company;
-//       itemsSelect.appendChild(option);
-//     });
-//   });
-// }
-
-// countrySelect.addEventListener('change', function() {
-//   const selectedCountry = this.value;
-//   const selectedMarket = marketSelect.value;
-//   populateItems(selectedCountry, selectedMarket);
-// });
-
-// marketSelect.addEventListener('change', function() {
-//   const selectedCountry = countrySelect.value;
-//   const selectedMarket = this.value;
-//   populateItems(selectedCountry, selectedMarket);
-// });
-
-// itemsSelect.addEventListener('change', function() {
-//   const selectedItems = [...this.selectedOptions].map(option => option.value);
-//   updateSelectedItems(selectedItems);
-// });
-
-// // Function to populate markets and items for a given country
-// function populateMarketsAndItems(country) {
-//   fetchData().then(data => {
-//     const marketsAndItemsDiv = document.getElementById('marketsAndItems');
-//     marketsAndItemsDiv.innerHTML = '';
-
-//     for (let i = 0; i < 10; i++) {
-//       const marketSelect = document.createElement('select');
-//       marketSelect.className = 'marketSelect';
-//       marketSelect.id = `market_${i}`;
-//       // Populate markets based on the selected country
-//       const markets = data[country];
-//       // Create an option for each market
-//       markets.forEach(market => {
-//         const option = document.createElement('option');
-//         option.value = market;
-//         option.textContent = market;
-//         marketSelect.appendChild(option);
-//       });
-
-//       const itemsSelect = document.createElement('select');
-//       itemsSelect.className = 'itemsSelect';
-//       itemsSelect.id = `items_${i}`;
-//       // Populate items based on the selected country and market
-//       const items = data[country][markets[0]]; // Assuming first market initially
-//       // Create an option for each item
-//       items.forEach(item => {
-//         const option = document.createElement('option');
-//         option.value = item;
-//         option.textContent = item;
-//         itemsSelect.appendChild(option);
-//       });
-
-//       // Add market and items selection boxes to the marketsAndItemsDiv
-//       marketsAndItemsDiv.appendChild(marketSelect);
-//       marketsAndItemsDiv.appendChild(itemsSelect);
-//     }
-//   });
-// }
-
-// document.getElementById('country').addEventListener('change', function () {
-//   const selectedCountry = this.value;
-//   populateMarketsAndItems(selectedCountry);
-// });
-
-// // Initial population based on default values (assuming 'Korea' as default country)
-// populateMarketsAndItems('Korea');
-
-//######
-// function updateSelectedItems(selectedItems) {
-//   selectedItemsDiv.innerHTML = '';
-//   selectedItems.slice(0, 10).forEach(item => {
-//     const selectedItem = document.createElement('div');
-//     selectedItem.className = 'selectedItem';
-//     const itemText = document.createElement('span');
-//     itemText.textContent = item;
-//     const removeButton = document.createElement('button');
-//     removeButton.textContent = 'x';
-//     removeButton.addEventListener('click', () => {
-//       itemsSelect.querySelector(`[value="${item}"]`).selected = false;
-//       const updatedSelectedItems = [...itemsSelect.selectedOptions].map(option => option.value);
-//       updateSelectedItems(updatedSelectedItems);
-//     });
-//     selectedItem.appendChild(itemText);
-//     selectedItem.appendChild(removeButton);
-//     selectedItemsDiv.appendChild(selectedItem);
-//   });
-// }
-
-// function updateSelectedItems(selectedItems) {
-//   selectedItemsDiv.innerHTML = '<h3>Selected Items: </h3>'; // Update the header
-//   const selectedItemsContainer = document.createElement('div');
-//   selectedItemsContainer.className = 'selectedItemsContainer'; // Added a new class
-
-//   selectedItems.slice(0, 10).forEach(item => {
-//     const selectedItem = document.createElement('div');
-//     selectedItem.className = 'selectedItem';
-//     const itemText = document.createElement('span');
-//     itemText.textContent = item;
-//     const removeButton = document.createElement('button');
-//     removeButton.textContent = 'x';
-//     removeButton.addEventListener('click', () => {
-//       itemsSelect.querySelector(`[value="${item}"]`).selected = false;
-//       const updatedSelectedItems = [...itemsSelect.selectedOptions].map(option => option.value);
-//       updateSelectedItems(updatedSelectedItems);
-//     });
-//     selectedItem.appendChild(itemText);
-//     selectedItem.appendChild(removeButton);
-//     selectedItemsContainer.appendChild(selectedItem); // Appending each selected item to the container
-//   });
-
-//   selectedItemsDiv.appendChild(selectedItemsContainer); // Append the container to the main div
-// }
-
-// function updateSelectedItems(selectedItems) {
-//   selectedItemsDiv.innerHTML = '<h3>Selected Items: </h3>'; // Update the header
-//   const selectedItemsContainer = document.createElement('div');
-//   selectedItemsContainer.className = 'selectedItemsContainer'; // Added a new class
-
-//   selectedItems.slice(0, 10).forEach(item => {
-//     const selectedItem = document.createElement('div');
-//     selectedItem.className = 'selectedItem';
-//     const itemText = document.createElement('span');
-//     itemText.textContent = item;
-//     const removeButton = document.createElement('button');
-//     removeButton.textContent = 'x';
-//     removeButton.addEventListener('click', () => {
-//       itemsSelect.querySelector(`[value="${item}"]`).selected = false;
-//       const updatedSelectedItems = [...itemsSelect.selectedOptions].map(option => option.value);
-//       updateSelectedItems(updatedSelectedItems);
-//     });
-//     selectedItem.appendChild(itemText);
-//     selectedItem.appendChild(removeButton);
-//     selectedItemsContainer.appendChild(selectedItem); // Appending each selected item to the container
-//   });
-
-//   selectedItemsDiv.appendChild(selectedItemsContainer); // Append the container to the main div
-// }
-
-//Read the data
-//d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/heatmap_data.csv").then(function(data) {
-
-// d3.json("data/correlation_matrix.json")
-//   .then(function(data) {
-//     // Your code to work with the loaded JSON data goes here
-//     console.log(data); // Example: Displaying the loaded JSON data
-//   })
-//   .catch(function(error) {
-//     // Handle any potential error while loading the JSON file
-//     console.error('Error loading the JSON file:', error);
-//   });
-
-// d3.json("./data/correlation_matrix.json").then(function(data) {
-  
-//   // Labels of row and columns -> unique identifier of the column called 'group' and 'variable'
-//   const myGroups = Array.from(new Set(data.map(d => d.group)))
-//   const myVars = Array.from(new Set(data.map(d => d.variable)))
-
-//   // Build X scales and axis:
-//   const x = d3.scaleBand()
-//     .range([ 0, width ])
-//     .domain(myGroups)
-//     .padding(0.05);
-//   svg.append("g")
-//     .style("font-size", 15)
-//     .style("color", "black") 
-//     .attr("transform", `translate(0, ${height})`)
-//     .call(d3.axisBottom(x).tickSize(0))
-//     .select(".domain").remove()
-
-//   // Build Y scales and axis:
-//   const y = d3.scaleBand()
-//     .range([ height, 0 ])
-//     .domain(myVars)
-//     .padding(0.05);
-//   svg.append("g")
-//     .style("font-size", 15)
-//     .style("color", "black") 
-//     .call(d3.axisLeft(y).tickSize(0))
-//     .select(".domain").remove()
-
-//   // Build color scale
-//   const myColor = d3.scaleSequential()
-//     .interpolator(d3.interpolateInferno)
-//     .domain([1,100])
-
-//   // create a tooltip
-//   const tooltip = d3.select("#my_dataviz")
-//     .append("div")
-//     .style("opacity", 0)
-//     .style("color", "black") 
-//     .attr("class", "tooltip")
-//     .style("background-color", "white")
-//     .style("border", "solid")
-//     .style("border-width", "2px")
-//     .style("border-radius", "5px")
-//     .style("padding", "5px")
-
-//   // Three function that change the tooltip when user hover / move / leave a cell
-//   const mouseover = function(event,d) {
-//     tooltip
-//       .style("opacity", 1)
-//       .style("left", (event.pageX + 10) + "px") // Set left position relative to pageX
-//       .style("top", (event.pageY -20) + "px") // Set top position relative to pageY
-//     d3.select(this)
-//       .style("stroke", "black")
-//       .style("opacity", 1)
-//   }
-
-//   const mousemove = function(event,d) {
-//     tooltip
-//       .html("The exact value of<br>this cell is: " + d.value)
-//   }
-
-//   const mouseleave = function(event,d) {
-//     tooltip
-//       .style("opacity", 0)
-//     d3.select(this)
-//       .style("stroke", "none")
-//       .style("opacity", 0.8)
-//   }
-
-//   // add the squares
-//   svg.selectAll()
-//     .data(data, function(d) {return d.group+':'+d.variable;})
-//     .join("rect")
-//       .attr("x", function(d) { return x(d.group) })
-//       .attr("y", function(d) { return y(d.variable) })
-//       .attr("rx", 4)
-//       .attr("ry", 4)
-//       .attr("width", x.bandwidth() )
-//       .attr("height", y.bandwidth() )
-//       .style("fill", function(d) { return myColor(d.value)} )
-//       .style("stroke-width", 4)
-//       .style("stroke", "none")
-//       .style("opacity", 0.8)
-//     .on("mouseover", mouseover)
-//     .on("mousemove", mousemove)
-//     .on("mouseleave", mouseleave)
-// })
-
-// // Add title to graph
-// svg.append("text")
-//         .attr("x", 0)
-//         .attr("y", -50)
-//         .attr("text-anchor", "left")
-//         .style("font-size", "22px")
-//         .text("Close Correlation Heatmap");
-
-// // Add subtitle to graph
-// svg.append("text")
-//         .attr("x", 0)
-//         .attr("y", -20)
-//         .attr("text-anchor", "left")
-//         .style("font-size", "14px")
-//         .style("fill", "grey")
-//         .style("max-width", 400)
-//         .text("몇 년도부터 상관관계를 계산한 것인지 나타내주기");
-
-
-// var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-// var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-//   return new bootstrap.Tooltip(tooltipTriggerEl)
-// })
-
-// // JavaScript to populate the start year and end year select elements
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   // Get references to the select elements
-//   const startYearSelect = document.getElementById("startYearSelect");
-//   const endYearSelect = document.getElementById("endYearSelect");
-
-//   // Get the current year
-//   const currentYear = new Date().getFullYear();
-
-//   // Populate the start year select element
-//   for (let year = 1990; year <= currentYear; year++) {
-//       let option = new Option(year, year);
-//       startYearSelect.add(option);
-//   }
-
-//   // Populate the end year select element
-//   for (let year = 1990; year <= currentYear; year++) {
-//       let option = new Option(year, year);
-//       endYearSelect.add(option);
-//   }
-// });
-
-// function test() {
-//   var resultContent = document.getElementById("result-content");
-//   if (resultContent.style.display === "none") {
-//       resultContent.style.display = "block";
-//   } else {
-//       resultContent.style.display = "none";
-//   }
-// }
-
-// function showResults() {
-//   document.getElementById('result-content').style.display = 'block';
-//   // Additional logic if needed
-// }
-
-
-// ///////////////////////////////////////////
-// // set the dimensions and margins of the graph
-// var margin = {top: 30, right: 30, bottom: 30, left: 30},
-//   width = 450 - margin.left - margin.right,
-//   height = 450 - margin.top - margin.bottom;
-
-// // append the svg object to the body of the page
-// var svg = d3.select("heatmap-container")
-// .append("svg")
-//   .attr("width", width + margin.left + margin.right)
-//   .attr("height", height + margin.top + margin.bottom)
-// .append("g")
-//   .attr("transform",
-//         "translate(" + margin.left + "," + margin.top + ")");
-
-// // Labels of row and columns
-// var myGroups = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
-// var myVars = ["v1", "v2", "v3", "v4", "v5", "v6", "v7", "v8", "v9", "v10"]
-
-// // Build X scales and axis:
-// var x = d3.scaleBand()
-//   .range([ 0, width ])
-//   .domain(myGroups)
-//   .padding(0.01);
-// svg.append("g")
-//   .attr("transform", "translate(0," + height + ")")
-//   .call(d3.axisBottom(x))
-
-// // Build X scales and axis:
-// var y = d3.scaleBand()
-//   .range([ height, 0 ])
-//   .domain(myVars)
-//   .padding(0.01);
-// svg.append("g")
-//   .call(d3.axisLeft(y));
-
-// // Build color scale
-// var myColor = d3.scaleLinear()
-//   .range(["white", "#69b3a2"])
-//   .domain([1,100])
-
-// //Read the data
-// d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/heatmap_data.csv", function(data) {
-
-//   // create a tooltip
-//   var tooltip = d3.select("#heatmap-container")
-//     .append("div")
-//     .style("opacity", 0)
-//     .attr("class", "tooltip")
-//     .style("background-color", "white")
-//     .style("border", "solid")
-//     .style("border-width", "2px")
-//     .style("border-radius", "5px")
-//     .style("padding", "5px")
-
-//   // Three function that change the tooltip when user hover / move / leave a cell
-//   var mouseover = function(d) {
-//     tooltip.style("opacity", 1)
-//   }
-//   var mousemove = function(d) {
-//     tooltip
-//       .html("The exact value of<br>this cell is: " + d.value)
-//       .style("left", (d3.mouse(this)[0]+70) + "px")
-//       .style("top", (d3.mouse(this)[1]) + "px")
-//   }
-//   var mouseleave = function(d) {
-//     tooltip.style("opacity", 0)
-//   }
-
-//   // add the squares
-//   svg.selectAll()
-//     .data(data, function(d) {return d.group+':'+d.variable;})
-//     .enter()
-//     .append("rect")
-//       .attr("x", function(d) { return x(d.group) })
-//       .attr("y", function(d) { return y(d.variable) })
-//       .attr("width", x.bandwidth() )
-//       .attr("height", y.bandwidth() )
-//       .style("fill", function(d) { return myColor(d.value)} )
-//     .on("mouseover", mouseover)
-//     .on("mousemove", mousemove)
-//     .on("mouseleave", mouseleave)
-// })
-
-
-// // 웹페이지에서 입력한 정보를 변수로 받아서, 파이썬 코드로 전처리 후에
-// // json 형태로 corr_data에 보내주기
-
-// // vl
-// //   .markRect(({tooltip: {"content": "data"}, clip: true}))
-// //   .data(corr_data)
-// //   .encode(
-// //     vl.x().fieldN('key1'),
-// //     vl.y().fieldN('key2'),
-// //     vl.color().fieldQ('cor'),
-// //   )
-// //   .render()
-
-// ///////////////////////////////////////////
-
-//   // Load data based on selected market and sector
-// function loadData() {
-//     const market = document.getElementById('marketSelect').value;
-//     const sector = document.getElementById('stockSelect').value;
-//     const namesSelect = document.getElementById('companySelect');
-//     const selectedNames = [];
-//     const selectedOptions = namesSelect && namesSelect.options;
-    
-//     // Get the selected companies
-//     for (let i = 0; i < selectedOptions.length; i++) {
-//       if (selectedOptions[i].selected) {
-//         selectedNames.push(selectedOptions[i].value);
-//       }
-//     }
-  
-//     // Send data to server-side Python script for processing
-//     fetch('/process_data', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         market: market,
-//         sector: sector,
-//         names: selectedNames,
-//       }),
-//     })
-//     .then(response => response.json())
-//     .then(correlationData => {
-//       // Call function to render heatmap using d3 with correlationData
-//       renderHeatmap(correlationData);
-//     })
-//     .catch(error => console.error('Error:', error));
-//   }
-  
-//   // Function to render heatmap using d3.js
-//   function renderHeatmap(data) {
-//     // Your d3.js code to render the heatmap using 'data'
-//     // Example code using d3 can be placed here
-//     // Use 'data' to draw the heatmap
-//     console.log(data); // Sample log, replace with your d3.js code
-//   }
-  
-//   // Event listener for changes in market and stock selections
-//   document.getElementById('marketSelect').addEventListener('change', loadData);
-//   document.getElementById('stockSelect').addEventListener('change', loadData);
-  
-//   // Initialize on page load
-//   loadData();
-
-
-
-
-
-// // $(function() {
-//         //     $("form").submit(function(e){
-//         //         e.preventDefault();
-//         //         let $inputs = $("input, textarea, select", this);
-//         //         param = "asset1_rate01=10&aset1_rate02=05";
-//         //         d3.json(`http://localhost:5001/data/efficient_frontier?${param}`, function(data){
-                    
-//         //         });
-//         //     });
-
-
-//         // analyze portfolio button
-//         $("form").submit(function(e) {
-//           e.preventDefault(); // Prevent normal form submission
-//           let formData = $(this).serialize(); // Serialize form data
-
-//           $.ajax({
-//               url: "http://localhost:5001/api/analyze",
-//               method: "POST",
-//               data: formData,
-//               success: function(response) {
-//                   // Handle success - maybe update the UI with the response
-//                   console.log("Form submitted successfully");
-//               },
-//               error: function(jqXHR, textStatus, errorThrown) {
-//                   // Handle error
-//                   console.error("Form submission failed: " + textStatus, errorThrown);
-//               }
-//           });
-//       });
-
-
-//           $(document).ready(function() {
-//               loadMarketOptions();
-
-//               $(".select-stock select[id^='market']").on("change", function() {
-//                   let marketId = $(this).attr('id');
-//                   let itemId = marketId.replace('market', 'item');
-//                   loadItemList(itemId, $(this).val());
-//               });
-//           });
-
-
-//           function loadMarketOptions() {
-//               $.ajax({
-//                   url: "http://localhost:5001/data/market_list", // Adjust port if needed
-//                   method: "GET",
-//                   success: function(data) {
-//                       for (let i = 1; i <= 10; i++) {
-//                           let marketSelect = $('#market' + i);
-//                           marketSelect.empty(); // Clear existing options
-//                           marketSelect.append('<option value="" disabled selected>Select Market</option>');
-//                           data.forEach(function(market) {
-//                               marketSelect.append('<option value="' + market.code + '">' + market.text + '</option>');
-//                           });
-//                       }
-//                   },
-//                   error: function(jqXHR, textStatus, errorThrown) {
-//                       console.error("Error loading market options: " + textStatus, errorThrown);
-//                   }
-//               });
-//           }
-
-
-//           function loadItemList(itemId, selectedMarket) {
-//   $.ajax({
-//       url: "http://localhost:5001/data/item_list?market=" + encodeURIComponent(selectedMarket),
-//       method: "GET",
-//       success: function(data) {
-//           let itemSelect = $('#' + itemId);
-//           itemSelect.empty();
-//           itemSelect.append('<option value="" disabled selected>Select Item</option>');
-
-//           // Iterate over each optgroup
-//           $.each(data, function(optgroupLabel, options) {
-//               let optgroup = $('<optgroup>').attr('label', optgroupLabel);
-//               options.forEach(function(option) {
-//                   optgroup.append($('<option>').text(option));
-//               });
-//               itemSelect.append(optgroup);
-//           });
-//       },
-//       error: function(jqXHR, textStatus, errorThrown) {
-//           console.error("Error loading item options: " + textStatus, errorThrown);
-//       }
-//   });
-// }
-          
-
-
-// $(document).ready(function() {
-//   // Event listener for all item input fields
-//   $("input[id^='item']").on('input', function() {
-//     var inputId = $(this).attr('id');
-//     var rowIndex = inputId.replace('item', '');
-//     var market = $(`#market${rowIndex}`).val();
-//     var query = $(this).val();
-//     var dataListId = $(this).attr('list');
-
-//     if (query.length < 3) { // Only search if at least 3 characters are typed
-//       return;
-//     }
-
-//     // Adjust URL based on the selected market
-//     var url = 'http://localhost:5001/data/search_items';
-//     var params = { query: query, market: market };
-
-//     $.ajax({
-//       url: url,
-//       method: 'GET',
-//       data: params,
-//       success: function(data) {
-//         var dataList = $('#' + dataListId);
-//         dataList.empty(); // Clear existing options
-
-//         data.forEach(function(item) {
-//           dataList.append($('<option>').val(item));
-//         });
-//       },
-//       error: function(jqXHR, textStatus, errorThrown) {
-//         console.error("Error loading item options: " + textStatus, errorThrown);
-//       }
-//     });
-//   });
-// });
-
-
-
-
-// $(document).on('click', '.dropdown-item', function() {
-//   $('#itemSearch').val($(this).text());
-//   $('#itemDropdown').hide();
-// });
-
-
-
-// function toggleTimeframe1(){
-// }
-
-// function analize_portfolio(){
-    
-//     console.log("start data");
-//     $.ajax({
-//         method: "get",
-//         dataType: "json",
-//         url : "http://localhost:5001/data/efficient_frontier",
-//         success: function (data) {
-//             console.log(data);
-//         },
-//         error: function(jq, status, error){
-//             console.log(jq);
-//             console.log(status);
-//             console.log(error);
-//         }
-//     });
-// }
-
-
-
-// $(document).ready(function() {
-//   // Bind the validateAndSubmitForm function to the form's onsubmit event
-//   $(".pv-form").on('submit', function(event) {
-//       event.preventDefault(); // Prevent the default form submission
-//       validateAndSubmitForm();
-//   });
-
-//   // Function to check validations and submit form
-//   function validateAndSubmitForm() {
-//     var errors = [];
-
-//     // Check if all allocations have corresponding market and item
-//     $('.asset-row').each(function() {
-//         var market = $(this).find('select[name^="market"]').val();
-//         var item = $(this).find('input[name^="item"]').val();
-//         var itemOptions = $(`#itemList${$(this).index()}`).find('option').map(function() {
-//             return $(this).val();
-//         }).get();
-
-//         for (let i = 1; i <= 3; i++) {
-//             var allocation = parseFloat($(`input[name="allocation${$(this).index()}_${i}"]`).val()) || 0;
-//             if (allocation > 0 && (!market || !item)) {
-//                 errors.push('All allocations must have a corresponding market and item.');
-//                 break;
-//             }
-//             // Check if the entered item is in the list
-//             if (item && !itemOptions.includes(item)) {
-//                 errors.push(`Item "${item}" is not valid or not in the list.`);
-//                 break;
-//             }
-//         }
-//     });
-
-//     // Check if totals are 100
-//     ['total1', 'total2', 'total3'].forEach(function(totalId) {
-//         var totalValue = parseFloat($("#" + totalId).val()) || 0;
-//         if (totalValue !== 100 && totalValue !== 0) {
-//             errors.push(`Total allocation for Portfolio ${totalId.slice(-1)} must be exactly 100%.`);
-//         }
-//     });
-
-//     // Check if at least one total is 100
-//     var isOneTotalValid = ['total1', 'total2', 'total3'].some(function(totalId) {
-//         var totalValue = parseFloat($("#" + totalId).val()) || 0;
-//         return totalValue === 100;
-//     });
-
-//     if (!isOneTotalValid) {
-//         errors.push('At least one portfolio total must be exactly 100%.');
-//     }
-
-//     // Display errors or submit form
-//     if (errors.length > 0) {
-//         displayErrors(errors);
-//         hideResultSections();
-//     } else {
-//         $("#error-messages").hide();
-//         createResultSections();
-//         console.log('Form submitted'); // Replace with actual submission logic
-//     }
-// }
-
-// // Function to display errors
-// function displayErrors(errors) {
-//     var errorHtml = errors.map(function(error) {
-//         return `<div>${error}</div>`;
-//     }).join('');
-//     $("#error-messages").html(errorHtml).show();
-// }
-
-
-//   // Function to create result sections (only if validations pass)
-//   function hideResultSections() {
-//       // Clear previous results
-//       $("#result-content").empty();
-//   }
-// });
-
-
-// function createResultSections() {
-//   // Clear previous results
-//   $("#result-content").empty();
-
-//   // Iterate over each total field and create a section if there's a value
-//   ['total1', 'total2', 'total3'].forEach(function(totalId, portfolioIndex) {
-//       var totalValue = parseFloat($("#" + totalId).val()) || 0;
-//       if (totalValue > 0) {
-//           // Start constructing the HTML for the section
-//           var sectionHtml = `<div class="card my-3 result-section">
-//                                 <div class="card-header bg-gradient fw-bold">
-//                                     <h3>Portfolio ${portfolioIndex + 1}</h3>
-//                                 </div>
-//                                 <div class="card-body">
-//                                     <div class="row" style="margin: 0">
-//                                         <div class="col-md-8" style="padding-left: 0; padding-right: 15px;">
-//                                             <table class="table table-striped table-sm">
-//                                                 <thead>
-//                                                     <tr>
-//                                                         <th>Market</th>
-//                                                         <th>Name</th>
-//                                                         <th class="numberCell">Allocation</th>
-//                                                     </tr>
-//                                                 </thead>
-//                                                 <tbody class="table-group-divider">`;
-
-//           // Iterate over each asset row to extract and add the data
-//           $('.asset-row').each(function(rowIndex) {
-//               if (rowIndex > 0) { // Skip the header row
-//                   var market = $(`#market${rowIndex}`).val();
-//                   var item = $(`#item${rowIndex}`).val();
-//                   var allocation = $(`#allocation${rowIndex}_${portfolioIndex + 1}`).val();
-
-//                   // Only add a row if market, item, and allocation are provided
-//                   if (market && item && allocation) {
-//                       sectionHtml += `<tr>
-//                                           <td>${market}</td>
-//                                           <td>${item}</td>
-//                                           <td class="numberCell">${allocation}%</td>
-//                                       </tr>`;
-//                   }
-//               }
-//           });
-
-//           // Close the table and the rest of the HTML structure
-//           sectionHtml += `</tbody></table></div>
-//                            <div class="col-md-4" style="padding-left: 100px ; padding-top: 50px">
-//                                <div id="chartDiv${portfolioIndex + 1}" style="min-width: 250px; min-height: 250px; max-width: 380px; max-height: 380px; overflow: hidden;">
-//                                    <!-- Chart will be inserted here -->
-//                                </div>
-//                            </div>
-//                        </div>
-//                    </div>
-//                </div>`;
-
-//           $("#result-content").append(sectionHtml);
-//           generateCharts(portfolioIndex + 1);
-
-//       }
-//   });
-// }
 
