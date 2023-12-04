@@ -1,0 +1,1 @@
+['Apple Inc_AAPL', '삼성전자', 'ASA Gold And Precious Metals Limited_ASA']
