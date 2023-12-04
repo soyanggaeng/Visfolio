@@ -76,7 +76,7 @@ const colorScale = d3.scaleThreshold()
 
 function mouseOver(event, d) {
     d3.select(this)
-        .style("opacity", 1)
+        .style("opacity", 0.7)
         .style("stroke", "black") 
         .style("stroke-width", 2);
 
@@ -92,13 +92,12 @@ function mouseOver(event, d) {
 
 function mouseLeave() {
     d3.select(this)
-        .style("opacity", 0.7) // 원래의 opacity 값으로 변경
+        .style("opacity", 1) // 원래의 opacity 값으로 변경
         .style("stroke", "transparent");
 
     tooltip.style("visibility", "hidden")
            .style("opacity", 0);
 }
-
 
 Promise.all([
     d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson"),
