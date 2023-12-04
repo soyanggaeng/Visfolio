@@ -1,0 +1,23 @@
+body {
+    background-color: black;
+}
+.tooltip {
+    color: black;
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+.Country {
+    /* Add styles for countries, e.g., stroke, opacity, etc. */
+}
+
+/* Additional styles as needed */
+
+h2 {
+    color: white; /* Change text color to white for visibility */
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* Other styling as needed */
+}
