@@ -4,16 +4,16 @@ service: default
 
 instance_class: F1
 automatic_scaling:
-  target_cpu_utilization: 0.8
+  target_cpu_utilization: 0.8       # default value 0.6
   min_instances: 1
   max_instances: 1
-  min_pending_latency: 30ms
-  max_pending_latency: automatic
+  min_pending_latency: 30ms         # default value 30ms
+  max_pending_latency: automatic    # default value 30ms
   max_concurrent_requests: 10
 
 env_variables:
   NODE_ENV: development
-  PORT: 5000
+  PORT: 8080
 
 handlers:
   - url: /
