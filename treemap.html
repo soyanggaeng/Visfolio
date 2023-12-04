@@ -11,27 +11,42 @@
 </head>
 <body>
     <header id="header-placeholder"></header>
-    <div id="columns-container">
-        <div class="column" id="left-column">
-            <h3>KOSPI</h3>
-            <div id="treemapKospi" class="treemap-container"></div>
-    
-            <h3>KOSDAQ</h3>
-            <div id="treemapKosdaq" class="treemap-container"></div>
-    
-            <h3>KONEX</h3>
-            <div id="treemapKonex" class="treemap-container"></div>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 2023.11.09. Global Stock Market Overview </title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/treemap_style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+</head>
+<body>
+    <header id="header-placeholder"></header>
+    <h2>Global Financial Market on ${showDate}</h2> 
+    <div id="rows-container">
+        <div class="row">
+            <div class="treemap-container" id="treemapKospi">
+                <h3>KOSPI</h3>
+            </div>
+            <div class="treemap-container" id="treemapKosdaq">
+                <h3>KOSDAQ</h3>
+            </div>
+            <div class="treemap-container" id="treemapKonex">
+                <h3>KONEX</h3>
+            </div>
         </div>
-    
-        <div class="column" id="right-column">
-            <h3>NASDAQ</h3>
-            <div id="treemapNasdaq" class="treemap-container"></div>
-    
-            <h3>NYSE</h3>
-            <div id="treemapNyse" class="treemap-container"></div>
-    
-            <h3>AMEX</h3>
-            <div id="treemapAmex" class="treemap-container"></div>
+        <div class="row">
+            <div class="treemap-container" id="treemapNasdaq">
+                <h3>NASDAQ</h3>
+            </div>
+            <div class="treemap-container" id="treemapNyse">
+                <h3>NYSE</h3>
+            </div>
+            <div class="treemap-container" id="treemapAmex">
+                <h3>AMEX</h3>
+            </div>
         </div>
     </div>
         
@@ -40,3 +55,4 @@
     <script src="scripts.js"></script>
 </body>
 </html>
+        
