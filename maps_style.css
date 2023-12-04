@@ -8,16 +8,33 @@ body {
     border-radius: 5px;
     border: 1px solid grey;
 }
-.Country {
-    /* Add styles for countries, e.g., stroke, opacity, etc. */
-}
 
-/* Additional styles as needed */
+svg {
+    display: block;
+    margin: auto;
+  }
+
 
 h2 {
     color: white; /* Change text color to white for visibility */
     text-align: left;
     margin-top: 20px;
     margin-bottom: 20px;
-    /* Other styling as needed */
+}
+
+
+#infoWindow {
+    position: fixed; 
+    right: 0; 
+    top: 10%;
+    width: 300px; 
+    height: 90%; 
+    background-color: gainsboro;
+    box-shadow: -5px 0px 5px 0px rgba(0,0,0,0.2); 
+    transition: transform 0.3s ease-in-out; 
+    transform: translateX(0%); 
+    font-size: 18px;
+  }
+#infoWindow strong {
+    font-size: 22px; /* <strong> 태그 내의 텍스트 크기를 18px로 설정 */
 }
