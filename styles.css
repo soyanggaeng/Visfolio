@@ -414,3 +414,28 @@ footer {
         height: 35px; /* Smaller arrows on mobile */
     }
 }
+
+.row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.treemap-container h3 {
+    color: white;
+    height: 30px;
+    line-height: 30px; 
+  
+}
+
+.treemap-container {
+    padding-top: 30px; 
+ 
+}
+
+h2 {
+    color: white; /* Change text color to white for visibility */
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
