@@ -92,13 +92,13 @@ function mouseOver(event, d) {
 
 function mouseLeave() {
     d3.select(this)
-        .style("opacity", 0.8)
-        .style("stroke", "transparent")
-        .style("stroke-width", 0)
+        .style("opacity", 0.7) // 원래의 opacity 값으로 변경
+        .style("stroke", "transparent");
 
     tooltip.style("visibility", "hidden")
            .style("opacity", 0);
 }
+
 
 Promise.all([
     d3.json("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson"),
