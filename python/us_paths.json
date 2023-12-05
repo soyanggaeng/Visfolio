@@ -1,0 +1,5 @@
+{
+    "nyse": "data_bucket_visfolio/NYSE",
+    "nasdaq": "data_bucket_visfolio/Nasdaq",
+    "amex": "data_bucket_visfolio/AMEX"
+}

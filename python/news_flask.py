@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS  # Import CORS
 from news_crawling_v5 import scrape_news, preprocess_and_generate_wordcloud
 import os
 import json
 
 app = Flask(__name__)
+CORS(app)  # Enable CORS for all routes
 
 @app.route('/scrape', methods=['GET'])
 def scrape_endpoint():
@@ -31,4 +33,6 @@ def scrape_endpoint():
     return jsonify(news_data)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))  # Use the PORT environment variable if it exists, otherwise default to 8080
+    app.run(host='0.0.0.0', port=port, debug=True)
+

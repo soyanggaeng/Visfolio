@@ -11,26 +11,17 @@
 <body>
   <header id="header-placeholder"></header>
   <main>
-    <h2>Global Financial Market on ${latelyDate}</h2>  <!-- Add this line -->
+    <h2>Global Financial Market on ${showDate}</h2> 
     <!-- SVG container for the D3 world map -->
-    <svg id="my_dataviz" width="1000" height="800"></svg>
-
-    <!-- Sliding window for additional information (adjust as needed) -->
-    <div id="sliding-window">
-      <div id="country-name"></div>
-      <button id="close-btn">Close</button>
-      <div id="latest-date"></div>
-      <div id="latest-close"></div>
-      <div id="history-close"></div>
-      <div id="latest-currency"></div>
-      <div id="history-currency"></div>
-      <!-- Add more elements here if needed -->
-    </div>
+    <svg width="1200" height="1200"></svg>
+    <div id="infoWindow" style="display: none;"></div>
   </main>
   <footer id="footer-placeholder"></footer>
   <script src="scripts.js"></script>
 
   <!-- Tooltip container for displaying financial data -->
   <div class="tooltip" style="position: absolute; display: none;"></div>
+  
 </body>
 </html>
+

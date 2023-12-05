@@ -1,3 +1,10 @@
+const showDate = "2023-12-04";
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelector("h2").textContent = `Global Financial Market on ${showDate}`;
+});
+
+document.querySelector("h2").textContent = `Global Financial Market on ${showDate}`;
+
 // Set dimensions and margins for the treemap
 const width = 300;
 const height = 400;
@@ -49,7 +56,7 @@ function createTreemap(data, containerId) {
             tooltip.transition()
                 .duration(200)
                 .style("opacity", .9);
-            tooltip.html(`Name: ${d.data.name}<br>Market Cap: ${d.data.MC}<br>Change: ${d.data.Change}%`)
+            tooltip.html(`Name: ${d.data.name}<br>Market Cap: ${d.data.MC.toLocaleString()}<br>Change: ${d.data.Change.toLocaleString()}%`)
                 .style("left", (event.pageX) + "px")
                 .style("top", (event.pageY - 28) + "px");
         })

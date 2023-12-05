@@ -1,0 +1,5 @@
+{
+    "kospi": "data_bucket_visfolio/Kospi",
+    "kosdaq": "data_bucket_visfolio/Kosdaq",
+    "konex": "data_bucket_visfolio/KONEX"
+}
