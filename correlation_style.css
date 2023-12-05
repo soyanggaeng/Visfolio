@@ -1,3 +1,63 @@
+/* 내가 추가한 스타일 */
+
+#heatmap {
+    width: 520px;
+    height: 470px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-left: 20px; 
+}
+
+ /* Define the heatmap container size */
+ .heatmap-container {
+    width: 600px;
+    height: 400px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+
+/* network graph */
+
+#network-graph {
+    width: 1000px;
+    height: 900px;
+    /* background-color: #ffffff; */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-left: 80px; 
+    opacity: 1;
+}
+
+.links line {
+    stroke: #999;
+    stroke-opacity: 0.6;
+}
+  
+.nodes circle {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}
+
+.tooltip {
+position: absolute;
+background: #f7f7f7;
+border: 1px solid #ccc;
+padding: 10px;
+pointer-events: none;
+display: none;  
+/* Initially hide tooltip */
+}
+
+
+
+/* 기본 스타일 */
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -62,39 +122,7 @@ main {
 
 }
 
-#my_dataviz {
-    width: 550px;
-    height: 560px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 2rem;
-    border-radius: 8px;
-}
 
-/* Define the heatmap container size */
-.heatmap-container {
-    width: 600px;
-    height: 400px;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 2rem;
-    border-radius: 8px;
-}
-
-/* Define the heatmap container size */
-.network-container {
-    width: 600px;
-    height: 400px;
-}
-/* 
-.backtest-container {
-    max-width: 1200px;
-    margin: auto;
-    background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 2rem;
-    border-radius: 8px;
-} */
 
 .main-title {
     color: #ffffff;
@@ -256,5 +284,3 @@ td.numberCell, th.numberCell, th.numberCellNW {
         max-width: 100%; /* On small screens, the columns take full width */
     }
 }
-
-
