@@ -167,11 +167,11 @@ function getAdjCloseValues(country) {
                     tooltipContent += ` <span style="color: blue;">&#9660; ${day_growth_currency.toLocaleString()}</span><br>`;
                 }
             } else {
-                tooltipContent += `Currency data not available<br>`;
+                //tooltipContent += `Currency data not available<br>`;
             }
         }
     
-        return tooltipContent || `${country} Data not available`;
+        return tooltipContent //|| `${country} Data not available`;
     }
 
 function mouseOver(event, d) {
