@@ -307,6 +307,444 @@
                                 <div class="col-md-2">  
                                     <div id="result-content1" style="display: none;">
                                         <div class="card-body">
+                                            <h2>Results</h2>
+                                            <div id="heatmap"></div>
+                                        </div>   
+                                    </div>              
+                                    </div>
+                                </div>
+
+                          </div>
+                        </div>
+                            
+        
+                      <div class="row form-buttons">
+                        <div class="offset-md-4 col-md-9">
+                        <input type="submit" id="submitButton1" value="Visulalize Correlation" class="btn btn-primary" autocomplete="off">
+
+                        <input type="button" id="cancelButton1" value="Cancel" class="btn btn-secondary" onclick="window.location.reload(true)" autocomplete="off">
+                        </div>
+                      </div>
+                      <div class="col-md-8"><br>
+                      </div>
+                            
+                    <!-- </form> -->
+                  </div>
+            </div>
+          </div>
+
+          <!-- Network visualization section -->
+          <div id="networkSection">
+            <!-- <h2>Network Visualization</h2> -->
+            <div class="card my-3 form-section">
+              <div class="card-header bg-gradient fw-bold">
+                  <h3>Network Visualization</h3></div>
+                  <div class="card-body">
+                    <!-- Content for network visualization goes here -->
+                    <!-- <form action="" method="post" class="pv-form" novalidate autocomplete="off">
+
+                    </form> -->
+                    
+                    <div class="row topBorder bottomBorder asset-row">
+                        <div class="col-md-6 separateTop text-nowrap">
+                            <b>Select 2 sectors in Korea Kospi for Network Graph</b>&nbsp;     
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="sticky-top">
+                                <!-- <div class="col-md-4"> -->
+                                    <div class="row asset-row">
+                                      <div class="col-md-6">
+                                        <div class="row asset-row">
+                                            <div class="col-md-2 separateTop">Sector 1</div>
+                                            <div class="col-md-4 asset-column">                          
+                                              <!-- Dropdown Menu 1 -->
+                                              <div class="select-sector">
+                                                  <select id="sector1" name="sector1" class="form-control form-select">
+                                                      <option value="" disabled selected>Sector</option>
+                                                  </select>
+                                              </div>
+                                            </div> 
+                                        </div>
+                                        <div class="row asset-row">
+                                            <div class="col-md-2 separateTop">Sector 2</div>
+                                            <div class="col-md-4 asset-column">
+                                            <!-- Dropdown Menu 1 -->
+                                            <div class="select-sector">
+                                                <select id="sector2" name="sector2" class="form-control form-select">
+                                                    <option value="" disabled selected>Sector</option>
+                                                </select>
+                                            </div>
+                                          </div>
+                                        </div>
+                                         
+                                      </div>                                        
+                                    </div>
+                                    
+                                <!-- </div> -->
+                            </div>
+
+                            <div class="row form-buttons">
+                                <div class="offset-md-4 col-md-9">
+                                <input type="submit" id="submitButton2" value="Visualize Network" class="btn btn-primary" autocomplete="off">
+
+                                <input type="button" id="cancelButton2" value="Cancel" class="btn btn-secondary" onclick="window.location.reload(true)" autocomplete="off">
+                                </div>
+                            </div>
+
+                            </div>
+                            <div class="col-md-8">
+
+                                <div id="result-content2" style="display: none;" >
+                                    <h2>Results</h2>
+                                    <!-- <svg width="800" height="800"></svg> -->
+                                    <!-- <div class="graph-parent" style="position: relative;"> -->
+                                    <svg id="network-graph" width="800" height="800"></svg>
+                                    <!-- </div> -->
+                                </div>
+                                
+                            <!-- <div style="display: none;" id="result-content" class="tab-content"> -->
+                                <!-- <div class="offset-md-3 col-md-9">                 -->
+                                <!-- <h2 class="anchor result-header" id="analysisResults">
+                                    Network Visualization Results
+                                </h2>
+                                <div> -->
+                            </div>
+                                    
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+            </div>
+          </div>
+
+        </div>
+      </div>  
+    
+    </main>
+    <footer id="footer-placeholder"></footer>
+    <!-- <script src="https://cdn.rawgit.com/Gmousse/dataframe-js/master/dist/dataframe.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/danfojs@1.1.2/lib/bundle.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="scripts.js"></script>
+    <script src="correlation.js"></script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correlation Visualization - Visfolio</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="correlation_style.css">
+    <!-- <script src="https://d3js.org/d3.v7.min.js"></script> -->
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <!-- 아래 주석 풀면 그래프 안 그려짐 -->
+    <!-- <script src="https://d3js.org/d3.v6.js"></script>  -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+
+<body>
+    <header id="header-placeholder"></header>
+    <main>
+      <div class = "Correlation">
+        <h1>Correlation Visualization</h1>
+        <div class="Overview">
+          <div id="error-messages" class="alert alert-danger" style="display: none;">
+            <!-- Error messages will be added here -->
+          </div>
+
+          <!-- Heatmap visualization section -->
+          <div id="heatmapSection">
+            <!-- <h2>Heatmap Visualization</h2> -->
+            <div class="card my-3 form-section">
+              <div class="card-header bg-gradient fw-bold">
+                  <h3>Heatmap Visualization</h3></div>
+                  <div class="card-body">
+                    <!-- <form action="" method="post" class="pv-form" novalidate autocomplete="off">  -->
+                        <div class="row">
+                          <div class="col-md-4">
+                              <div class="label-column">
+                                  <label for="startYearSelect" class="col-form-label">
+                                      Start Year
+                                  </label>
+                                  <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="Start year for correlation"></span>
+                              </div>
+                          </div>
+                          <div class="col-md-5">
+                              <div class="select-column">
+                                  <div class="select-parent">
+                                      <select id="startYearSelect" name="startYear" class="form-control form-select custom-select">
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-4">
+                              <div class="label-column">
+                                  <label for="endYearSelect" class="col-form-label">
+                                      End Year
+                                  </label>
+                                  <span class="fas fa-info-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="End year for correlation"></span>
+                              </div>
+                          </div>
+                          <div class="col-md-5">
+                              <div class="select-column">
+                                  <div class="select-parent">
+                                      <select id="endYearSelect" name="endYear" class="form-control form-select custom-select">
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div id="pfSection" class="portfolio-section pv-allow-expansion pv-multiple pv-allow-short" data-count="3" data-maxrows="150" data-advanced="false">
+                          <div class="row topBorder bottomBorder asset-row">
+                              <div class="col-md-6 separateTop text-nowrap">
+                                  <b>Select 10 Assets for correlation</b>&nbsp;     
+                              </div>
+                          </div>
+            
+                          <div class="row">
+                            <div class="col-md-6">
+                                <div class="row asset-row">
+                                    <div class="col-md-2 separateTop">Asset 1</div>
+                                      <div class="col-md-9 asset-column">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <!-- Dropdown Menu 1 -->
+                                            <div class="select-stock">
+                                                <select id="market1" name="market1" class="form-control form-select">
+                                                    <option value="" disabled selected>Market</option>
+                                                </select>
+                                            </div>
+                                        
+                                            <!-- Dropdown Menu 2 -->
+                                            <div class="select-stock">
+                                            <input type="text" id="item1" name="item1" class="form-control" placeholder="Enter partial name or ticker..." list="itemList1" autocomplete="off">
+                                            <datalist id="itemList1">
+                                                <!-- Autocomplete options will be populated here by JavaScript -->
+                                            </datalist>
+                                            </div>
+
+                                        </div>
+                                      </div> 
+                                </div>
+                                <div class="row asset-row">
+                                    <div class="col-md-2 separateTop">Asset 2</div>
+                                    <div class="col-md-9 asset-column">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <!-- Dropdown Menu 1 -->
+                                            <div class="select-stock">
+                                            <select id="market2" name="market2" class="form-control form-select">
+                                                <option value="" disabled selected>Market</option>
+                                            </select>
+                                        </div>
+                                        
+                                            <!-- Dropdown Menu 2 -->
+                                            <div class="select-stock">
+                                            <input type="text" id="item2" name="item2" class="form-control" placeholder="Enter partial name or ticker..." list="itemList2" autocomplete="off">
+                                            <datalist id="itemList2">
+                                                <!-- Autocomplete options will be populated here by JavaScript -->
+                                            </datalist>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row asset-row">
+                                    <div class="col-md-2 separateTop">Asset 3</div>
+                                    <div class="col-md-9 asset-column">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <!-- Dropdown Menu 1 -->
+                                            <div class="select-stock">
+                                                <select id="market3" name="market3" class="form-control form-select">
+                                                    <option value="" disabled selected>Market</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        
+                                            <!-- Dropdown Menu 2 -->
+                                            <div class="select-stock">
+                                            <input type="text" id="item3" name="item3" class="form-control" placeholder="Enter partial name or ticker..." list="itemList3" autocomplete="off">
+                                            <datalist id="itemList3">
+                                                <!-- Autocomplete options will be populated here by JavaScript -->
+                                            </datalist>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row asset-row">
+                                    <div class="col-md-2 separateTop">Asset 4</div>
+                                    <div class="col-md-9 asset-column">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <!-- Dropdown Menu 1 -->
+                                            <div class="select-stock">
+                                                <select id="market4" name="market4" class="form-control form-select"">
+                                                    <option value="" disabled selected>Market</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        
+                                            <!-- Dropdown Menu 2 -->
+                                            <div class="select-stock">
+                                            <input type="text" id="item4" name="item4" class="form-control" placeholder="Enter partial name or ticker..." list="itemList4" autocomplete="off">
+                                            <datalist id="itemList4">
+                                                <!-- Autocomplete options will be populated here by JavaScript -->
+                                            </datalist>
+                                        </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="row asset-row">
+                                    <div class="col-md-2 separateTop">Asset 5</div>
+                                    <div class="col-md-9 asset-column">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <!-- Dropdown Menu 1 -->
+                                            <div class="select-stock">
+                                                <select id="market5" name="market5" class="form-control form-select">
+                                                    <option value="" disabled selected>Market</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        
+                                            <!-- Dropdown Menu 2 -->
+                                            <div class="select-stock">
+                                            <input type="text" id="item5" name="item5" class="form-control" placeholder="Enter partial name or ticker..." list="itemList5" autocomplete="off">
+                                            <datalist id="itemList5">
+                                                <!-- Autocomplete options will be populated here by JavaScript -->
+                                            </datalist>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row asset-row">
+                                    <div class="col-md-2 separateTop">Asset 6</div>
+                                    <div class="col-md-9 asset-column">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <!-- Dropdown Menu 1 -->
+                                            <div class="select-stock">
+                                                <select id="market6" name="market6" class="form-control form-select">
+                                                    <option value="" disabled selected>Market</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        
+                                            <!-- Dropdown Menu 2 -->
+                                            <div class="select-stock">
+                                            <input type="text" id="item6" name="item6" class="form-control" placeholder="Enter partial name or ticker..." list="itemList6" autocomplete="off">
+                                            <datalist id="itemList6">
+                                                <!-- Autocomplete options will be populated here by JavaScript -->
+                                            </datalist>
+                                        </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="row asset-row">
+                                    <div class="col-md-2 separateTop">Asset 7</div>
+                                    <div class="col-md-9 asset-column">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <!-- Dropdown Menu 1 -->
+                                            <div class="select-stock">
+                                                <select id="market7" name="market7" class="form-control form-select">
+                                                    <option value="" disabled selected>Market</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        
+                                            <!-- Dropdown Menu 2 -->
+                                            <div class="select-stock">
+                                            <input type="text" id="item7" name="item7" class="form-control" placeholder="Enter partial name or ticker..." list="itemList7" autocomplete="off">
+                                            <datalist id="itemList7">
+                                                <!-- Autocomplete options will be populated here by JavaScript -->
+                                            </datalist>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row asset-row">
+                                    <div class="col-md-2 separateTop">Asset 8</div>
+                                    <div class="col-md-9 asset-column">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <!-- Dropdown Menu 1 -->
+                                            <div class="select-stock">
+                                                <select id="market8" name="market8" class="form-control form-select" onchange="toggleTimeframe1()">
+                                                    <option value="" disabled selected>Market</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        
+                                            <!-- Dropdown Menu 2 -->
+                                            <div class="select-stock">
+                                            <input type="text" id="item8" name="item8" class="form-control" placeholder="Enter partial name or ticker..." list="itemList8" autocomplete="off">
+                                            <datalist id="itemList8">
+                                                <!-- Autocomplete options will be populated here by JavaScript -->
+                                            </datalist>
+                                        </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="row asset-row">
+                                    <div class="col-md-2 separateTop">Asset 9</div>
+                                    <div class="col-md-9 asset-column">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <!-- Dropdown Menu 1 -->
+                                            <div class="select-stock">
+                                                <select id="market9" name="market9" class="form-control form-select">
+                                                    <option value="" disabled selected>Market</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        
+                                            <!-- Dropdown Menu 2 -->
+                                            <div class="select-stock">
+                                            <input type="text" id="item9" name="item9" class="form-control" placeholder="Enter partial name or ticker..." list="itemList9" autocomplete="off">
+                                            <datalist id="itemList9">
+                                                <!-- Autocomplete options will be populated here by JavaScript -->
+                                            </datalist>
+                                        </div>
+                                        </div>
+                                    </div>   
+                                </div>
+                                <div class="row asset-row">
+                                    <div class="col-md-2 separateTop">Asset 10</div>
+                                    <div class="col-md-9 asset-column">
+                                        <div class="input-group flex-nowrap smallMargin">
+                                            <!-- Dropdown Menu 1 -->
+                                            <div class="select-stock">
+                                                <select id="market10" name="market10" class="form-control form-select">
+                                                    <option value="" disabled selected>Market</option>
+                                                    
+                                                </select>
+                                            </div>
+                                        
+                                            <!-- Dropdown Menu 2 -->
+                                            <div class="select-stock">
+                                            <input type="text" id="item10" name="item10" class="form-control" placeholder="Enter partial name or ticker..." list="itemList10" autocomplete="off">
+                                            <datalist id="itemList10">
+                                                <!-- Autocomplete options will be populated here by JavaScript -->
+                                            </datalist>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- 여기서부터 버튼을 누르면 나오도록 동작! -->
+                                <div class="col-md-2">  
+                                    <div id="result-content1" style="display: none;">
+                                        <div class="card-body">
                                             <div id="heatmap"></div>
                                         </div>   
                                     </div>              
@@ -432,7 +870,7 @@
     <script src="scripts.js"></script>
     <script src="correlation.js"></script>
 </body>
-</html>
+</html> -->
 
 
 
