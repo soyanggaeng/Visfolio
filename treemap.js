@@ -72,8 +72,12 @@ function createTreemap(data, containerId) {
         .append("text")
         .attr("x", d => d.x0 + 5)    
         .attr("y", d => d.y0 + 20)    
-        .text(d => d.data.name)
-        .style("font-size", d => `${Math.min(20, (d.x1 - d.x0) / 5)}px`) // Dynamic font size
+        .text(d => {
+            const maxChars = (d.x1 - d.x0) / 10; 
+            let name = d.data.name;
+            return name.length > maxChars ? name.substring(0, maxChars) + '...' : name;
+        })
+        .style("font-size", d => `${Math.min(20, (d.x1 - d.x0) / 5)}px`)
         .attr("fill", "white")
         .call(wrap, (d) => d.x1 - d.x0); // Wrap text function call
 }
