@@ -73,7 +73,7 @@ function createTreemap(data, containerId) {
         .attr("x", d => d.x0 + 5)    
         .attr("y", d => d.y0 + 20)    
         .text(d => {
-            const maxChars = (d.x1 - d.x0) / 10; 
+            const maxChars = (d.x1 - d.x0) / 15; 
             let name = d.data.name;
             return name.length > maxChars ? name.substring(0, maxChars) + '...' : name;
         })

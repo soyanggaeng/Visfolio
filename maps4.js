@@ -207,7 +207,7 @@ function countryClick(event, d) {
 
 
     if (!jsonData[countryName]) {
-        infoWindow.html(`${countryName} Data not available`).style("display", "block");
+        //infoWindow.html(`${countryName} Data not available`).style("display", "block");
         return;
     }
 
