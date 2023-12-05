@@ -954,7 +954,7 @@ svg.selectAll(".grid path")
   svg.append("text")
       .attr("text-anchor", "end")
       .attr("x", width)
-      .attr("y", height + margin.top + 10)
+      .attr("y", height + margin.top)
       .attr("fill", "white") // Set text color to white
       .text("Volatility")
       .style("font-size", "12px"); // Set font size for x-axis labels
@@ -962,9 +962,8 @@ svg.selectAll(".grid path")
   svg.append("text")
       .attr("text-anchor", "end")
       .attr("transform", "rotate(-90)")
-      .attr("y", -margin.left + 20)
-      .attr("y", -margin.right + 10)
-      .attr("x", -margin.top +20)  // Adjust this for top margin
+      .attr("y", -50)
+      .attr("x", 0)  // Adjust this for top margin
       .attr("fill", "white") // Set text color to white
       .text("Return")
       .style("font-size", "12px"); // Set font size for x-axis labels

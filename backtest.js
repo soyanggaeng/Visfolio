@@ -119,7 +119,6 @@ function showResults(data) {
       tbody.appendChild(row);
     }
 
-
   });
 
   table.appendChild(tbody);
@@ -127,6 +126,7 @@ function showResults(data) {
   resultContent.appendChild(tableDiv);
 
   console.log("Table created");
+
 
   
   // Create a new card for the graph
@@ -142,8 +142,8 @@ function showResults(data) {
   graphCard.appendChild(graphCardHeader);
 
   // Set the dimensions and margins of the graph
-  const margin = { top: 50, right: 100, bottom: 100, left: 100 },
-    width = 1500 - margin.left - margin.right,
+  const margin = { top: 50, right: 100, bottom: 100, left: 120 },
+    width = 1700 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
   // Append the shared svg object for the graph to the graphCard
@@ -152,19 +152,21 @@ function showResults(data) {
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", `translate(${margin.left},${margin.top})`);
 
 
   const allData = Object.values(data).flatMap(portfolio => portfolio.js_data);
   const yMax = d3.max(allData, d => +d.return);
+  const yMin = d3.min(allData, d => +d.return) || 0; // Set to 0 if there are no negative values
   const parseTime = d3.timeParse("%Y-%m-%d");
     
   // Create scales
   const x = d3.scaleTime()
     .domain(d3.extent(allData, d => parseTime(d.date)))
     .range([0, width]);
+
   const y = d3.scaleLinear()
-    .domain([0, yMax])
+   .domain([yMin-1000, yMax+1000])
     .range([height, 0]);
 
   // Draw X and Y axes here, only once
@@ -173,53 +175,67 @@ function showResults(data) {
     .call(d3.axisBottom(x))
     .style("font-size", "12px"); // Change font size for X-axis tick labels
 
-  svg.append("g")
-    .call(d3.axisLeft(y))
-    .style("font-size", "12px"); // Change font size for X-axis tick labels
+    const yMaxTickValue = y.ticks()[y.ticks().length - 1]; // Get the last (maximum) tick value
 
-    
+    svg.append("g")
+      .attr("class", "grid")
+      .call(d3.axisLeft(y)
+          .tickSize(-width)
+      )
+      .selectAll(".tick line")
+      .each(function(d) {
+        if (d === yMaxTickValue) {
+          d3.select(this).style("stroke", "none"); // Make the top grid line invisible
+        } else {
+          d3.select(this).style("stroke", "#778899").style("stroke-width", "0.3px");
+        }
+      });
+
   
     // Add X axis label
   svg.append("text")
-  .attr("transform", `translate(${width / 2}, ${height + margin.top + 20})`)
+  .attr("transform", `translate(${width-20}, ${height + margin.top-10})`)
   .style("text-anchor", "middle")
   .style("fill", "white") // Set label color to white
   .text("Date") // Label for the X axis
-  .style("font-size", "14px"); // Change font size for X-axis title
+  .style("font-size", "12px"); // Change font size for X-axis title
 
 
   // Add Y axis label
   svg.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 0 - margin.left + 20)
-    .attr("x", 0 - (height / 2))
+    .attr("y", 0 - margin.left + 60)
+    .attr("x", 0 - 50)
     .attr("dy", "1em")
     .style("text-anchor", "middle")
     .style("fill", "white") // Set label color to white
     .text("Portfolio Balance ($)") // Label for the Y axis
-    .style("font-size", "14px"); // Change font size for X-axis title
+    .style("font-size", "12px"); // Change font size for X-axis title
 
-  
-  // Add Y axis grid lines
-  svg.append("g")
-  .attr("class", "grid")
-  .call(d3.axisLeft(y)
-      .tickSize(-width)
-      .tickFormat("")
-  )
-  .selectAll(".tick line")
-  .style("stroke", "#778899") // Lighten the grid lines
-  .style("stroke-width", "0.3px"); // Optional: Adjust the stroke width
 
-  
+const xDomain = d3.extent(allData, d => parseTime(d.date));
+const maxXValue = xDomain[1]; // This is the maximum date
+svg.append("line")
+  .attr("x1", x(maxXValue)) // Position the line at maximum X value
+  .attr("y1", 0) // Start at the top of the graph
+  .attr("x2", x(maxXValue)) // Same X position to make the line vertical
+  .attr("y2", height) // End at the bottom of the graph
+  .attr("stroke", "#ffffff") // Set the color of the line
+  .attr("stroke-width", "1.5px"); // Set the width of the line
 
-  // Draw each portfolio's line on the shared SVG
+  const tooltips = Object.keys(data).map((_, index) => 
+    d3.select("body").append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0)
+  );
+
   Object.keys(data).forEach((portfolioKey, index) => {
-    const portfolioData = data[portfolioKey];
-    if (portfolioData.js_data && portfolioData.js_data.length > 0) {
-      drawGraph(svg, portfolioData.js_data, x, y, index); // Pass x and y scales
-    }
+    const portfolioData = data[portfolioKey].js_data;
+    console.log(portfolioData)
     
+    if (portfolioData && portfolioData.length > 0) {
+      drawGraph(svg, portfolioData, x, y, index, width, height, tooltips[index]);
+    }
   });
 
 
@@ -240,21 +256,20 @@ bargraphCardHeader.appendChild(bargraphCardTitle);
 bargraphCard.appendChild(bargraphCardHeader);
 
  // Specify the chart’s dimensions.
- const width_bar =1500;
+ const width_bar =1600;
  const height_bar = 500;
  const marginTop_bar = 20;
  const marginRight_bar = 50;
- const marginBottom_bar = 50;
- const marginLeft_bar = 100;
+ const marginBottom_bar = 70;
+ const marginLeft_bar = 120;
 
-
- 
   // Process and combine data for all portfolios
   const allPortfoliosData = Object.values(data).flatMap((portfolio, index) => 
     portfolio.annual_ret.map(d => ({ year: d.year, return: d.return, portfolio: 'Portfolio ' + (index + 1) }))
   );
-  
 
+  console.log(allPortfoliosData)
+  
   // Ensure there's enough data to create scales
   if (allPortfoliosData.length === 0) {
     // Handle case with no data
@@ -272,7 +287,6 @@ const portfolioColors = d3.scaleOrdinal()
   .range(d3.schemeTableau10); // This is an example color scheme. You can choose any other or define a custom array of colors
 
 
-
  // Create main x-scale for years
  const x0 = d3.scaleBand()
    .domain([...new Set(allPortfoliosData.map(d => d.year))])
@@ -285,9 +299,9 @@ const portfolioColors = d3.scaleOrdinal()
    .rangeRound([0, x0.bandwidth()])
    .padding(0.2);
 
- // Create y-scale
- const y_bar = d3.scaleLinear()
-   .domain([d3.min(allPortfoliosData, d => d.return), d3.max(allPortfoliosData, d => d.return)]).nice()
+// Create y-scale
+const y_bar = d3.scaleLinear()
+   .domain(yDomain).nice()  // Dynamically setting the domain
    .range([height_bar - marginBottom_bar, marginTop_bar]);
 
 
@@ -309,33 +323,75 @@ const portfolioColors = d3.scaleOrdinal()
      .attr("class", "year-group")
      .attr("transform", d => `translate(${x0(d.year)},0)`);
 
- yearGroups.selectAll("rect")
-   .data(d => [{ key: d.portfolio, value: d.return }])
-   .enter().append("rect")
-     .attr("x", d => x1(d.key))
-     .attr("y", d => y_bar(Math.max(0, d.value)))
-     .attr("height", d => Math.abs(y_bar(d.value) - y_bar(0)))
-     .attr("width", x1.bandwidth())
-    .attr("fill", d => portfolioColors(d.key)); // Use the color scale to set the fill
+  const dataByYear = {};
+  allPortfoliosData.forEach(d => {
+    if (!dataByYear[d.year]) {
+      dataByYear[d.year] = [];
+    }
+    dataByYear[d.year].push(d);
+  });
+     
+
+  const tooltipsByYear = {};
+  Object.keys(dataByYear).forEach(year => {
+    tooltipsByYear[year] = d3.select("body").append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 0)
+      .style("position", "absolute")
+      .style("text-align", "start")
+      .style("width", "150px")
+      .style("height", "auto")
+      .style("padding", "10px")
+      .style("font", "12px sans-serif")
+      .style("background", "lightsteelblue")
+      .style("border", "1px solid black")
+      .style("border-radius", "8px")
+      .style("pointer-events", "none");
+  });
+  
+  yearGroups.selectAll("rect")
+  .data(d => [d])
+  .enter().append("rect")
+  .attr("x", d => x1(d.portfolio))
+  .attr("y", d => y_bar(Math.max(0, d.return)))
+  .attr("height", d => Math.abs(y_bar(d.return) - y_bar(0)))
+  .attr("width", x1.bandwidth())
+  .attr("fill", d => portfolioColors(d.portfolio))
+  .on("mouseover", function(event, d) {
+    const yearData = dataByYear[d.year];
+    // Modify the tooltipHtml to multiply the return value by 100 and format it as a percentage
+    const tooltipHtml = yearData.map(data => `${data.portfolio}: ${(data.return * 100).toFixed(2)}%`).join("<br/>");
+    tooltipsByYear[d.year]
+      .html(`Year: ${d.year}<br/>${tooltipHtml}`)
+      .style("opacity", 1)
+      .style("left", (event.pageX + 10) + "px")
+      .style("top", (event.pageY + 10) + "px");
+  })
+  .on("mouseout", function(event, d) {
+    // event.stopPropagation(); // Stop event propagation
+    tooltipsByYear[d.year].style("opacity", 0);
+  });
+
+
 
   // Append X and Y axis to the SVG
   svgBar.append("g")
     .attr("transform", `translate(0,${height_bar - marginBottom_bar})`)
     .call(d3.axisBottom(x0))
+    .selectAll(".tick text")
+    .style("font-size", "13px") // Change font size for X-axis tick labels
     .selectAll("path, line")
-    .style("stroke", "#778899")
-    .selectAll("text")
-    .style("font-size", "12px"); // Change font size for X-axis tick labels
-  
+    .style("stroke", "#778899");
+   
 
   // Append the y-axis and add gridlines
-  svgBar.append("g")
+ svgBar.append("g")
     .attr("transform", `translate(${marginLeft_bar},0)`)
     .call(d3.axisLeft(y_bar)
       .tickSize(-width_bar + marginLeft_bar + marginRight_bar) // Extend the tick lines across the chart
       .tickFormat(d3.format(".0%")) // Format ticks as percentages
     )
-    .call(g => g.select(".domain").remove()) // Remove the axis line
+    .call(g => g.select(".domain").remove())
     .call(g => g.selectAll(".tick:not(:first-of-type) line")
       .attr("stroke", d => d === 0 ? "#fff" : "#778899") // Bold line when y = 0
       .attr("stroke-width", d => d === 0 ? 1 : 0.3) // Increase stroke width for y = 0
@@ -345,22 +401,69 @@ const portfolioColors = d3.scaleOrdinal()
     
    // Add the X-axis label
    svgBar.append("text")
-   .attr("transform", `translate(${(width_bar - marginLeft_bar - marginRight_bar) / 2 + marginLeft_bar}, ${height_bar - 20})`)
+   .attr("transform", `translate(${(width_bar - marginLeft_bar - marginRight_bar)  + marginLeft_bar}, ${height_bar-20})`)
    .style("text-anchor", "middle")
    .text("Year")
    .style("fill", "white") // Set label color to white
-   .style("font-size", "14px"); // Change font size for X-axis title
+   .style("font-size", "12px"); // Change font size for X-axis title
 
 // Add the Y-axis label with adjusted positioning
 svgBar.append("text")
   .attr("transform", "rotate(-90)")
-  .attr("y", 0 - marginLeft_bar + 20) // Adjust the distance from the left edge
-  .attr("x", 0 - (height_bar / 2)) // Center along the y-axis
+  .attr("y", 0 + 55) // Adjust the distance from the left edge
+  .attr("x", 0 - 60) // Center along the y-axis
   .attr("dy", "1em") // Adjust the distance from the top edge
   .style("text-anchor", "middle")
   .text("Annual Return")
-  .style("fill", "black") // Set label color to black
-  .style("font-size", "14px"); // Change font size for Y-axis title
+  .style("fill", "white") // Set label color to black
+  .style("font-size", "12px"); // Change font size for Y-axis title
+
+
+
+// Define uniquePortfolios if not already defined
+const uniquePortfolios = [...new Set(allPortfoliosData.map(d => d.portfolio))];
+const spacing = 150; // Spacing between items
+
+// Temporary position for legend
+const tempLegendX = 0;
+const tempLegendY = height_bar - 30 ; // Below the X-axis
+
+// Create the legend off-screen (or at a temporary position)
+const legend = svgBar.append("g")
+  .attr("class", "legend")
+  .attr("transform", `translate(${tempLegendX}, ${tempLegendY})`);
+
+let totalLegendWidth = 0;
+
+uniquePortfolios.forEach((portfolio, index) => {
+  const legendItem = legend.append("g")
+    .attr("transform", `translate(${totalLegendWidth}, 0)`);
+
+  legendItem.append("rect")
+    .attr("width", 18)
+    .attr("height", 18)
+    .style("fill", portfolioColors(portfolio));
+
+  legendItem.append("text")
+    .attr("x", 24)
+    .attr("y", 9)
+    .attr("dy", ".35em")
+    .text(portfolio)
+    .style("text-anchor", "start")
+    .style("font-size", "12px")
+    .style("fill", "white");
+    
+
+  const itemWidth = legendItem.node().getBBox().width;
+  totalLegendWidth += itemWidth + spacing; // Add spacing after each item
+});
+
+// Calculate the new X position to center the legend
+const centerX = (width_bar - totalLegendWidth + spacing) / 2;
+
+// Reposition the legend to be centered
+legend.attr("transform", `translate(${centerX}, ${tempLegendY})`);
+
 
 
  resultContent.appendChild(bargraphCard);
@@ -369,69 +472,109 @@ svgBar.append("text")
 
 
 
-function drawGraph(svg, data, x, y, index) {
+function drawGraph(svg, portfolioData, x, y, index, width, height) {
   const parseTime = d3.timeParse("%Y-%m-%d");
 
-  data.forEach(function(d) {
+  // Parse the data
+  portfolioData.forEach(d => {
     d.date = parseTime(d.date);
     d.return = +d.return;
   });
 
-  // Create the line generator using the passed scales
+  // Line generator
   const line = d3.line()
     .x(d => x(d.date))
     .y(d => y(d.return));
 
-  // Append the path for this dataset
+  // Append path for the line
   svg.append("path")
-    .datum(data)
+    .datum(portfolioData)
     .attr("fill", "none")
     .attr("stroke", d3.schemeCategory10[index % 10])
     .attr("stroke-width", 1.5)
     .attr("d", line);
 
-  // Other parts of the drawGraph function
+  // Append circles for each data point
+  const circles = svg.selectAll(".dot-" + index)
+    .data(portfolioData)
+    .enter().append("circle")
+    .attr("class", "dot-" + index)
+    .attr("cx", d => x(d.date))
+    .attr("cy", d => y(d.return))
+    .attr("r", 2)
+    .attr("fill", d3.schemeCategory10[index % 10])
+    .style("opacity", 0);
 
+  // Create a vertical line
+  const verticalLine = svg.append("line")
+    .attr("class", "vertical-line")
+    .attr("y1", 0)
+    .attr("y2", height)
+    .style("stroke", "black")
+    .style("stroke-width", 1)
+    .style("opacity", 0);
 
+  // Add hover effects
+  circles.on("mouseover", function(event, d) {
+    d3.select(this)
+      .transition()
+      .duration(100)
+      .attr("r", 5)
+      .style("opacity", 1);
+
+    verticalLine
+      .attr("x1", x(d.date))
+      .attr("x2", x(d.date))
+      .style("stroke", "white")
+      .style("stroke-width", 1) 
+      .style("stroke-dasharray", "3,3")
+      .style("opacity", 1);
+
+    d3.select("body").append("div")
+      .attr("class", "tooltip")
+      .style("opacity", 1)
+      .html(`Portfolio ${index + 1}<br>Date: ${d3.timeFormat("%Y-%m-%d")(d.date)}<br>Return: ${d.return.toFixed(2)}`)
+      .style("left", (event.pageX + 10) + "px")
+      .style("top", (event.pageY - 28) + "px");
+  });
+
+  circles.on("mouseout", function() {
+    d3.select(this)
+      .transition()
+      .duration(100)
+      .attr("r", 2)
+      .style("opacity", 0);
+
+    verticalLine.style("opacity", 0);
+
+    d3.select("body").selectAll("div.tooltip").remove();
+  });
 }
 
 
 
 
 
-// $(function() {
-        //     $("form").submit(function(e){
-        //         e.preventDefault();
-        //         let $inputs = $("input, textarea, select", this);
-        //         param = "asset1_rate01=10&aset1_rate02=05";
-        //         d3.json(`http://localhost:5001/data/efficient_frontier?${param}`, function(data){
-                    
-        //         });
-        //     });
+  
+//     svg.select(".overlay-line")
+//       .attr("x1", x(d.date))
+//       .attr("x2", x(d.date))
+//       .style("opacity", 1); // Ensure the line is visible
+//   }
+
+//   // Append a vertical line for hover effect
+//   svg.append("line")
+//     .attr("class", "overlay-line")
+//     .attr("y1", 0)
+//     .attr("y2", height)
+//     .style("stroke", "#778899")
+//     .style("stroke-width", 2)
+//     .style("stroke-dasharray", "3,3")
+//     .style("opacity", 0);
+// }
 
 
-        // analyze portfolio button
-      //   $("form").submit(function(e) {
-      //     e.preventDefault(); // Prevent normal form submission
-      //     let formData = $(this).serialize(); // Serialize form data
 
-      //     $.ajax({
-      //         url: "http://localhost:5001/api/analyze",
-      //         method: "POST",
-      //         data: formData,
-      //         success: function(response) {
-      //             // Handle success - maybe update the UI with the response
-      //             console.log("Form submitted successfully");
-      //             console.log(response)
-      //             showResults(response);
-
-      //         },
-      //         error: function(jqXHR, textStatus, errorThrown) {
-      //             // Handle error
-      //             console.error("Form submission failed: " + textStatus, errorThrown);
-      //         }
-      //     });
-      // });
 
 
           $(document).ready(function() {

@@ -235,3 +235,17 @@ td.numberCell, th.numberCell, th.numberCellNW {
     }
 }
 
+
+.tooltip {
+    position: absolute;
+    text-align: start;
+    width: auto;
+    padding: 8px;
+    font: 12px sans-serif;
+    background: rgb(203, 221, 246);
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+    z-index: 10;
+    color: #112d4e
+}
