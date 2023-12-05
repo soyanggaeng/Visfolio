@@ -24,7 +24,7 @@ const tooltip = d3.select("body").append("div")
 
 const svg = d3.select("svg"),
     width = 4000, 
-    height = 1000; 
+    height = 800; 
 
 
 const path = d3.geoPath();
