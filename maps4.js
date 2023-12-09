@@ -23,7 +23,7 @@ const tooltip = d3.select("body").append("div")
 
 
 const svg = d3.select("svg"),
-    width = 1100, 
+    width = 4000, 
     height = 800; 
 
 

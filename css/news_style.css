@@ -78,16 +78,20 @@
     transition: background-color 0.3s;
 }
 
-.news-outlet,
-.news-time {
-    font-size: 0.8rem;
-    color: #B6EADA;
-}
-
 .news-title {
     color: #ffffff;
     text-decoration: none;
     font-size: 1rem;
+    flex: 1 1 auto; /* Allow the title to grow and shrink as needed */
+    margin-right: 10px; /* Ensure space between the title and the time */
+    word-break: break-word; /* Break long words onto the next line */
+}
+
+.news-time {
+    font-size: 0.8rem;
+    color: #B6EADA;
+    white-space: nowrap; /* Prevent wrapping of time text */
+    flex: 0 0 auto; /* Do not grow or shrink the time */
 }
 
 .news-title:hover {
