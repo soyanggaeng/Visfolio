@@ -411,7 +411,7 @@ function generateWordCloud(words) {
 
 async function displayNews(companyName, country) {
     try {
-        const response = await fetch(`http://35.209.80.221:5000/scrape?company_name=${encodeURIComponent(companyName)}&country=${country}`);
+        const response = await fetch(`https://api.ninahas.io/scrape?company_name=${encodeURIComponent(companyName)}&country=${country}`);
         const responseData = await response.json();
         console.log(responseData); // 서버 응답의 구조를 콘솔에서 확인
 

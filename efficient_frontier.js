@@ -78,7 +78,7 @@ function drawGraph(svg, data, x, y, index) {
 
           function loadMarketOptions() {
               $.ajax({
-                  url: "http://35.209.80.221/data/market_list", // Adjust port if needed
+                  url: "https://api.ninahas.io/data/market_list", // Adjust port if needed
                   method: "GET",
                   success: function(data) {
                       for (let i = 1; i <= 10; i++) {
@@ -99,7 +99,7 @@ function drawGraph(svg, data, x, y, index) {
 
 function loadItemList(itemId, selectedMarket) {
   $.ajax({
-      url: "http://35.209.80.221/data/search_items?market=" + encodeURIComponent(selectedMarket),
+      url: "https://api.ninahas.io/data/search_items?market=" + encodeURIComponent(selectedMarket),
       method: "GET",
       success: function(data) {
           let itemSelect = $('#' + itemId);
@@ -137,7 +137,7 @@ $(document).ready(function() {
     }
 
     // Adjust URL based on the selected market
-    var url = 'http://35.209.80.221/data/search_items';
+    var url = 'https://api.ninahas.io/data/search_items';
     var params = { query: query, market: market };
 
     $.ajax({
@@ -303,7 +303,7 @@ function submitFormData() {
   let formData = $(".pv-form").serialize();
 
   $.ajax({
-      url: "http://35.209.80.221/data/efficient_frontier",
+      url: "https://api.ninahas.io/data/efficient_frontier",
       method: "POST",
       data: formData,
       success: function(response) {

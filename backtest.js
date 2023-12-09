@@ -1,5 +1,5 @@
 
-const  server_url = "http://35.209.80.221";
+const  server_url = "https://api.ninahas.io/";
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
