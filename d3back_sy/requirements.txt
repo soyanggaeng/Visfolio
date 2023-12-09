@@ -1,6 +1,0 @@
-pandas
-numpy
-finance-datareader
-flask
-flask-cors
-logging
