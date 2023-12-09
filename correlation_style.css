@@ -1,8 +1,8 @@
 /* 내가 추가한 스타일 */
 
 #heatmap {
-    width: 520px;
-    height: 470px;
+    width: 600px;
+    height: 500px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 2rem;
@@ -10,15 +10,16 @@
     margin-left: 20px; 
 }
 
- /* Define the heatmap container size */
+ /* Define the heatmap container size
  .heatmap-container {
-    width: 600px;
-    height: 400px;
+    width: 700px;
+    height: 600px;
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 2rem;
     border-radius: 8px;
-}
+} */
+
 
 
 /* network graph */
