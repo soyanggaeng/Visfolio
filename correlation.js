@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       });
   }
 
-  // 오류나는 부분!!
+  // 오류나는 부분!! (new_df 가 defined되지 않았다고 뜸 -> promises 관련 코드를 추가했는데도 오류가 남..)
   // Function to perform data preprocessing
   async function performDataPreprocessing(startYear, endYear, markets, items) {
     const data = [];
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   }
 
   // 오류나는 부분!!
-  // 가장 최근 작업 (promise.all 반영하기 이전 코드)
+  // 가장 최근 작업 (위에 나온 promise.all 코드 반영하기 이전 코드)
   // async function performDataPreprocessing(startYear, endYear, markets, items) {
   
   //   const data = [];
@@ -222,6 +222,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   // let corr_data; // Variable to store preprocessed data
 
+  // 아래 코드는 위에 있는 코드가 잘 돌아간 후 오류 확인 필요(위에서 막혀서 renderHeatmap함수까지 돌려보지 못한 상태)
   // Event listener for form submission
   document.getElementById('submitButton1').addEventListener('click', async function (event) {
     event.preventDefault();
@@ -282,8 +283,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 });
 
-// Import the necessary libraries
-// 자바스크립트로 직접 상관관계 계산하는 코드 작성
+// (참고)
+// 자바스크립트로 직접 상관관계 계산하는 코드 작성 -> 위에서 통합해서 작성중임
 // function extractSelectedLinks() {
 
 //   // Step 1: Load the CSV file and save the data as a DataFrame
@@ -334,7 +335,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 // }
 
-
+// 직접 코드에 data 넣어서 돌려본 경우
 // var corr_data = [{'item1': 'AJ네트웍스', 'item2': 'AJ네트웍스', 'cor': 1.0}, {'item1': 'AJ네트웍스', 'item2': 'AK홀딩스', 'cor': 0.5808991997452422}, {'item1': 'AJ네트웍스', 'item2': 'BGF', 'cor': 0.616733883261061}, {'item1': 'AJ네트웍스', 'item2': '삼성전자', 'cor': -0.4618927786873072}, {'item1': 'AJ네트웍스', 'item2': '아모레퍼시픽', 'cor': 0.6468522834150147}, {'item1': 'AJ네트웍스', 'item2': '카카오', 'cor': -0.22246497296865567}, {'item1': 'AJ네트웍스', 'item2': '경동나비엔', 'cor': -0.13246063488448556}, {'item1': 'AJ네트웍스', 'item2': '금호타이어', 'cor': 0.5240724651068914}, {'item1': 'AJ네트웍스', 'item2': '기아', 'cor': -0.070655577945304}, {'item1': 'AJ네트웍스', 'item2': '빙그레', 'cor': 0.2524327211079841}, {'item1': 'AK홀딩스', 'item2': 'AJ네트웍스', 'cor': 0.5808991997452422}, {'item1': 'AK홀딩스', 'item2': 'AK홀딩스', 'cor': 1.0}, {'item1': 'AK홀딩스', 'item2': 'BGF', 'cor': 0.6891861915340353}, {'item1': 'AK홀딩스', 'item2': '삼성전자', 'cor': -0.6739445868991941}, {'item1': 'AK홀딩스', 'item2': '아모레퍼시픽', 'cor': 0.8034018018942896}, {'item1': 'AK홀딩스', 'item2': '카카오', 'cor': -0.6289256377252997}, {'item1': 'AK홀딩스', 'item2': '경동나비엔', 'cor': 0.060416649043513605}, {'item1': 'AK홀딩스', 'item2': '금호타이어', 'cor': 0.6914095198327443}, {'item1': 'AK홀딩스', 'item2': '기아', 'cor': -0.6507087866352705}, {'item1': 'AK홀딩스', 'item2': '빙그레', 'cor': 0.7106891377164657}, {'item1': 'BGF', 'item2': 'AJ네트웍스', 'cor': 0.616733883261061}, {'item1': 'BGF', 'item2': 'AK홀딩스', 'cor': 0.6891861915340353}, {'item1': 'BGF', 'item2': 'BGF', 'cor': 1.0}, {'item1': 'BGF', 'item2': '삼성전자', 'cor': -0.6938834209837871}, {'item1': 'BGF', 'item2': '아모레퍼시픽', 'cor': 0.8274508560518724}, {'item1': 'BGF', 'item2': '카카오', 'cor': -0.5181140714213462}, {'item1': 'BGF', 'item2': '경동나비엔', 'cor': -0.24971555714036314}, {'item1': 'BGF', 'item2': '금호타이어', 'cor': 0.8403869490093576}, {'item1': 'BGF', 'item2': '기아', 'cor': -0.4042511668097954}, {'item1': 'BGF', 'item2': '빙그레', 'cor': 0.5027003371693426}, {'item1': '삼성전자', 'item2': 'AJ네트웍스', 'cor': -0.4618927786873072}, {'item1': '삼성전자', 'item2': 'AK홀딩스', 'cor': -0.6739445868991941}, {'item1': '삼성전자', 'item2': 'BGF', 'cor': -0.6938834209837871}, {'item1': '삼성전자', 'item2': '삼성전자', 'cor': 1.0}, {'item1': '삼성전자', 'item2': '아모레퍼시픽', 'cor': -0.6298299847678832}, {'item1': '삼성전자', 'item2': '카카오', 'cor': 0.8200594535994847}, {'item1': '삼성전자', 'item2': '경동나비엔', 'cor': 0.38351606811199934}, {'item1': '삼성전자', 'item2': '금호타이어', 'cor': -0.5794978446569281}, {'item1': '삼성전자', 'item2': '기아', 'cor': 0.7094213381186582}, {'item1': '삼성전자', 'item2': '빙그레', 'cor': -0.5527141864779478}, {'item1': '아모레퍼시픽', 'item2': 'AJ네트웍스', 'cor': 0.6468522834150147}, {'item1': '아모레퍼시픽', 'item2': 'AK홀딩스', 'cor': 0.8034018018942896}, {'item1': '아모레퍼시픽', 'item2': 'BGF', 'cor': 0.8274508560518724}, {'item1': '아모레퍼시픽', 'item2': '삼성전자', 'cor': -0.6298299847678832}, {'item1': '아모레퍼시픽', 'item2': '아모레퍼시픽', 'cor': 1.0}, {'item1': '아모레퍼시픽', 'item2': '카카오', 'cor': -0.39512984211874325}, {'item1': '아모레퍼시픽', 'item2': '경동나비엔', 'cor': 0.07986781914642205}, {'item1': '아모레퍼시픽', 'item2': '금호타이어', 'cor': 0.8169264066274052}, {'item1': '아모레퍼시픽', 'item2': '기아', 'cor': -0.413828187468009}, {'item1': '아모레퍼시픽', 'item2': '빙그레', 'cor': 0.6231240609694045}, {'item1': '카카오', 'item2': 'AJ네트웍스', 'cor': -0.22246497296865567}, {'item1': '카카오', 'item2': 'AK홀딩스', 'cor': -0.6289256377252997}, {'item1': '카카오', 'item2': 'BGF', 'cor': -0.5181140714213462}, {'item1': '카카오', 'item2': '삼성전자', 'cor': 0.8200594535994847}, {'item1': '카카오', 'item2': '아모레퍼시픽', 'cor': -0.39512984211874325}, {'item1': '카카오', 'item2': '카카오', 'cor': 1.0}, {'item1': '카카오', 'item2': '경동나비엔', 'cor': 0.4335783001493612}, {'item1': '카카오', 'item2': '금호타이어', 'cor': -0.37990674413517656}, {'item1': '카카오', 'item2': '기아', 'cor': 0.7842802046837066}, {'item1': '카카오', 'item2': '빙그레', 'cor': -0.40465518330605255}, {'item1': '경동나비엔', 'item2': 'AJ네트웍스', 'cor': -0.13246063488448556}, {'item1': '경동나비엔', 'item2': 'AK홀딩스', 'cor': 0.060416649043513605}, {'item1': '경동나비엔', 'item2': 'BGF', 'cor': -0.24971555714036314}, {'item1': '경동나비엔', 'item2': '삼성전자', 'cor': 0.38351606811199934}, {'item1': '경동나비엔', 'item2': '아모레퍼시픽', 'cor': 0.07986781914642205}, {'item1': '경동나비엔', 'item2': '카카오', 'cor': 0.4335783001493612}, {'item1': '경동나비엔', 'item2': '경동나비엔', 'cor': 1.0}, {'item1': '경동나비엔', 'item2': '금호타이어', 'cor': 0.13729048430124374}, {'item1': '경동나비엔', 'item2': '기아', 'cor': 0.17846387802449665}, {'item1': '경동나비엔', 'item2': '빙그레', 'cor': 0.08892821421248875}, {'item1': '금호타이어', 'item2': 'AJ네트웍스', 'cor': 0.5240724651068914}, {'item1': '금호타이어', 'item2': 'AK홀딩스', 'cor': 0.6914095198327443}, {'item1': '금호타이어', 'item2': 'BGF', 'cor': 0.8403869490093576}, {'item1': '금호타이어', 'item2': '삼성전자', 'cor': -0.5794978446569281}, {'item1': '금호타이어', 'item2': '아모레퍼시픽', 'cor': 0.8169264066274052}, {'item1': '금호타이어', 'item2': '카카오', 'cor': -0.37990674413517656}, {'item1': '금호타이어', 'item2': '경동나비엔', 'cor': 0.13729048430124374}, {'item1': '금호타이어', 'item2': '금호타이어', 'cor': 1.0}, {'item1': '금호타이어', 'item2': '기아', 'cor': -0.3012610019711417}, {'item1': '금호타이어', 'item2': '빙그레', 'cor': 0.5133655469514059}, {'item1': '기아', 'item2': 'AJ네트웍스', 'cor': -0.070655577945304}, {'item1': '기아', 'item2': 'AK홀딩스', 'cor': -0.6507087866352705}, {'item1': '기아', 'item2': 'BGF', 'cor': -0.4042511668097954}, {'item1': '기아', 'item2': '삼성전자', 'cor': 0.7094213381186582}, {'item1': '기아', 'item2': '아모레퍼시픽', 'cor': -0.413828187468009}, {'item1': '기아', 'item2': '카카오', 'cor': 0.7842802046837066}, {'item1': '기아', 'item2': '경동나비엔', 'cor': 0.17846387802449665}, {'item1': '기아', 'item2': '금호타이어', 'cor': -0.3012610019711417}, {'item1': '기아', 'item2': '기아', 'cor': 1.0}, {'item1': '기아', 'item2': '빙그레', 'cor': -0.5769556894996385}, {'item1': '빙그레', 'item2': 'AJ네트웍스', 'cor': 0.2524327211079841}, {'item1': '빙그레', 'item2': 'AK홀딩스', 'cor': 0.7106891377164657}, {'item1': '빙그레', 'item2': 'BGF', 'cor': 0.5027003371693426}, {'item1': '빙그레', 'item2': '삼성전자', 'cor': -0.5527141864779478}, {'item1': '빙그레', 'item2': '아모레퍼시픽', 'cor': 0.6231240609694045}, {'item1': '빙그레', 'item2': '카카오', 'cor': -0.40465518330605255}, {'item1': '빙그레', 'item2': '경동나비엔', 'cor': 0.08892821421248875}, {'item1': '빙그레', 'item2': '금호타이어', 'cor': 0.5133655469514059}, {'item1': '빙그레', 'item2': '기아', 'cor': -0.5769556894996385}, {'item1': '빙그레', 'item2': '빙그레', 'cor': 1.0}]
 
 // Vega-Lite specification
@@ -362,6 +363,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 //   .then(function(result) {})
 //   .catch(console.error);
 
+// 이하 network 코드는 잘 돌아감
 //////////////////////////// select box ///////////////////////////////
 
 // JavaScript to populate the start year and end year select elements
