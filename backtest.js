@@ -1,4 +1,5 @@
 
+const  server_url = "http://35.209.80.221";
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
@@ -128,7 +129,8 @@ function showResults(data) {
   console.log("Table created");
 
 
-  
+  const colorScale = d3.scaleOrdinal(d3.schemeCategory10);
+
   // Create a new card for the graph
   const graphCard = document.createElement("div");
   graphCard.classList.add("card", "my-3", "result-section");
@@ -229,19 +231,23 @@ svg.append("line")
       .style("opacity", 0)
   );
 
+
   Object.keys(data).forEach((portfolioKey, index) => {
     const portfolioData = data[portfolioKey].js_data;
+
     console.log(portfolioData)
     
     if (portfolioData && portfolioData.length > 0) {
-      drawGraph(svg, portfolioData, x, y, index, width, height, tooltips[index]);
+      drawGraph(svg, portfolioData, x, y, index, width, height, colorScale); // Pass colorScale as an argument    
     }
   });
 
+  createLegend(svg, Object.keys(data).length, colorScale, width, height);
 
   // Append the graph card to the resultContent
   resultContent.appendChild(graphCard);
 
+  
 
 // Create a new card for the graph
 const bargraphCard = document.createElement("div");
@@ -471,9 +477,10 @@ legend.attr("transform", `translate(${centerX}, ${tempLegendY})`);
 }
 
 
-
-function drawGraph(svg, portfolioData, x, y, index, width, height) {
+function drawGraph(svg, portfolioData, x, y, index, width, height, colorScale) {
   const parseTime = d3.timeParse("%Y-%m-%d");
+  const lineColor = colorScale(index);
+
 
   // Parse the data
   portfolioData.forEach(d => {
@@ -552,6 +559,48 @@ function drawGraph(svg, portfolioData, x, y, index, width, height) {
 }
 
 
+function createLegend(svg, numberOfPortfolios, colorScale, width, height, margin) {
+  const legend = svg.append("g")
+    .attr("class", "legend");
+
+  let currentXPosition = 0;
+  const spacing = 120; // Spacing between items
+
+  Array.from({ length: numberOfPortfolios }).forEach((_, i) => {
+    const legendItem = legend.append("g")
+      .attr("transform", `translate(${currentXPosition}, 0)`);
+
+    legendItem.append("rect")
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", colorScale(i));
+
+    const textElement = legendItem.append("text")
+      .attr("x", 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .text(`Portfolio ${i + 1}`)
+      .style("text-anchor", "start")
+      .style("font-size", "12px")
+      .style("fill", "white");
+
+    // Get the total width of the current legend item (rect and text)
+    const itemWidth = 18 + textElement.node().getComputedTextLength();
+    currentXPosition += itemWidth + spacing; // Move the x position for the next item
+  });
+
+  // Calculate the x position to center the legend
+  const legendX = (width - currentXPosition + spacing) / 2; // Adjust to center
+
+  // Position the legend below the x-axis
+  const legendY = height + 50; // Adjust this based on your chart's layout
+
+  // Reposition the entire legend
+  legend.attr("transform", `translate(${legendX}, ${legendY})`);
+}
+
+
+
 
 
 
@@ -590,7 +639,7 @@ function drawGraph(svg, portfolioData, x, y, index, width, height) {
 
           function loadMarketOptions() {
               $.ajax({
-                  url: "http://localhost:5001/data/market_list", // Adjust port if needed
+                  url: server_url+"/data/market_list", // Adjust port if needed
                   method: "GET",
                   success: function(data) {
                       for (let i = 1; i <= 10; i++) {
@@ -611,7 +660,7 @@ function drawGraph(svg, portfolioData, x, y, index, width, height) {
 
 function loadItemList(itemId, selectedMarket) {
   $.ajax({
-      url: "http://localhost:5001/data/search_items?market=" + encodeURIComponent(selectedMarket),
+      url: server_url + "/data/search_items?market=" + encodeURIComponent(selectedMarket),
       method: "GET",
       success: function(data) {
           let itemSelect = $('#' + itemId);
@@ -649,7 +698,7 @@ $(document).ready(function() {
     }
 
     // Adjust URL based on the selected market
-    var url = 'http://localhost:5001/data/search_items';
+    var url = server_url+'/data/search_items';
     var params = { query: query, market: market };
 
     $.ajax({
@@ -815,7 +864,7 @@ function submitFormData() {
   let formData = $(".pv-form").serialize(); // Serialize form data
 
   $.ajax({
-      url: "http://localhost:5001/data/analyze",
+      url: server_url+ "/data/analyze",
       method: "POST",
       data: formData,
       success: function(response) {
