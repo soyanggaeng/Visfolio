@@ -11,7 +11,7 @@
 </head>
 <body>
     <header id="header-placeholder"></header>
-    <main>
+    <main>        
         <!-- Search section for company news -->
         <section class="search-section">
             <!-- Country Selection -->
@@ -21,7 +21,7 @@
                 <option value="usa">USA</option>
                 <!-- Add more countries as needed -->
             </select>
-
+            
             <!-- Sector Selection -->
             <label for="sector-select">Sector:</label>
             <select id="sector-select">
@@ -37,6 +37,10 @@
             <button id="search-btn">Search</button>
         </section>        
 
+        <div id="loadingDiv" style="display: none;">
+            <img src="img/loading.gif" alt="Loading" />
+        </div>
+        
         <!-- Word cloud image display area -->
         <section class="wordcloud-section">
             <!-- <img id="wordcloud-image" src="" alt="Word Cloud" style="display:none;"> -->
