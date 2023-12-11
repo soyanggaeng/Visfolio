@@ -3,6 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
         .catch(console.error);
 });
 
+function showLoading() {
+    document.getElementById('loadingDiv').style.display = 'block';
+}
+
+function hideLoading() {
+    document.getElementById('loadingDiv').style.display = 'none';
+}
+
 const colorScale = d3.scaleOrdinal(d3.schemeSet3);
 
 async function initializePage() {
@@ -411,6 +419,7 @@ function generateWordCloud(words) {
 
 async function displayNews(companyName, country) {
     try {
+        showLoading();
         const response = await fetch(`https://api.ninahas.io/scrape?company_name=${encodeURIComponent(companyName)}&country=${country}`);
         const responseData = await response.json();
         console.log(responseData); // 서버 응답의 구조를 콘솔에서 확인
@@ -446,12 +455,14 @@ async function displayNews(companyName, country) {
             article.appendChild(link);
     
             newsSection.appendChild(article);
+            hideLoading();
         });
     
         const wordcloudData = createWordCloudData(newsData, companyName);
         generateWordCloud(wordcloudData);
     } catch (error) {
         console.error('Failed to fetch news:', error);
+        hideLoading();
     }
 }
 
