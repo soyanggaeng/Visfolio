@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         const item = items[index];
 
         // Construct the URL for the Flask endpoint
-        const url = `https://api.ninahas.io/get_csv_data?market=${encodeURIComponent(market)}&item=${encodeURIComponent(item)}`;
+        const url = `https://api.ninahas.io/scrape/get_csv_data?market=${encodeURIComponent(market)}&item=${encodeURIComponent(item)}`;
 
         // Return a new Promise for the asynchronous operation
         // $.ajax를 사용하여 Flask 서버에 요청함
