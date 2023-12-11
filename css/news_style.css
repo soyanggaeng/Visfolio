@@ -104,7 +104,14 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
+    color: white; /* 텍스트 색상을 하얀색으로 설정 */
+    text-align: center; /* 텍스트를 가운데 정렬 */
 }
+
+#loadingDiv p {
+    margin-top: 10px; /* 이미지와 텍스트 사이의 상단 여백 */
+}
+
 
 
 /* Responsive Design Adjustments */
