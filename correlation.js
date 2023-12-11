@@ -102,44 +102,102 @@ document.addEventListener('DOMContentLoaded', async function () {
       });
   }
 
+  // 플라스크로 연결하는 부분
   async function performDataPreprocessing(startYear, endYear, markets, items) {
     let new_df = null;
 
+    // 비동기적으로 CSV 데이터를 가져오기 위한 프로미스를 생성
     const promises = markets.map((market, index) => {
         const item = items[index];
-        return dfd.readCSV(`data/${market}/${item}.csv`)
-            .then(df => {
-                // Filter by date range first
-                const mask = df['Date'].apply(date => {
+
+        // Construct the URL for the Flask endpoint
+        const url = `/get_csv_data?market=${encodeURIComponent(market)}&item=${encodeURIComponent(item)}`;
+
+        // Return a new Promise for the asynchronous operation
+        // $.ajax를 사용하여 Flask 서버에 요청함
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url: url,
+                method: 'GET',
+                dataType: 'json', // Expect JSON response
+                success: function(data) {
+                    // Convert the JSON data back into a DataFrame
+                    let df = new dfd.DataFrame(data.data, { columns: data.columns });
+
+                     // 필터링을 위한 날짜 범위를 설정
+                    const mask = df['Date'].apply(date => {
                     const year = parseInt(date.split('-')[0]);
                     return year >= parseInt(startYear) && year <= parseInt(endYear);
-                });
-                let filteredData = df.loc({ rows: mask });
-                let dateColumn = filteredData['Date'];
-                let closeColumn = filteredData['Close'].dropNa();
+                    });
+                    let filteredData = df.loc({ rows: mask });
+                    let dateColumn = filteredData['Date'];
+                    let closeColumn = filteredData['Close'].dropNa();
 
-                // Create a new DataFrame with 'Date' and the item's 'Close' values
-                let itemDf = new dfd.DataFrame({ 'Date': dateColumn.values, [item]: closeColumn.values });  // []를 붙여야 item 이름으로 컬럼명이 지정됨!
+                    // 'Date'와 각 항목의 'Close' 값으로 새 DataFrame을 생성
+                    let itemDf = new dfd.DataFrame({ 'Date': dateColumn.values, [item]: closeColumn.values });
 
-                if (new_df === null) {
-                    new_df = itemDf;
-                } else {
-                    // Perform inner merge on 'Date'
-                    // addColumn 함수를 쓰면 행의 길이가 다른 컬럼을 합치는게 불가능하므로 merge 함수를 써야 함!
-                    new_df = dfd.merge({ left: new_df, right: itemDf, on: ['Date'], how: 'inner' });  // on에서 [] 넣어줘야 함!
+                    // 이전에 생성된 DataFrame과 병합
+                    if (new_df === null) {
+                        new_df = itemDf;
+                    } else {
+                        new_df = dfd.merge({ left: new_df, right: itemDf, on: ['Date'], how: 'inner' });
+                    }
+
+                    resolve(df); // Resolve the promise with the DataFrame
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Error fetching data:', textStatus, errorThrown);
+                    reject(errorThrown); // 오류가 발생하면 Promise를 거부
                 }
-            })
-            .catch(err => {
-                console.log(err);
             });
+        });
     });
 
+    // 모든 프로미스가 완료될 때까지 기다림
     await Promise.all(promises);
-    // console.log('new_df after merging:');
-    // new_df.print();
 
+    // 병합된 DataFrame을 반환
     return new_df;
   }
+
+  // async function performDataPreprocessing(startYear, endYear, markets, items) {
+  //   let new_df = null;
+
+  //   const promises = markets.map((market, index) => {
+  //       const item = items[index];
+  //       return dfd.readCSV(`data/${market}/${item}.csv`)
+  //           .then(df => {
+  //               // Filter by date range first
+  //               const mask = df['Date'].apply(date => {
+  //                   const year = parseInt(date.split('-')[0]);
+  //                   return year >= parseInt(startYear) && year <= parseInt(endYear);
+  //               });
+  //               let filteredData = df.loc({ rows: mask });
+  //               let dateColumn = filteredData['Date'];
+  //               let closeColumn = filteredData['Close'].dropNa();
+
+  //               // Create a new DataFrame with 'Date' and the item's 'Close' values
+  //               let itemDf = new dfd.DataFrame({ 'Date': dateColumn.values, [item]: closeColumn.values });  // []를 붙여야 item 이름으로 컬럼명이 지정됨!
+
+  //               if (new_df === null) {
+  //                   new_df = itemDf;
+  //               } else {
+  //                   // Perform inner merge on 'Date'
+  //                   // addColumn 함수를 쓰면 행의 길이가 다른 컬럼을 합치는게 불가능하므로 merge 함수를 써야 함!
+  //                   new_df = dfd.merge({ left: new_df, right: itemDf, on: ['Date'], how: 'inner' });  // on에서 [] 넣어줘야 함!
+  //               }
+  //           })
+  //           .catch(err => {
+  //               console.log(err);
+  //           });
+  //   });
+
+  //   await Promise.all(promises);
+  //   // console.log('new_df after merging:');
+  //   // new_df.print();
+
+  //   return new_df;
+  // }
 
 
   // Event listener for form submission
