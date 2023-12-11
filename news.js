@@ -110,7 +110,7 @@ function setupSearch(companies) {
         if (selectedCompany) {
             displayNews(selectedCompany.name, selectedCountry);
         } else {
-            console.log("No company found matching the search criteria");
+            alert("No company found matching the search criteria. Please select one from the suggested companies.");
         }
     });
 }
