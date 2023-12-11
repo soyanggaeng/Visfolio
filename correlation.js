@@ -54,29 +54,39 @@ document.addEventListener('DOMContentLoaded', async function () {
       function filterItems(marketValue, searchQuery) { 
           itemList.innerHTML = ''; // Clear previous options
           
-          // File paths based on market selection
-          const filePath = (marketValue === 'US Stock Market') ? 'data/file_names_us.csv' : 'data/file_names_kor.csv';
-
-          // Fetch data from the file and filter based on search query
-          fetch(filePath)
-              .then(response => response.text()) // 텍스트로 변환한 후, 각 줄을 읽어서 데이터를 처리
-              .then(data => { // fetch로부터 비동기적으로 반환된 데이터가 data에 전달
-                  const lines = data.split('\n'); // data 문자열을 개행 문자(\n)를 기준으로 나누어 각 줄을 배열로 변환
-                  lines.forEach(line => { // forEach 메서드를 사용하여 lines 배열의 각 요소에 대해 반복 작업을 수행
-                    // 각 줄(line)을 쉼표(,)를 기준으로 분리하고, 그 중 첫 번째 열에 해당하는 회사 이름을 추출하여 companyName 변수에 저장  
-                    const companyName = line.split(',')[0]; // Assuming the company name is in the first column
-                      
-                    // 회사 이름을 포함하는 경우에만 <option> 엘리먼트를 생성하여 해당 목록에 동적으로 추가하는 부분
-                      if (companyName.toLowerCase().includes(searchQuery.toLowerCase())) {
-                          const optionElement = document.createElement('option');
-                          optionElement.value = companyName;
-                          itemList.appendChild(optionElement);
-                      }
-                  });
-              })
-              .catch(error => {
-                  console.error('Error fetching data:', error);
+      // File paths based on market selection
+      const filePath = (marketValue === 'US Stock Market') ? 'data/file_names_us.csv' : 'data/file_names_kor.csv';
+      
+      // Fetch data from the file
+      fetch(filePath)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.arrayBuffer(); // Read the response as ArrayBuffer
+          })
+          .then(buffer => {
+              const decoder = new TextDecoder('utf-8'); // UTF-8 Decoder
+              const text = decoder.decode(buffer); // Decode the ArrayBuffer to text
+      
+              // Process the CSV text
+              // Split the data into lines
+              const lines = text.split('\n');
+              lines.forEach(line => {
+                  // Process each line
+                  const companyName = line.split(',')[0]; // Assuming the company name is in the first column
+      
+                  // Do something with companyName
+                  const optionElement = document.createElement('option');
+                  optionElement.value = companyName;
+                  optionElement.textContent = companyName;
+                  itemList.appendChild(optionElement);
               });
+          })
+          .catch(error => {
+              console.error('Error fetching data:', error);
+          });
+
       }
 
       // Select box event listeners for market and item input
