@@ -146,7 +146,7 @@ function getAdjCloseValues(country) {
     
         // Handle Currency Data if it exists
         if (jsonData[country].Currency) {
-            tooltipContent += `<strong>$ Exchange Rate:</strong><br>`;
+            tooltipContent += `<strong>Exchange Rate:</strong><br>`;
             const currencyData = jsonData[country].Currency;
             const currencyEntry = currencyData.find(entry => entry.Date.startsWith(latelyDate));
             let onepdcurrencyEntry = currencyData.find(entry => entry.Date.startsWith(twopreviousDay));
@@ -265,7 +265,7 @@ function countryClick(event, d) {
             let prev_currencyRounded = parseFloat(onepdcurrencyEntry.value);
             let day_growth_currency = currencyRounded - prev_currencyRounded;
 
-            infoWindowContent += `<strong>$ Exchange Rate:</strong><br>${currencyRounded.toLocaleString()}<br>`;
+            infoWindowContent += `<strong>Exchange Rate:</strong><br>${currencyRounded.toLocaleString()}<br>`;
 
             if (isNaN(day_growth_currency)) {
                 day_growth_currency = 0;
