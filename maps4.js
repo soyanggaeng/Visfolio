@@ -103,7 +103,7 @@ function createCurrencyLinePlot(data, width, height) {
 
 function getAdjCloseValues(country) {
         if (!jsonData[country]) {
-            return `${country} Data not available`;
+            // return `${country} Data not available`;
         }
     
         const marketData = jsonData[country].Market;
@@ -276,7 +276,7 @@ function countryClick(event, d) {
                 infoWindowContent += ` <span style="color: blue;">&#9660; ${day_growth_currency.toLocaleString()}</span>  from previous day<br>`;
             }
         } else {
-            infoWindowContent += `Currency data not available<br>`;
+            // infoWindowContent += `Currency data not available<br>`;
         } infoWindowContent += `<br><br><div>${currency_lineplot}</div>`;
     }
 
