@@ -322,7 +322,7 @@ function createWordCloudData(newsData, companyName) {
                 .filter(filterStopwordsAndShortWords);
 
             // 한글 조사와 영어 불필요 단어를 제거합니다.
-            words = words.map(word => word.replace(/(은|는|이|가|을|를|와|과|의|에|로|으로|만|도|로써|까지|등|등등|으로써|에서|에게|에게서|부터)$/, ''));
+            words = words.map(word => word.replace(/(은|는|이|가|을|를|와|과|의|에|로|으로|만|도|로써|까지|등|등등|으로써|에서|에게|에게서|부터|인데)$/, ''));
 
             words.forEach(word => {
                 wordCounts.set(word, (wordCounts.get(word) || 0) + 1);
@@ -428,7 +428,9 @@ async function displayNews(companyName, country) {
             throw new Error(responseData.message || 'Network response was not ok');
         }
 
-        const newsData = responseData.newsData || [];
+        // 제목이 있는 뉴스 데이터만 필터링
+        const newsData = responseData.newsData.filter(item => item[1].trim() !== '');
+        
         const newsSection = document.querySelector('.news-section');
         newsSection.innerHTML = '';
     
