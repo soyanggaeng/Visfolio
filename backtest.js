@@ -257,7 +257,7 @@ bargraphCard.classList.add("card", "my-3", "result-section");
 const bargraphCardHeader = document.createElement("div");
 bargraphCardHeader.classList.add("card-header", "bg-gradient", "fw-bold");
 const bargraphCardTitle = document.createElement("h3");
-bargraphCardTitle.textContent = "Portfolio Growth";
+bargraphCardTitle.textContent = "Annual Growth";
 bargraphCardHeader.appendChild(bargraphCardTitle);
 bargraphCard.appendChild(bargraphCardHeader);
 
