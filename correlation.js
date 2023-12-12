@@ -599,7 +599,8 @@ function drawNetworkGraph(graph) {
       .selectAll("circle")
       .data(graph.nodes)
       .enter().append("circle")
-        .attr("r", 5)
+        .attr("r", 11) // 증가된 원의 크기
+        //.attr("r", 5)
         // .attr("r", function(d) { 
         //   // Set radius based on the number of links connected to each node
         //   return Math.max(5, nodeLinksCount[d.id] * 1.5); // Adjust the scale factor as needed
@@ -611,6 +612,20 @@ function drawNetworkGraph(graph) {
             .on("start", dragstarted)
             .on("drag", dragged)
             .on("end", dragended));
+
+    // 노드에 텍스트 추가
+    var texts = svg.append("g")
+    .attr("class", "texts")
+    .selectAll("text")
+    .data(graph.nodes)
+    .enter().append("text")
+    .attr("x", function(d) { return d.x; })
+    .attr("y", function(d) { return d.y; })
+    .text(function(d) { return d.id; }) // 각 노드의 ID를 텍스트로 표시
+    .attr("text-anchor", "middle") // 텍스트를 중앙 정렬
+    .attr("alignment-baseline", "middle") // 수직 중앙 정렬
+    .style("fill", "white") // 텍스트 색상을 흰색으로 변경
+    .style("font-size", "7px"); // 텍스트 크기 감소
   
     node.append("title")
         .text(function(d) { return d.id; });
@@ -632,6 +647,10 @@ function drawNetworkGraph(graph) {
       node
           .attr("cx", function(d) { return d.x; })
           .attr("cy", function(d) { return d.y; });
+      
+      texts
+          .attr("x", function(d) { return d.x; })
+          .attr("y", function(d) { return d.y; });
     }
   
     // 노드 위에 마우스를 대면, 해당 노드에 연결된 노드들의 색깔이 변하도록 함
@@ -674,6 +693,12 @@ function drawNetworkGraph(graph) {
           return link.source.id === d.id || link.target.id === d.id ? 1 : 0.6; // Set stroke opacity to 1 for connected links, otherwise 0.5
         })
 
+        // 연결된 노드의 텍스트 색상을 검은색으로 변경
+        d3.selectAll(".texts text")
+        .style("fill", function(c) {
+          return connectedNodeIds.indexOf(c.id) > -1 || c.id === d.id ? "black" : "white";
+        });
+
     });
 
     node.on("mouseout", function(d) {
@@ -694,6 +719,9 @@ function drawNetworkGraph(graph) {
         })
       .style("stroke", "#999") // Reset link color to default
       .style("stroke-opacity", 0.6);
+
+      d3.selectAll(".texts text")
+        .style("fill", "white");
 
     });
 
@@ -721,3 +749,4 @@ function drawNetworkGraph(graph) {
   }
 
 }
+
