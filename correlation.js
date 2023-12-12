@@ -542,26 +542,56 @@ function drawNetworkGraph(graph) {
   //   .style("position", "absolute") // Set position to absolute for better positioning
   //   .style("display", "none"); // Hide initially
 
-  
+
   function showLinkInfo(d) {
     var sourceId = d.source.id;
     var targetId = d.target.id;
-    tooltip.style("display", "block");
     tooltip.html(`<strong>[Link Information]</strong><br><strong>Source:</strong> ${sourceId}<br><strong>Target:</strong> ${targetId}<br><strong>Value:</strong> ${d.value}`)
-      // .style("left", (d3.event.pageX + 10) + "px") // Position the tooltip next to the mouse pointer
-      // .style("top", (d3.event.pageY - 20) + "px"); // Position the tooltip slightly above the mouse pointer
-      .style("left", (width - 200) + "px") // Adjust x-coordinate for horizontal positioning
-      .style("top", "100px"); // Fixed y-coordinate for top positioning
-    }
+      .style("display", "block") // Ensure the tooltip is displayed
+      .style("left", (d3.event.pageX + 10) + "px")
+      .style("top", (d3.event.pageY - 10) + "px");
+      // .style("top", d3.event.pageY + "px") // Position it at the mouse's Y position
+      // .style("left", (window.innerWidth - tooltip.node().getBoundingClientRect().width - 20) + "px"); // Position it to the right of the page
+  }
 
   function showNodeInfo(d) {
-    tooltip.style("display", "block");
-    tooltip.html(`<strong>Item ID:</strong> ${d.id}<br><strong>Group:</strong> ${d.group}`)
-      // .style("left", (d3.event.pageX + 10) + "px") // Position the tooltip next to the mouse pointer
-      // .style("top", (d3.event.pageY - 20) + "px"); // Position the tooltip slightly above the mouse pointer
-      .style("left", (width - 200) + "px") // Adjust x-coordinate for horizontal positioning
-      .style("top", "100px"); // Fixed y-coordinate for top positioning
-    }
+    tooltip.html(`<strong>Node ID:</strong> ${d.id}<br><strong>Group:</strong> ${d.group}`)
+      .style("display", "block")
+      .style("left", (d3.event.pageX + 10) + "px")
+      .style("top", (d3.event.pageY - 10) + "px");
+  }
+
+  
+  // function showNodeInfo(d) {
+  //   tooltip.html(`<strong>Item ID:</strong> ${d.id}<br><strong>Group:</strong> ${d.group}`)
+  //     .style("display", "block") // Ensure the tooltip is displayed
+  //     .style("top", d3.event.pageY + "px") // Position it at the mouse's Y position
+  //     .style("left", (window.innerWidth - tooltip.node().getBoundingClientRect().width - 20) + "px"); // Position it to the right of the page
+  // }
+
+  // function showLinkInfo(d) {
+  //   var sourceId = d.source.id;
+  //   var targetId = d.target.id;
+  //   //tooltip.style("display", "block");
+  //   tooltip.style("visibility", "visible")
+  //   .style("display", "block"); 
+  //   tooltip.html(`<strong>[Link Information]</strong><br><strong>Source:</strong> ${sourceId}<br><strong>Target:</strong> ${targetId}<br><strong>Value:</strong> ${d.value}`)
+  //     // .style("left", (d3.event.pageX + 10) + "px") // Position the tooltip next to the mouse pointer
+  //     // .style("top", (d3.event.pageY - 20) + "px"); // Position the tooltip slightly above the mouse pointer
+  //     .style("left", (width - 200) + "px") // Adjust x-coordinate for horizontal positioning
+  //     .style("top", "100px"); // Fixed y-coordinate for top positioning
+  //   }
+
+  // function showNodeInfo(d) {
+  //   // tooltip.style("display", "block");
+  //   tooltip.style("visibility", "visible")
+  //   .style("display", "block"); 
+  //   tooltip.html(`<strong>Item ID:</strong> ${d.id}<br><strong>Group:</strong> ${d.group}`)
+  //     // .style("left", (d3.event.pageX + 10) + "px") // Position the tooltip next to the mouse pointer
+  //     // .style("top", (d3.event.pageY - 20) + "px"); // Position the tooltip slightly above the mouse pointer
+  //     .style("left", (width - 200) + "px") // Adjust x-coordinate for horizontal positioning
+  //     .style("top", "100px"); // Fixed y-coordinate for top positioning
+  //   }
 
     // // Filter links based on the value being 0.5 or higher
     // var filteredLinks = graph.links.filter(function(link) {
@@ -592,8 +622,11 @@ function drawNetworkGraph(graph) {
         return scale(d.value);
         })
         .on("mouseover", showLinkInfo) // Show link information on mouseover
-        .on("mouseout", hideTooltip);
+        .on("mouseout", hideTooltip)
+        .on("mouseover", showLinkValue) // 마우스 오버 시 이벤트
+        .on("mouseout", hideLinkValue);  // 마우스 아웃 시 이벤트
   
+
     var node = svg.append("g")
         .attr("class", "nodes")
       .selectAll("circle")
@@ -725,10 +758,17 @@ function drawNetworkGraph(graph) {
 
     });
 
-    // Function to hide tooltip
     function hideTooltip() {
-      tooltip.style("display", "none");
+      tooltip.style("display", "none") // Hide the tooltip
+             //.style("visibility", "hidden"); // Optionally set visibility to hidden
     }
+
+    // Function to hide tooltip
+    // function hideTooltip() {
+    //   // tooltip.style("display", "none");
+    //   tooltip.style("visibility", "visible")
+    //   .style("display", "block"); 
+    // }
   // });
   
   function dragstarted(d) {
@@ -748,5 +788,106 @@ function drawNetworkGraph(graph) {
     d.fy = null;
   }
 
+  function drawLegend() {
+    var sector1 = document.getElementById('sector1').value;
+    var sector2 = document.getElementById('sector2').value;
+  
+    // 범례 데이터 생성
+    var colorMapping = {
+      [sector1]: "#FF6666", // sector1 선택된 값에 해당하는 색상
+      [sector2]: "#3366FF"  // sector2 선택된 값에 해당하는 색상
+    };
+  
+    // SVG 요소 선택
+    var svg = d3.select("#network-graph");
+  
+    // 기존 범례 삭제 (범례를 다시 그릴 때 중복 방지)
+    svg.selectAll(".legend").remove();
+  
+    // 범례를 위한 g 요소 추가
+    var legend = svg.append("g")
+      .attr("class", "legend")
+      .attr("transform", "translate(" + (width - 10) + ",30)"); // 위치 조정
+  
+    // 각 섹터별 범례 아이템 추가
+    Object.keys(colorMapping).forEach((sector, index) => {
+      // 범례 상자 추가
+      legend.append("rect")
+        .attr("x", 0)
+        .attr("y", index * 20)
+        .attr("width", 18)
+        .attr("height", 18)
+        .style("fill", colorMapping[sector]);
+  
+      // 범례 텍스트 추가
+      legend.append("text")
+        .attr("x", 24)
+        .attr("y", index * 20 + 9)
+        .attr("dy", ".35em")
+        .style("text-anchor", "start")
+        .style("fill", "white") // 텍스트 색상
+        .text(sector);
+    });
+  }
+  
+  // 범례 그리기 함수 호출
+  drawLegend();
+
+  // Value 표시 영역을 추가하는 함수
+  function addValueDisplay() {
+    var svg = d3.select("#network-graph");
+    svg.selectAll(".value-display").remove();
+
+    var valueDisplay = svg.append("g")
+      .attr("class", "value-display")
+      .attr("transform", "translate(" + (width - 10) + ",100)"); // 위치 조정 (범례 바로 아래)
+
+    valueDisplay.append("text")
+      .attr("x", 0)
+      .attr("y", 0)
+      .attr("dy", ".35em")
+      .style("text-anchor", "start")
+      .style("fill", "white")
+      .attr("class", "value-text"); // 이 클래스로 text를 업데이트합니다
+  }
+
+  // 링크 위에 마우스를 올려놓았을 때 source, target, value 정보 표시
+  function showLinkValue(d) {
+    var formattedValue = d.value.toFixed(8); // 소수점 아래 6자리까지 포맷
+    var sourceInfo = `Item1: ${d.source.id}`; // 링크의 source 정보
+    var targetInfo = `Item2: ${d.target.id}`; // 링크의 target 정보
+    var valueInfo = `Value: ${formattedValue}`; // 링크의 value 정보
+
+    // 텍스트 업데이트
+    var text = d3.select(".value-text");
+    text.selectAll("tspan").remove(); // 이전 tspan 요소 제거
+
+    text.append("tspan")
+      .attr("x", 0)
+      .attr("dy", "1.2em")
+      .text(sourceInfo);
+    
+    text.append("tspan")
+      .attr("x", 0)
+      .attr("dy", "1.2em")
+      .text(targetInfo);
+
+    text.append("tspan")
+      .attr("x", 0)
+      .attr("dy", "1.2em")
+      .text(valueInfo);
+  }
+
+  // 마우스를 벗어났을 때 value 숨기기
+  function hideLinkValue() {
+    d3.select(".value-text").text('');
+  }
+
+
+  // Value 표시 영역 추가 함수 호출
+  addValueDisplay();
+
 }
+
+
 
