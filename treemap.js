@@ -1,3 +1,4 @@
+const showDate = "2023-11-04";
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelector("h2").textContent = `Global Financial Market on ${showDate}`;
 });
