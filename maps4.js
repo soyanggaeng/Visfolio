@@ -1,10 +1,10 @@
 const latelyDate = "2023-11-09"; 
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.querySelector("h2").textContent = `Global Financial Market on ${showDate}`;
+    document.querySelector("h2").textContent = `Global Financial Market on ${latelyDate}`;
 });
 
-document.querySelector("h2").textContent = `Global Financial Market on ${showDate}`;
+document.querySelector("h2").textContent = `Global Financial Market on ${latelyDate}`;
 
 
 // Tooltip setup
