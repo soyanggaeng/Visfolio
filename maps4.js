@@ -109,13 +109,13 @@ function getAdjCloseValues(country) {
         let tooltipContent = `<strong>${country}</strong><br><hr><strong>Stock Market:</strong><br>`;
         let isContentAdded = false; // Flag to track if any content is added
     
-        let previousDay = getPreviousDate(, 1, 0); 
-        let previousMonth = getPreviousDate(, 0, 1); 
-        let twopreviousDay = getPreviousDate(, 2, 0); 
+        let previousDay = getPreviousDate(latelyDate, 1, 0); 
+        let previousMonth = getPreviousDate(latelyDate, 0, 1); 
+        let twopreviousDay = getPreviousDate(latelyDate, 2, 0); 
 
         // Handle Market Data
         for (let market in marketData) {
-            let marketEntry = marketData[market].find(entry => entry.Date.startsWith());
+            let marketEntry = marketData[market].find(entry => entry.Date.startsWith(latelyDate));
             let onepdmarketEntry = marketData[market].find(entry => entry.Date.startsWith(previousDay));
             let onepmmarketEntry = marketData[market].find(entry => entry.Date.startsWith(previousMonth));
             if (marketEntry && marketEntry['Adj Close'] && onepdmarketEntry && onepdmarketEntry['Adj Close']) {
@@ -147,7 +147,7 @@ function getAdjCloseValues(country) {
         if (jsonData[country].Currency) {
             tooltipContent += `<strong>Exchange Rate:</strong><br>`;
             const currencyData = jsonData[country].Currency;
-            const currencyEntry = currencyData.find(entry => entry.Date.startsWith());
+            const currencyEntry = currencyData.find(entry => entry.Date.startsWith(latelyDate));
             let onepdcurrencyEntry = currencyData.find(entry => entry.Date.startsWith(twopreviousDay));
 
             if (currencyEntry && currencyEntry.value && onepdcurrencyEntry && onepdcurrencyEntry.value) {
